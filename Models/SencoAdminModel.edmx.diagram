@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db1b308cc188489b85fdbd824d403613" Name="Diagram1">
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_admin_login" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_astrologer_appointment" Width="1.5" PointX="9.75" PointY="58.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_astrologer_master" Width="1.5" PointX="7.5" PointY="65" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_astrologer_schedule" Width="1.5" PointX="9.75" PointY="68.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_astrologer_store_link" Width="1.5" PointX="12.75" PointY="56.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_city_master" Width="1.5" PointX="5.25" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_Collections" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_country_master" Width="1.5" PointX="0.75" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_dashboard_analytics" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_designer_appointment" Width="1.5" PointX="9.75" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_ecommerce_transaction" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_events" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_gold_price" Width="1.5" PointX="7.5" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_horoscope_banner" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_horoscope_master" Width="1.5" PointX="11.25" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_horoscope_pricing" Width="1.5" PointX="5.25" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_horoscope_purchases" Width="1.5" PointX="7.5" PointY="42.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_horoscope_purchases_attempts" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_horoscope_schedule" Width="1.5" PointX="13.5" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_horoscope_testimonials" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_manage_video_audiance_location" Width="1.5" PointX="10.5" PointY="44" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_manage_videos" Width="1.5" PointX="8.25" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_mobile_verification_status" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_offer_notification_schedule" Width="1.5" PointX="10.5" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_offers" Width="1.5" PointX="8.25" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_offers_audiance_location" Width="1.5" PointX="10.5" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_purchase_appointment" Width="1.5" PointX="9.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_push_notification" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_scan_instruction" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_scan_queries" Width="1.5" PointX="15.75" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_scan_url" Width="1.5" PointX="7.5" PointY="53.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_senco_synchronization" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_spotlight" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_state_master" Width="1.5" PointX="3" PointY="50.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_store_call_log" Width="1.5" PointX="15.75" PointY="59.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_store_master" Width="1.5" PointX="7.5" PointY="58" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_store_offer_views" Width="1.5" PointX="15.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_store_offers" Width="1.5" PointX="12.75" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_store_photos" Width="1.5" PointX="9.75" PointY="87.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_store_reviews" Width="1.5" PointX="12.75" PointY="65.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_swarna_scheme_creation_details" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_swarna_user_registration" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_swarna_yojna" Width="1.5" PointX="15.75" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_swarna_yojna_payment_history" Width="1.5" PointX="18" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_tax_percentage" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_temp_ecommerce_payment_gateway" Width="1.5" PointX="15.75" PointY="44.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_temp_paymentgateway" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_temp_swarna_paymentgateway" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_user_details" Width="1.5" PointX="13.5" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_version_master" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENCO_DB_LIVEModel.tbl_zonal_manager" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_astrologer_appointment_tbl_astrologer_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_astrologer_appointment_tbl_store_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_astrologer_appointment_tbl_user_details" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_astrologer_schedule_tbl_astrologer_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_astrologer_store_link_tbl_astrologer_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_astrologer_store_link_tbl_store_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_city_master_tbl_country_master_country_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_city_master_tbl_state_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_gold_price_tbl_city_master_city_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_horoscope_purchases_tbl_city_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_manage_video_audiance_location_tbl_city_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_offers_audiance_location_tbl_city_master2" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_master_tbl_city_master_city_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_user_details_tbl_city_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.tbl_scan_url_city_no_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_horoscope_purchases_tbl_country_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_state_master_tbl_country_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_user_details_tbl_country_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_designer_appointment_tbl_state_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_designer_appointment_tbl_store_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_designer_appointment_tbl_user_details" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_horoscope_schedule_tbl_horoscope_master_horoscope_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_user_details_tbl_horoscope_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_horoscope_purchases_tbl_horoscope_pricing" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_manage_video_audiance_location_tbl_manage_videos" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_offer_notification_schedule_tbl_offers" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_offers_audiance_location_tbl_city_master1" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_offers_tbl_offers_offer_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_purchase_appointment_tbl_store_master" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_purchase_appointment_tbl_user_details" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.tbl_scan_queries_user_id_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_call_log_tbl_store_master_store_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_call_log_tbl_user_details" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_offers_tbl_store_master_store_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_photos_tbl_store_master_store_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_reviews_tbl_store_master_store_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_offer_views_tbl_store_offers_store_offer_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_offer_views_tbl_user_details" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_store_reviews_tbl_user_details" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_swarna_yojna_payment_history_tbl_swarna_yojna_sy_no" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_swarna_yojna_tbl_user_details" ManuallyRouted="false" />
+        <AssociationConnector Association="SENCO_DB_LIVEModel.FK_tbl_temp_ecommerce_payment_gateway_tbl_user_details" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
