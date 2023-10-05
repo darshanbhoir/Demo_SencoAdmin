@@ -1,0 +1,168 @@
+﻿@model IEnumerable<Demo_Senco_Admin.Models.ViewModel.SchemeDashboardViewModel>
+@{
+    ViewBag.Title = "SchemeDashboard";
+}
+
+<h3>Scheme Dash board</h3>
+
+<h6>Search</h6>
+@using(Html.BeginForm("SchemeDashboard", "NewScheme", FormMethod.Get))
+            {
+                <div>
+                    @Html.Label("Search by Scheme Reg Id")
+                    @Html.TextBox("schemeNo", ViewBag.CurrentFilter as int?)
+
+                    @Html.Label("Search by Customer Name")
+                    @Html.TextBox("customerName", ViewBag.CurrentFilter as string)
+
+                    @Html.Label("Search by Customer Email")
+                    @Html.TextBox("email", ViewBag.CurrentFilter as string)
+
+                    @Html.Label("Search by Customer Mobile")
+                    @Html.TextBox("mobile", ViewBag.CurrentFilter as string)
+
+                    @Html.Label("Search by Start Date")
+                    @Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type = "date" })
+
+                    @Html.Label("Search by End Date")
+                    @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
+                </div>
+                <button type="submit">Search</button>
+                <button type="reset" >Reset</button>
+            }
+
+<table class="table table-bordered">
+    <tr class="text-center">
+        <th>
+            @Html.DisplayNameFor(model => model.UserNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserMobileNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchemeAccountName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchemeAccountMobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchemeAccountEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchemeRegId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMIAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StreetNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserCountry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserCity)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach(var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserMobileNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchemeAccountName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchemeAccountMobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchemeAccountEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchemeRegId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMIAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Street)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StreetNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserCountry)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserCity)
+                    </td>
+                    <td>
+                        @Html.ActionLink("View", "ViewSchemeDetail", new {id=item.UserNumber})
+                    </td>
+                </tr>
+            }
+</table>
+
+
+
+
+@*Script to Reset Search*@
+@*<script>
+    function resetForm()
+    {
+        window.location.href = '@Url.Action("SchemeDashboard", "NewScheme")';
+    }
+</script>*@

@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Demo_Senco_Admin.Models.ViewModel.EMIPaymentViewModel>
+@{
+    ViewBag.Title = "EMIPaymentDashboard";
+}
+
+<h3>EMI Payment Dashboard</h3>
+
+
+<h6>Search</h6>
+@using (Html.BeginForm("EMIPaymentDashboard", "EMIPayment", FormMethod.Get))
+{
+    <div>
+        @Html.Label("Search by Scheme No")
+        @Html.TextBox("schemeNo", ViewBag.CurrentFilter as int?)
+
+        @Html.Label("Search by Customer Name")
+        @Html.TextBox("customerName", ViewBag.CurrentFilter as string)
+
+        @Html.Label("Search by Email")
+        @Html.TextBox("email", ViewBag.CurrentFilter as string)
+
+        @Html.Label("search by Mobile")
+        @Html.TextBox("mobile", ViewBag.CurrentFilter as string)
+
+
+        @Html.Label("Search by Payment Status")
+        @Html.DropDownList("paymentStatus", new List<SelectListItem>
+            {
+                new SelectListItem {Text="All", Value=""},
+                new SelectListItem{ Text= "Paid", Value="true"},
+                new SelectListItem { Text="Unpaid", Value="false"}
+            })
+
+        @Html.Label("Search by Start Date")
+        @Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type = "date" })
+
+        @Html.Label("Search by End Date")
+        @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
+    </div>
+    <button type="submit">Search</button>
+    <button type="reset">Reset</button>
+}
+
+<table class="table table-bordered">
+    <tr class="text-center">
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMIno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchemeNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankTransactionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentEntryNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentReciept)
+        </th>
+
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMIno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchemeNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankTransactionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentEntryNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentReciept)
+            </td>
+        </tr>
+    }
+</table>
+
