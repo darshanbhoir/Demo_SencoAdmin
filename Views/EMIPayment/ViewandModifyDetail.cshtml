@@ -1,0 +1,38 @@
+﻿@model Demo_Senco_Admin.Models.ViewModel.EMIPaymentViewModel
+@{
+    ViewBag.Title = "ViewandModifyDetail";
+}
+
+<h3>View and Modify Detail</h3>
+
+<h5>Order No: @Model.OrderNo</h5>
+<h5>Payment Date: @Model.PaymentDate</h5>
+<h5>EMI No: @Model.EMIno</h5>
+<h5>Amount: @Model.Amount</h5>
+<h5>Payment Status: @Model.PaymentStatus</h5>
+<h5>Scheme No: @Model.SchemeNo</h5>
+<h5>Transaction Id: @Model.TransactionId</h5>
+<h5>Bank Transaction Id: @Model.BankTransactionId</h5>
+<h5>Payment Entry No: @Model.PaymentEntryNo</h5>
+<h5>Customer Name: @Model.CustomerName</h5>
+<h5>Mobile No: @Model.MobileNo</h5>
+<h5>Email: @Model.Email</h5>
+<h5>Payment reciept: @Model.PaymentReciept</h5>
+<h5>EMI Details:</h5>
+    <p>Cancelled By: @Model.PayloadData.CANCELLEDBY</p>
+    <p>Installment Month: @Model.PayloadData.INSTALLMENTMONTH</p>
+    <p>Reciept Id: @Model.PayloadData.RECEIPTID</p>
+    <p>Cancelled Reason: @Model.PayloadData.CANCELLEDREASON</p>
+    <p>Tender Type: @Model.PayloadData.TENDERTYPE</p>
+    <p>Transaction Id: @Model.PayloadData.TRANSACTIONID</p>
+    <p>Scheme Entry No: @Model.PayloadData.SCHEMEENTRYNO</p>
+    <p>Payment Year: @Model.PayloadData.PAYMENTYEAR</p>
+    <p>Payment Type: @Model.PayloadData.PAYMENTTYPE</p>
+    <p>Payment Month: @Model.PayloadData.PAYMENTMONTH</p>
+    <p>Payment Entry No: @Model.PayloadData.PAYMENTENTRYNO</p>
+    <p>Payment Date: @Model.PayloadData.PAYMENTDATE</p>
+    <p>Payment Amount: @Model.PayloadData.PAYMENTAMOUNT</p>
+    <p>Linium: @Model.PayloadData.LINENUM</p>
+    <p>Customer Code: @Model.PayloadData.CUSTOMERCODE</p>
+    <p>Cancelled: @Model.PayloadData.CANCELLED</p>
+

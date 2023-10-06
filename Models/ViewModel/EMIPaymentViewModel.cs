@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo_Senco_Admin.Models.Payload;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,6 +21,7 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public string MobileNo { get; set; }
         public string Email { get; set; }
         public string PaymentReciept { get; set; }
+        public EMIPayload PayloadData { get; set; }
 
     }
 }

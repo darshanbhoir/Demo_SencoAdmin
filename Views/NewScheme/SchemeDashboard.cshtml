@@ -5,6 +5,7 @@
 
 <h3>Scheme Dash board</h3>
 
+@*Search Filter*@
 <h6>Search</h6>
 @using(Html.BeginForm("SchemeDashboard", "NewScheme", FormMethod.Get))
             {
@@ -30,6 +31,12 @@
                 <button type="submit">Search</button>
                 <button type="reset" >Reset</button>
             }
+
+@*Link to convert data to Ecxel*@
+<br />
+@Html.ActionLink("Export to Excel", "ExporttoExcel")
+<br />
+
 
 <table class="table table-bordered">
     <tr class="text-center">
@@ -154,6 +161,9 @@
                     </td>
                 </tr>
             }
+
+
+    
 </table>
 
 

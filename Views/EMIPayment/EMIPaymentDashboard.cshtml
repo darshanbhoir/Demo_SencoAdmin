@@ -41,6 +41,13 @@
     <button type="reset">Reset</button>
 }
 
+
+@*Link to convert data to Ecxel*@
+<br />
+@Html.ActionLink("Export to Excel", "ExporttoExcel")
+<br />
+
+
 <table class="table table-bordered">
     <tr class="text-center">
         <th>
@@ -81,6 +88,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PaymentReciept)
+        </th>
+        <th>
+            Modify Details
         </th>
 
     </tr>
@@ -127,6 +137,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentReciept)
+            </td>
+            <td>
+                @Html.ActionLink("View&Modify", "ViewandModifyDetail", new { id= item.SchemeNo })
             </td>
         </tr>
     }
