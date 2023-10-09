@@ -1,0 +1,179 @@
+SOW - Swarna Yojana Dashboards
+------------------------------
+
+Modules
+-------
+1. New Scheme Creation Dashboard
+2. EMI Payments Dashboard
+
+Functionality - Scheme Creation Dashboard
+------------------------------
+1. Information List of all the schemes created for a specific date range (Defaulting to Yesterday till today).
+2. Ability to search for a wider range of date.
+3. Ability to serach based on Scheme No, Customer Name, Email and Mobile.
+4. Ability to export the data in an excel sheet format whenever required.
+5. Ability to view full scheme creation details.
+
+Dashboard Grid Columns
+------------------------------
+1. Sr. No
+2. Member ID
+3. Member Name
+4. Mobile
+5. Email
+6. Scheme Account Name
+7. Scheme Account Mobile - Email
+6. Created On
+8. Scheme ID
+9. EMI Amount
+10. Location - Street - Street Number
+11. Country - State - City
+12. View (View the Full details along with payload data)
+
+Primary tables for utalization
+------------------------------
+DB: SENCO_DB_LIVE
+
+Reference Query: SELECT * FROM tbl_swarna_scheme_creation_details 
+INNER JOIN tbl_user_details
+ON tbl_swarna_scheme_creation_details.scheme_member_id =  tbl_user_details.user_no
+INNER JOIN tbl_swarna_user_registration
+ON tbl_swarna_user_registration.user_member_id = tbl_swarna_scheme_creation_details.scheme_member_id;
+
+LINQ-	
+var query = from SSCD in db.tbl_swarna_scheme_creation_details
+                        join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
+                        join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
+                        //where SUR.created_on >= new DateTime(2022, 12, 15) && SUR.created_on <= new DateTime(2022, 12, 20)               
+                        select new
+                        {
+                            UserNumber = UD.user_no,
+                            UserName = UD.user_name,
+                            UserMobileNumber = UD.user_mobile_no,
+                            UserEmail = UD.user_email,
+                            CreatedOn = SUR.created_on ,                            
+                            SchemePayload = SSCD.scheme_payload,
+                            UserRegPayload = SUR.user_reg_payload,
+                            SchemeRegId = SSCD.scheme_reg_id,
+                            UserCountry = UD.user_current_country,
+                            UserCity = UD.user_current_city,
+                        };
+            var Result = query.ToList();
+
+            var PResult = Result
+                .Where(s => string.IsNullOrEmpty(customerName) || s.UserName.Contains(customerName))
+                .Where(s=> string.IsNullOrEmpty(email) || s.UserEmail.Contains(email))
+                .Where(s=> string.IsNullOrEmpty(mobile) || s.UserMobileNumber.Contains(mobile))
+                .Where(s=> !startdate.HasValue || s.CreatedOn >= startdate)
+                .Where(s=> !enddate.HasValue || s.CreatedOn <= enddate)
+                .Select(item=> new SchemeDashboardViewModel
+                {
+                    UserNumber= item.UserNumber,
+                    UserName=item.UserName,
+                    UserMobileNumber = item.UserMobileNumber,
+                    UserEmail = item.UserEmail,
+                    CreatedOn = item.CreatedOn != null ? item.CreatedOn.Value.ToString("yyyy-MM-dd") : string.Empty,
+                    SchemeAccountName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null,
+                    SchemeAccountMobile= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>():null,
+                    SchemeAccountEmail= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null,
+                    SchemeRegId=item.SchemeRegId,
+                    EMIAmount= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].EMIAmount")?.Value<string>() : null,
+                    Location = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].LocationName")?.Value<string>() : null,
+                    Street = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].Street")?.Value<string>() : null,
+                    StreetNumber = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].StreetNumber")?.Value<string>() : null,
+                    Country = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].CountryRegionId")?.Value<string>() : null,
+                    State = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].State")?.Value<string>() : null,
+                    City = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].City")?.Value<string>() : null,
+                    UserCountry = (int)item.UserCountry,
+                    UserCity = (int)item.UserCity,
+                }).ToList();
+
+
+	//Newtonsoft.Json.Linq//
+
+********************************************************************************************************************************************************************
+
+Functionality - EMI Payments Dashboard
+-------------------------------------
+1. Information List of all the payments for a specific date range (Defaulting to Yesterday till today).
+2. Ability to search for a wider range of date.
+3. Ability to serach based on Scheme No, Customer Name, Email, Mobile, Payment Status.
+4. Ability to export the data in an excel sheet format when ever required.
+5. Ability to check payment status from payment gateway.
+6. Ability to generate payment receipt
+7. Ability view payment receipt
+8. Ability to view full payment details including payload data.
+
+			Payload- [{"$id":"1","Status":"200","Message":"Success.","EMI":[{"$id":"2","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220623111212800110168208961612198","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"2","PAYMENTENTRYNO":"ORD-275","PAYMENTDATE":"23-06-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"},
+			{"$id":"3","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220623111212800110168900261558057","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"1","PAYMENTENTRYNO":"ORD-266","PAYMENTDATE":"23-06-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"},
+			{"$id":"4","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220630111212800110168687963464640","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"3","PAYMENTENTRYNO":"ORD-11","PAYMENTDATE":"30-06-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"},{"$id":"5","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220712111212800110168153166408449","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"4","PAYMENTENTRYNO":"ORD-3549","PAYMENTDATE":"12-07-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"},{"$id":"6","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220712111212800110168371466280989","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"5","PAYMENTENTRYNO":"ORD-3550","PAYMENTDATE":"12-07-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"}]}]
+
+Dashboard Grid Columns
+-----------------------------------
+1. Sr. No.
+2. Order No
+3. Payment Date
+5. EMI No
+6. Amount
+7. Payment Status
+8. Scheme No
+9. Transaction ID
+10. Bank Transaction ID
+11. Payment Entry No
+12. Customer Name
+13. Mobile - Email
+14. Check Payment Status (Hyper Link)
+15. Create Receipt (Hyper Link)
+16. View Receipt (Hyper Link)
+17. Modify Details (Hyper Link To Modify Form)
+
+Primary Tables for Utalization 
+-----------------------------------
+DB: SENCO_DB_LIVE
+
+ReferenceQuery: SELECT TOP(1) * FROM tbl_temp_swarna_paymentgateway
+INNER JOIN tbl_user_details
+ON tbl_temp_swarna_paymentgateway.temp_swarna_member_id = tbl_user_details.user_no;
+
+LINQ:
+	var query = (from TSP in db.tbl_temp_swarna_paymentgateway
+                         join UD in db.tbl_user_details on TSP.temp_swarna_member_id equals UD.user_no
+                         //where TSP.temp_payment_status == false
+                         select new 
+                         {
+                             OrderNo = TSP.temp_swarna_order_no,
+                             PaymentDate = TSP.temp_swarna_paymentdate,
+                             EMIno = TSP.temp_swarna_current_emi_no,
+                             Amount = TSP.temp_swarna_payamount,
+                             PaymentStatus = TSP.temp_payment_status,
+                             SchemeNo = TSP.temp_swarna_yojna_id,
+                             TransactionId = TSP.temp_swarna_transaction_id,
+                             BankTransactionId = TSP.temp_swarna_banktransactionid,
+                             PaymentEntryNo = TSP.temp_swarna_paymententryno,
+                             CustomerName = TSP.temp_swarna_customer_name,
+                             MobileNo = TSP.temp_swarna_mobile_no,
+                             Email = TSP.temp_swarna_member_email,
+                             PaymentReciept = TSP.temp_swarna_payment_reciept,
+                         }).Take(20);
+
+            var Result = query.ToList();
+
+            var NewResult = Result
+                                .Select(item => new EMIPaymentViewModel
+                                {
+                                    OrderNo = item.OrderNo,
+                                    PaymentDate = (DateTime)item.PaymentDate,
+                                    EMIno = item.EMIno,
+                                    Amount = (decimal)item.Amount,
+                                    PaymentStatus = item.PaymentStatus,
+                                    SchemeNo = item.SchemeNo,
+                                    TransactionId = item.TransactionId,
+                                    BankTransactionId = item.BankTransactionId,
+                                    PaymentEntryNo = item.PaymentEntryNo,
+                                    CustomerName = item.CustomerName,
+                                    MobileNo = item.MobileNo,
+                                    Email = item.Email,
+                                    PaymentReciept = item.PaymentReciept,
+                                }).ToList();
+
+

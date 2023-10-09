@@ -4,35 +4,126 @@
 }
 
 <h3>View and Modify Detail</h3>
+<div>
+    @Html.ActionLink("Back to List", "EMIPaymentDashboard")
+</div>
 
-<h5>Order No: @Model.OrderNo</h5>
-<h5>Payment Date: @Model.PaymentDate</h5>
-<h5>EMI No: @Model.EMIno</h5>
-<h5>Amount: @Model.Amount</h5>
-<h5>Payment Status: @Model.PaymentStatus</h5>
-<h5>Scheme No: @Model.SchemeNo</h5>
-<h5>Transaction Id: @Model.TransactionId</h5>
-<h5>Bank Transaction Id: @Model.BankTransactionId</h5>
-<h5>Payment Entry No: @Model.PaymentEntryNo</h5>
-<h5>Customer Name: @Model.CustomerName</h5>
-<h5>Mobile No: @Model.MobileNo</h5>
-<h5>Email: @Model.Email</h5>
-<h5>Payment reciept: @Model.PaymentReciept</h5>
-<h5>EMI Details:</h5>
-    <p>Cancelled By: @Model.PayloadData.CANCELLEDBY</p>
-    <p>Installment Month: @Model.PayloadData.INSTALLMENTMONTH</p>
-    <p>Reciept Id: @Model.PayloadData.RECEIPTID</p>
-    <p>Cancelled Reason: @Model.PayloadData.CANCELLEDREASON</p>
-    <p>Tender Type: @Model.PayloadData.TENDERTYPE</p>
-    <p>Transaction Id: @Model.PayloadData.TRANSACTIONID</p>
-    <p>Scheme Entry No: @Model.PayloadData.SCHEMEENTRYNO</p>
-    <p>Payment Year: @Model.PayloadData.PAYMENTYEAR</p>
-    <p>Payment Type: @Model.PayloadData.PAYMENTTYPE</p>
-    <p>Payment Month: @Model.PayloadData.PAYMENTMONTH</p>
-    <p>Payment Entry No: @Model.PayloadData.PAYMENTENTRYNO</p>
-    <p>Payment Date: @Model.PayloadData.PAYMENTDATE</p>
-    <p>Payment Amount: @Model.PayloadData.PAYMENTAMOUNT</p>
-    <p>Linium: @Model.PayloadData.LINENUM</p>
-    <p>Customer Code: @Model.PayloadData.CUSTOMERCODE</p>
-    <p>Cancelled: @Model.PayloadData.CANCELLED</p>
+@*<h5>Order No: @Model.OrderNo</h5>
+    <h5>Payment Date: @Model.PaymentDate</h5>
+    <h5>EMI No: @Model.EMIno</h5>
+    <h5>Amount: @Model.Amount</h5>
+    <h5>Payment Status: @Model.PaymentStatus</h5>
+    <h5>Scheme No: @Model.SchemeNo</h5>
+    <h5>Transaction Id: @Model.TransactionId</h5>
+    <h5>Bank Transaction Id: @Model.BankTransactionId</h5>
+    <h5>Payment Entry No: @Model.PaymentEntryNo</h5>
+    <h5>Customer Name: @Model.CustomerName</h5>
+    <h5>Mobile No: @Model.MobileNo</h5>
+    <h5>Email: @Model.Email</h5>
+    <h5>Payment reciept: @Model.PaymentReciept</h5>
+    <h5>EMI Id: @Model.PayloadData.id</h5>
+    <h5>EMI Status: @Model.PayloadData.Status</h5>
+    <h5>EMI Message: @Model.PayloadData.Message</h5>*@
+
+@using (Html.BeginForm("ViewandModifyDetail", "EMIPayment", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.SchemeNo)
+        @Html.TextBoxFor(Model => Model.SchemeNo, new { @readonly = "readonly", @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.OrderNo)
+        @Html.TextBoxFor(Model => Model.OrderNo, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.PaymentDate)
+        @Html.TextBoxFor(Model => Model.PaymentDate, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.EMIno)
+        @Html.TextBoxFor(Model => Model.EMIno, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.Amount)
+        @Html.TextBoxFor(Model => Model.Amount, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.PaymentStatus)
+        @Html.TextBoxFor(Model => Model.PaymentStatus, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.TransactionId)
+        @Html.TextBoxFor(Model => Model.TransactionId, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.BankTransactionId)
+        @Html.TextBoxFor(Model => Model.BankTransactionId, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.PaymentEntryNo)
+        @Html.TextBoxFor(Model => Model.PaymentEntryNo, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.CustomerName)
+        @Html.TextBoxFor(Model => Model.CustomerName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.MobileNo)
+        @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.Email)
+        @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.PaymentReciept)
+        @Html.TextBoxFor(Model => Model.PaymentReciept, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.PayloadData.id)
+        @Html.TextBoxFor(Model => Model.PayloadData.id, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.PayloadData.Status)
+        @Html.TextBoxFor(Model => Model.PayloadData.Status, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.PayloadData.Message)
+        @Html.TextBoxFor(Model => Model.PayloadData.Message, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Update Details" class="btn btn-primary" />
+    </div>
+}
+
+<hr />
+<hr />
+
+<div>
+    <h5>EMI Details:</h5>
+    @foreach (var item in Model.PayloadData.EMI)
+    {
+        <div>
+            <p>EMI id: @item.id</p>
+            <p>Cancelled By: @item.CANCELLEDBY</p>
+            <p>Installment Month: @item.INSTALLMENTMONTH</p>
+            <p>Reciept Id: @item.RECEIPTID</p>
+            <p>Cancelled Reason: @item.CANCELLEDREASON</p>
+            <p>Tender Type: @item.TENDERTYPE</p>
+            <p>Transaction Id: @item.TRANSACTIONID</p>
+            <p>Scheme Entry No: @item.SCHEMEENTRYNO</p>
+            <p>Payment Year: @item.PAYMENTYEAR</p>
+            <p>Payment Type: @item.PAYMENTTYPE</p>
+            <p>Payment Month: @item.PAYMENTMONTH</p>
+            <p>Payment Entry No: @item.PAYMENTENTRYNO</p>
+            <p>Payment Date: @item.PAYMENTDATE</p>
+            <p>Payment Amount: @item.PAYMENTAMOUNT</p>
+            <p>Linium: @item.LINENUM</p>
+            <p>Customer Code: @item.CUSTOMERCODE</p>
+            <p>Cancelled: @item.CANCELLED</p>
+            <hr />
+        </div>
+    }
+</div>
+
 

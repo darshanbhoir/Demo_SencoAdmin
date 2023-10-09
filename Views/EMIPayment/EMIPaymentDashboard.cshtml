@@ -11,17 +11,30 @@
 {
     <div>
         @Html.Label("Search by Scheme No")
-        @Html.TextBox("schemeNo", ViewBag.CurrentFilter as int?)
+        @Html.TextBox("schemeNo", ViewBag.CurrentFilterSchemeNo as int?)
 
         @Html.Label("Search by Customer Name")
-        @Html.TextBox("customerName", ViewBag.CurrentFilter as string)
+        @Html.TextBox("customerName", ViewBag.CurrentFilterCustomerName as string)
 
         @Html.Label("Search by Email")
-        @Html.TextBox("email", ViewBag.CurrentFilter as string)
+        @Html.TextBox("email", ViewBag.CurrentFilterEmail as string)
 
         @Html.Label("search by Mobile")
-        @Html.TextBox("mobile", ViewBag.CurrentFilter as string)
+        @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)
 
+        @*@Html.Label("Search Parameter")
+        @Html.DropDownList("searchFilter", new List<SelectListItem>
+            {
+                new SelectListItem{Text="Search by Scheme No", Value="schemeNo"},
+                new SelectListItem{Text="Search by Customer Name", Value="customerName"},
+                new SelectListItem{Text="Search by Email", Value="email"},
+                new SelectListItem{Text="Search by Mobile", Value="mobile"}
+            })
+        <div id="searchinputcon">
+            <label for="searchInput">Search Input:</label>
+            <input id="searchinput" type="text" ,placeholder="Enter Search Value" />
+        </div>*@
+            
 
         @Html.Label("Search by Payment Status")
         @Html.DropDownList("paymentStatus", new List<SelectListItem>
@@ -145,3 +158,23 @@
     }
 </table>
 
+
+
+
+@*Scripts*@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#searchFilter').change(function () {
+            var selectedValue = $(this).val();
+
+            $('#searchinputcon').show();
+            $('#searchinput').attr('placeholder', 'Enter' + selectedValue);
+
+        });
+        $('#searchinput').on('input', function () {
+            var searchValue = $(this).val();
+            console.log('Search Value: ', searchValue);
+        });
+    })
+</script>
