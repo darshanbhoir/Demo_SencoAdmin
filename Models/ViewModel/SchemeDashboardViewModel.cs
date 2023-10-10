@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo_Senco_Admin.Models.Payload;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -29,5 +30,10 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public string City { get; set; }
         public int UserCountry { get; set; }
         public int UserCity { get; set; }
+        public int? SchemeMemberId { get; set; }
+        public DateTime Created_On { get; set; }
+        public NewScheme SchemePayload { get; set; }
+
+        
     }
 }

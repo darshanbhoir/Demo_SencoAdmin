@@ -14,6 +14,36 @@ Functionality - Scheme Creation Dashboard
 4. Ability to export the data in an excel sheet format whenever required.
 5. Ability to view full scheme creation details.
 
+	{"_keys":[{"BirthDate":"04\/06\/1990",
+		"CustomerBankAccountNo":"",
+		"CustomerBankIFSCCode":"",
+		"CustomerBankName":"",
+		"CustomerCode":"CUS939499",
+		"CustomerName":"Amrit Kumer Malviya",
+		"EMIAmount":"1000.00",
+		"GaurdianName":"",
+		"IdentityProof":"Aadhar",
+		"IdProofNo":"881114663545",
+		"Minor":"No",
+		"NomineeAddress":"",
+		"NomineeBirthDate":"",
+		"NomineeCity":"",
+		"NomineeCountryRegionId":"IND",
+		"NomineeEmail":"",
+		"NomineeMobile":"",
+		"NomineeName":"",
+		"NomineeRelation":"",
+		"NomineeState":"",
+		"NomineeTelephone":"",
+		"NomineeZipCode":"",
+		"PassbookNo":"",
+		"RelationWithMinor":"",
+		"SchemeCode":"SL22-23",
+		"store":"C998",
+		"InventLocationId":"998",
+		"KycDocumentId":"D005",
+		"KycDocumentNo":"881114663545"}]}
+
 Dashboard Grid Columns
 ------------------------------
 1. Sr. No

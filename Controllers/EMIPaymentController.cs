@@ -25,7 +25,7 @@ namespace Demo_Senco_Admin.Controllers
         {
             var query = (from TSP in db.tbl_temp_swarna_paymentgateway
                          join UD in db.tbl_user_details on TSP.temp_swarna_member_id equals UD.user_no
-                         //where TSP.temp_swarna_yojna_id == 10822
+                         where TSP.temp_swarna_yojna_id == 10822
                          select new
                          {
                              OrderNo = TSP.temp_swarna_order_no,
@@ -45,11 +45,16 @@ namespace Demo_Senco_Admin.Controllers
 
             var Result = query.ToList();
 
-            var NewResult = Result                                
-                                .Where(s=> !schemeNo.HasValue || (searchFilter=="schemeNo" || s.SchemeNo== schemeNo))
-                                .Where(s=> string.IsNullOrEmpty(customerName) || (searchFilter=="customerName" && s.CustomerName.Contains(customerName)))
-                                .Where(s=> string.IsNullOrEmpty(email) || (searchFilter=="email" && s.Email != null && s.Email.Contains(email)))
-                                .Where(s=> string.IsNullOrEmpty(mobile) || (searchFilter=="mobile" && s.MobileNo != null && s.MobileNo.Contains(mobile)))
+            var NewResult = Result
+                                .Where(s=>string.IsNullOrEmpty(searchFilter) || 
+                                    (s.SchemeNo==schemeNo && searchFilter=="schemeNo") || 
+                                    (s.CustomerName==customerName && (string.IsNullOrEmpty(customerName) || searchFilter=="customerName")) || 
+                                    (s.Email==email && (string.IsNullOrEmpty(email) || searchFilter=="email")) ||
+                                    (s.MobileNo==mobile && (string.IsNullOrEmpty(mobile) || searchFilter=="mobile")))
+                                //.Where(s => !schemeNo.HasValue || s.SchemeNo == schemeNo)
+                                //.Where(s => string.IsNullOrEmpty(customerName) || s.CustomerName.Contains(customerName))
+                                //.Where(s => string.IsNullOrEmpty(email) || (s.Email != null && s.Email.Contains(email)))
+                                //.Where(s => string.IsNullOrEmpty(mobile) || (s.MobileNo != null && s.MobileNo.Contains(mobile)))
                                 .Where(s=> string.IsNullOrEmpty(paymentStatus) || s.PaymentStatus == (paymentStatus.ToLower()=="true" || paymentStatus.ToLower()=="false"))
                                 //.Where(s=> string.IsNullOrEmpty(paymentStatus) || s.PaymentStatus== (paymentStatus.ToLower()=="false"))
                                 .Where(s=> !startdate.HasValue || s.PaymentDate >= startdate)
@@ -79,6 +84,7 @@ namespace Demo_Senco_Admin.Controllers
             ViewBag.StartDateFilter = startdate;
             ViewBag.EndDateFilter = enddate;
             ViewBag.CurrentFilterSchemeNo = schemeNo;
+            ViewBag.CurrentFilterSearchFilter = searchFilter;
 
             //var json = new JavaScriptSerializer().Serialize(Result);
             //var json = JsonConvert.SerializeObject(Result);
@@ -189,14 +195,14 @@ namespace Demo_Senco_Admin.Controllers
                 HttpNotFound();
             }
 
-            var settings = new JsonSerializerSettings
+            var setting = new JsonSerializerSettings
             {
                 DefaultValueHandling = DefaultValueHandling.Populate,
             };
 
             //Console.WriteLine("{ emidetail.temp_swarna_payload_json}");
              
-            var payloadData = JsonConvert.DeserializeObject<List<EMIPayload>>(emidetail.temp_swarna_payload_json, settings);
+            var payloadData = JsonConvert.DeserializeObject<List<EMIPayload>>(emidetail.temp_swarna_payload_json, setting);
            
             var mostRecentEMI= payloadData.OrderBy(s=>s.id).FirstOrDefault();
                 

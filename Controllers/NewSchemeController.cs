@@ -11,6 +11,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
+using Demo_Senco_Admin.Models.Payload;
 
 namespace Demo_Senco_Admin.Controllers
 {
@@ -24,7 +26,7 @@ namespace Demo_Senco_Admin.Controllers
             var query = from SSCD in db.tbl_swarna_scheme_creation_details
                         join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
                         join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
-                        //where SUR.created_on >= new DateTime(2022, 12, 15) && SUR.created_on <= new DateTime(2022, 12, 20)               
+                        where SSCD.scheme_member_id==157707               
                         select new
                         {
                             UserNumber = UD.user_no,
@@ -92,20 +94,30 @@ namespace Demo_Senco_Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var schemedetail = db.tbl_user_details.Find(id);
+            var schemedetail = db.tbl_swarna_scheme_creation_details.Find(id);
 
             if(schemedetail == null)
             {
                 return HttpNotFound();
             }
 
+            var setting = new JsonSerializerSettings
+            {
+                DefaultValueHandling = DefaultValueHandling.Populate,
+            };
+
+            //NewScheme newScheme = JsonConvert.DeserializeObject<NewScheme>(schemedetail.scheme_payload, setting);
+            //List<NewSchemePayload> payloadDataNewScheme = newScheme.Keys;
+
+            var payloadDataNewScheme = JsonConvert.DeserializeObject<NewSchemePayload>(schemedetail.scheme_payload, setting);
+
             var viewModel = new SchemeDashboardViewModel
             {
-                UserNumber = schemedetail.user_no,
-                UserName = schemedetail.user_name,
-                UserMobileNumber = schemedetail.user_mobile_no,
-                UserEmail = schemedetail.user_email,
-                //CreatedOn = schemedetail.
+                SchemeRegId = schemedetail.scheme_reg_id,
+                SchemeMemberId = schemedetail.scheme_member_id,
+                SchemePayload = payloadDataNewScheme,
+                Created_On = (DateTime)schemedetail.created_on,
+                
             };
             return View(viewModel);
         }

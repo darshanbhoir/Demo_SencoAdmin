@@ -10,7 +10,7 @@
 @using (Html.BeginForm("EMIPaymentDashboard", "EMIPayment", FormMethod.Get))
 {
     <div>
-        @Html.Label("Search by Scheme No")
+        @*@Html.Label("Search by Scheme No")
         @Html.TextBox("schemeNo", ViewBag.CurrentFilterSchemeNo as int?)
 
         @Html.Label("Search by Customer Name")
@@ -20,20 +20,22 @@
         @Html.TextBox("email", ViewBag.CurrentFilterEmail as string)
 
         @Html.Label("search by Mobile")
-        @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)
+        @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)*@
 
-        @*@Html.Label("Search Parameter")
+        @Html.Label("Search Parameter")
         @Html.DropDownList("searchFilter", new List<SelectListItem>
             {
+                new SelectListItem{Text="Search By", Value=""},
                 new SelectListItem{Text="Search by Scheme No", Value="schemeNo"},
                 new SelectListItem{Text="Search by Customer Name", Value="customerName"},
                 new SelectListItem{Text="Search by Email", Value="email"},
                 new SelectListItem{Text="Search by Mobile", Value="mobile"}
             })
-        <div id="searchinputcon">
+        <div id="searchInputContainer">
             <label for="searchInput">Search Input:</label>
-            <input id="searchinput" type="text" ,placeholder="Enter Search Value" />
-        </div>*@
+            @*<input id="searchInput" ,placeholder="Enter Search Value" />*@
+            @Html.TextBox("searchInput", null, new { id="searchInput", placeholder = "Enter Search Value" })
+        </div>
             
 
         @Html.Label("Search by Payment Status")
@@ -162,19 +164,38 @@
 
 
 @*Scripts*@
+@*script for dropdown*@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
+        console.log("Document is ready");
         $('#searchFilter').change(function () {
             var selectedValue = $(this).val();
+            console.log('Selected value:', selectedValue);
+            $('#searchInputContainer').show();
+            $('#searchInput').attr('placeholder', 'Enter' +selectedValue);
 
-            $('#searchinputcon').show();
-            $('#searchinput').attr('placeholder', 'Enter' + selectedValue);
+            if (selectedValue == "schemeNo") {
+                $('#searchInput').attr('type', 'number');
+            }
+            else {
+                $('#searchInput').attr('type', 'text');
+            }
 
         });
-        $('#searchinput').on('input', function () {
+        $('#searchInput').on('input', function () { 
             var searchValue = $(this).val();
             console.log('Search Value: ', searchValue);
         });
+
+        //$('form').submit(function (e) {
+        //    e.preventDefault();
+        //    var selectedValue = $('#searchFilter').val();
+        //    var searchValue = $('#searchInput').val();
+
+        //    console.log('selected value:', selectedValue);
+        //    console.log('search value:', searchValue);
+
+        })
     })
 </script>
