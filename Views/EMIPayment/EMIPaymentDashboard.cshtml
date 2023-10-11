@@ -11,16 +11,16 @@
 {
     <div>
         @*@Html.Label("Search by Scheme No")
-        @Html.TextBox("schemeNo", ViewBag.CurrentFilterSchemeNo as int?)
+            @Html.TextBox("schemeNo", ViewBag.CurrentFilterSchemeNo as int?)
 
-        @Html.Label("Search by Customer Name")
-        @Html.TextBox("customerName", ViewBag.CurrentFilterCustomerName as string)
+            @Html.Label("Search by Customer Name")
+            @Html.TextBox("customerName", ViewBag.CurrentFilterCustomerName as string)
 
-        @Html.Label("Search by Email")
-        @Html.TextBox("email", ViewBag.CurrentFilterEmail as string)
+            @Html.Label("Search by Email")
+            @Html.TextBox("email", ViewBag.CurrentFilterEmail as string)
 
-        @Html.Label("search by Mobile")
-        @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)*@
+            @Html.Label("search by Mobile")
+            @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)*@
 
         @Html.Label("Search Parameter")
         @Html.DropDownList("searchFilter", new List<SelectListItem>
@@ -33,10 +33,10 @@
             })
         <div id="searchInputContainer">
             <label for="searchInput">Search Input:</label>
-            @*<input id="searchInput" ,placeholder="Enter Search Value" />*@
-            @Html.TextBox("searchInput", null, new { id="searchInput", placeholder = "Enter Search Value" })
+            @*<input id="searchInput", name="searchInput  " ,placeholder="Enter Search Value" />*@
+            @Html.TextBox("searchInput", null, new { id = "searchInput", placeholder = "Enter Search Value" })
         </div>
-            
+
 
         @Html.Label("Search by Payment Status")
         @Html.DropDownList("paymentStatus", new List<SelectListItem>
@@ -53,7 +53,7 @@
         @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
     </div>
     <button type="submit">Search</button>
-    <button type="reset">Reset</button>
+    <button type="reset" onclick="ResetForm()">Reset</button>
 }
 
 
@@ -101,8 +101,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
+       
         <th>
-            @Html.DisplayNameFor(model => model.PaymentReciept)
+            Check Status
+        </th>
+        <th>
+            Create Reciept
+        </th>
+        <th>
+            View Reciept
         </th>
         <th>
             Modify Details
@@ -150,11 +157,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentReciept)
+            
+            <td class="checkpaymentstatus" data-schemeNo="@item.SchemeNo">
+                Check
             </td>
             <td>
-                @Html.ActionLink("View&Modify", "ViewandModifyDetail", new { id= item.SchemeNo })
+                @Html.ActionLink("Create", "CreateReciept", new { id = item.SchemeNo })
+            </td>
+            <td>
+                @Html.ActionLink("View", "ViewReciept", new { id = item.SchemeNo })
+            </td>
+            <td>
+                @Html.ActionLink("View&Modify", "ViewandModifyDetail", new { id = item.SchemeNo })
             </td>
         </tr>
     }
@@ -164,6 +178,16 @@
 
 
 @*Scripts*@
+@*Script to Reset Search*@
+<script>
+        function ResetForm()
+        {
+            window.location.href = '@Url.Action("EMIPaymentDashboard", "EMIPayment")';
+            /*$('#searchForm')[0].reset();*/
+        }
+</script>
+
+
 @*script for dropdown*@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
@@ -173,7 +197,7 @@
             var selectedValue = $(this).val();
             console.log('Selected value:', selectedValue);
             $('#searchInputContainer').show();
-            $('#searchInput').attr('placeholder', 'Enter' +selectedValue);
+            $('#searchInput').attr('placeholder', 'Enter' + selectedValue);
 
             if (selectedValue == "schemeNo") {
                 $('#searchInput').attr('type', 'number');
@@ -183,19 +207,28 @@
             }
 
         });
-        $('#searchInput').on('input', function () { 
-            var searchValue = $(this).val();
-            console.log('Search Value: ', searchValue);
+
+    });
+    
+</script>
+
+
+@*Script to check Payment status*@
+<script>
+    $(document).ready(function () {
+        $('.checkpaymentstatus').on('click', function () {
+            var schemeNo = $(this).data('schemeNo');
+            $.ajax({
+                URL: '/EMIPayment/EMIPaymentDashboard',
+                type: 'GET',
+                data: { SchemeNo: schemeNo },
+                success: function (data) {
+                    alert('Payment Status: ' + data.PaymentStatus);
+                },
+                error: function () {
+                    alert('Error in retriving Payment Status');
+                }
+            });
         });
-
-        //$('form').submit(function (e) {
-        //    e.preventDefault();
-        //    var selectedValue = $('#searchFilter').val();
-        //    var searchValue = $('#searchInput').val();
-
-        //    console.log('selected value:', selectedValue);
-        //    console.log('search value:', searchValue);
-
-        })
-    })
+    });
 </script>

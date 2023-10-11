@@ -21,12 +21,12 @@ namespace Demo_Senco_Admin.Controllers
         private SENCO_DB_AdminEntities db = new SENCO_DB_AdminEntities();
 
         // GET: Scheme Dashboard
-        public ActionResult SchemeDashboard(int? schemeNo, string customerName, string email, string mobile, DateTime? startdate, DateTime? enddate)
+        public ActionResult SchemeDashboard( DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput)
         {
-            var query = from SSCD in db.tbl_swarna_scheme_creation_details
+            var query = (from SSCD in db.tbl_swarna_scheme_creation_details
                         join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
                         join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
-                        where SSCD.scheme_member_id==157707               
+                        //where SSCD.scheme_member_id==157707               
                         select new
                         {
                             UserNumber = UD.user_no,
@@ -39,14 +39,19 @@ namespace Demo_Senco_Admin.Controllers
                             SchemeRegId = SSCD.scheme_reg_id,
                             UserCountry = UD.user_current_country,
                             UserCity = UD.user_current_city,
-                        };
+                        }).Take(10);
             var Result = query.ToList();
 
             var PResult = Result
-                .Where(s=> !schemeNo.HasValue || s.SchemeRegId==schemeNo)
-                .Where(s => string.IsNullOrEmpty(customerName) || s.UserName.Contains(customerName))
-                .Where(s=> string.IsNullOrEmpty(email) || s.UserEmail.Contains(email))
-                .Where(s=> string.IsNullOrEmpty(mobile) || s.UserMobileNumber.Contains(mobile))
+                .Where(s=>string.IsNullOrEmpty(searchFilter)  ||
+                    (s.SchemeRegId.ToString()==searchInput && searchFilter=="schemeNo") ||
+                    (s.UserName.Contains(searchInput) && searchFilter == "customerName") ||
+                    (s.UserEmail.Contains(searchInput) && searchFilter == "email") ||
+                    (s.UserMobileNumber.Contains(searchInput) && searchFilter == "mobile"))
+                //.Where(s=> !schemeNo.HasValue || s.SchemeRegId==schemeNo)
+                //.Where(s => string.IsNullOrEmpty(customerName) || s.UserName.Contains(customerName))
+                //.Where(s=> string.IsNullOrEmpty(email) || s.UserEmail.Contains(email))
+                //.Where(s=> string.IsNullOrEmpty(mobile) || s.UserMobileNumber.Contains(mobile))
                 .Where(s=> !startdate.HasValue || s.CreatedOn >= startdate)
                 .Where(s=> !enddate.HasValue || s.CreatedOn <= enddate)
                 .Select(item=> new SchemeDashboardViewModel
@@ -72,12 +77,11 @@ namespace Demo_Senco_Admin.Controllers
                 }).ToList();
 
 
-            ViewBag.CurrentFilter = customerName;
-            ViewBag.CurrentFilter = email;
-            ViewBag.CurrentFilter = mobile;
+            
             ViewBag.StartDateFilter = startdate;
             ViewBag.EndDateFilter= enddate;
-            ViewBag.CurrentFilter = schemeNo;
+            ViewBag.CurrentFilterSearchFilter = searchFilter;
+            ViewBag.CurrentFilterInputFilter = searchInput;
 
             //var json = new JavaScriptSerializer().Serialize(PResult);
             return View("SchemeDashboard", PResult);

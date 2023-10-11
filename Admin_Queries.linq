@@ -1,6 +1,6 @@
 <Query Kind="Expression">
   <Connection>
-    <ID>97320aea-a04c-48bc-9d8f-0675b68a9603</ID>
+    <ID>a4e3b486-3300-436b-8755-6fb4a090a602</ID>
     <Persist>true</Persist>
     <Server>13.233.140.191,1433</Server>
     <SqlSecurity>true</SqlSecurity>
@@ -8,7 +8,7 @@
     <NoPluralization>true</NoPluralization>
     <NoCapitalization>true</NoCapitalization>
     <UserName>sa</UserName>
-    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARY3ZS+SvkUS+1eZ8VVBstwAAAAACAAAAAAAQZgAAAAEAACAAAACMT3gBtNpK0lQSbS5i7SVTbEn8pMkdO7gZfm2wv/Yx9wAAAAAOgAAAAAIAACAAAADGUKupyOlRGgu4+ReWylKVlAVjJzMAgbxSMgnV7lBvkSAAAAAoEqXvBxVtzUirmqZST1mGOUPt0u2Oj4cb/MX837LZpUAAAABGcBELM4poCpbix1MR/GAqrBfxAvDH8P4VYs6C2yT9h0lIXpQxOg5vfMYTtxdQVv5McycAyj32IX1I1VqOc/GH</Password>
+    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAa75ovtwweESHEbt/wDI3mgAAAAACAAAAAAAQZgAAAAEAACAAAACq1+Xtdk6syLG+iBngQvNNa09QK47tnaZIoK9I5uj9QAAAAAAOgAAAAAIAACAAAABPxN5uDT3cm9DSSQphsDZdbUFrHgBRifUs/2pSyGrH4CAAAAAW4QosSJUBMCcpVzToknHeH1GrOqL1ja1pTfBZHDpwaUAAAACq/bLf1NG6MpOUKPuTWyrgkYXwmRJOTNpkyBZRcd62MweKGiUhyB8vuW8hAigdqEn5eI7e0JbJuSkCVpMuej21</Password>
   </Connection>
 </Query>
 

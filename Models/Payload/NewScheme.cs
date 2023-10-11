@@ -8,7 +8,7 @@ namespace Demo_Senco_Admin.Models.Payload
 {
     public class NewScheme
     {
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        
         public string BirthDate { get; set; }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
@@ -97,41 +97,38 @@ namespace Demo_Senco_Admin.Models.Payload
 
 
 
-        public NewScheme()
-        {
-            BirthDate = "-";
-            CustomerBankAccountNo = "-";
-            CustomerBankIFSCCode = "-";
-            CustomerBankName = "-";
-            CustomerCode = "-";
-            CustomerName = "-";
-            EMIAmount = "-";
-            IdentityProof = "-";
-            IdProofNo = "-";
-            Minor = "-";
-            NomineeAddress = "-";
-            NomineeBirthDate = "-";
-            NomineeCity = "-";
-            NomineeCountryRegionId = "-";
-            NomineeEmail = "-";
-            NomineeMobile = "-";
-            NomineeName = "-";
-            NomineeRelation = "-";
-            NomineeState = "-";
-            NomineeTelephone = "-";
-            NomineeZipCode = "-";
-            PassbookNo = "-";
-            RelationWithMinor = "-";
-            SchemeCode = "-";
-            store = "-";
-            InventLocationId = "-";
-            KycDocumentId = "-";
-            KycDocumentNo = "-";
-        }
+        //public NewScheme()
+        //{
+        //    BirthDate = "-";
+        //    CustomerBankAccountNo = "-";
+        //    CustomerBankIFSCCode = "-";
+        //    CustomerBankName = "-";
+        //    CustomerCode = "-";
+        //    CustomerName = "-";
+        //    EMIAmount = "-";
+        //    IdentityProof = "-";
+        //    IdProofNo = "-";
+        //    Minor = "-";
+        //    NomineeAddress = "-";
+        //    NomineeBirthDate = "-";
+        //    NomineeCity = "-";
+        //    NomineeCountryRegionId = "-";
+        //    NomineeEmail = "-";
+        //    NomineeMobile = "-";
+        //    NomineeName = "-";
+        //    NomineeRelation = "-";
+        //    NomineeState = "-";
+        //    NomineeTelephone = "-";
+        //    NomineeZipCode = "-";
+        //    PassbookNo = "-";
+        //    RelationWithMinor = "-";
+        //    SchemeCode = "-";
+        //    store = "-";
+        //    InventLocationId = "-";
+        //    KycDocumentId = "-";
+        //    KycDocumentNo = "-";
+        //}
 
-        public static implicit operator NewScheme(NewSchemePayload v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

@@ -21,11 +21,12 @@ namespace Demo_Senco_Admin.Controllers
         
 
         // GET: EMI Payment Details
-        public ActionResult EMIPaymentDashboard(int? schemeNo,string customerName, string email, string mobile, string paymentStatus, DateTime? startdate, DateTime? enddate, string searchFilter)
+        public ActionResult EMIPaymentDashboard(string paymentStatus, DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput)
         {
             var query = (from TSP in db.tbl_temp_swarna_paymentgateway
                          join UD in db.tbl_user_details on TSP.temp_swarna_member_id equals UD.user_no
-                         where TSP.temp_swarna_yojna_id == 10822
+                         //where TSP.temp_swarna_yojna_id == 10822
+                         //where TSP.temp_payment_status==false
                          select new
                          {
                              OrderNo = TSP.temp_swarna_order_no,
@@ -39,7 +40,7 @@ namespace Demo_Senco_Admin.Controllers
                              PaymentEntryNo = TSP.temp_swarna_paymententryno,
                              CustomerName = TSP.temp_swarna_customer_name,
                              MobileNo = TSP.temp_swarna_mobile_no,
-                             Email = TSP.temp_swarna_member_email,
+                             Email = TSP.temp_swarna_member_email ?? "NA",
                              PaymentReciept = TSP.temp_swarna_payment_reciept,
                          }).Take(10);
 
@@ -47,10 +48,10 @@ namespace Demo_Senco_Admin.Controllers
 
             var NewResult = Result
                                 .Where(s=>string.IsNullOrEmpty(searchFilter) || 
-                                    (s.SchemeNo==schemeNo && searchFilter=="schemeNo") || 
-                                    (s.CustomerName==customerName && (string.IsNullOrEmpty(customerName) || searchFilter=="customerName")) || 
-                                    (s.Email==email && (string.IsNullOrEmpty(email) || searchFilter=="email")) ||
-                                    (s.MobileNo==mobile && (string.IsNullOrEmpty(mobile) || searchFilter=="mobile")))
+                                    ( s.SchemeNo.ToString() == searchInput && searchFilter=="schemeNo") || 
+                                    ( s.CustomerName.Contains(searchInput) && searchFilter=="customerName") || 
+                                    ( s.Email.Contains(searchInput) && searchFilter=="email") ||
+                                    (s.MobileNo.Contains(searchInput) && searchFilter == "mobile"))
                                 //.Where(s => !schemeNo.HasValue || s.SchemeNo == schemeNo)
                                 //.Where(s => string.IsNullOrEmpty(customerName) || s.CustomerName.Contains(customerName))
                                 //.Where(s => string.IsNullOrEmpty(email) || (s.Email != null && s.Email.Contains(email)))
@@ -77,13 +78,10 @@ namespace Demo_Senco_Admin.Controllers
                                 }).ToList();
 
 
-            ViewBag.CurrentFilterCustomerName = customerName;
-            ViewBag.CurrentFilterEmail = email;
-            ViewBag.CurrentFilterMobile = mobile;
+            
             ViewBag.CurrentFilterPaymentStatus = paymentStatus;
             ViewBag.StartDateFilter = startdate;
-            ViewBag.EndDateFilter = enddate;
-            ViewBag.CurrentFilterSchemeNo = schemeNo;
+            ViewBag.EndDateFilter = enddate;           
             ViewBag.CurrentFilterSearchFilter = searchFilter;
 
             //var json = new JavaScriptSerializer().Serialize(Result);
@@ -265,5 +263,66 @@ namespace Demo_Senco_Admin.Controllers
             }
             return View(viewModel);
         }
+
+
+
+        //CreateReciept
+        public ActionResult CreateReciept(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
+
+            if (detail == null)
+            {
+                HttpNotFound();
+            }
+            var viewmodel = new EMIPaymentViewModel
+            {
+                CustomerName = detail.temp_swarna_customer_name,
+                MobileNo = detail.temp_swarna_mobile_no,
+                EMIno = detail.temp_swarna_current_emi_no,
+                Amount = (decimal)detail.temp_swarna_payamount,
+                TransactionId = detail.temp_swarna_transaction_id,
+                BankTransactionId = detail.temp_swarna_banktransactionid,
+                PaymentDate = (DateTime)detail.temp_swarna_paymentdate,
+                PaymentStatus = detail.temp_payment_status,
+            };
+            return Json(viewmodel);
+        }
+        [HttpPost]
+        public ActionResult CreateReciept(EMIPaymentViewModel viewmodel)
+        {
+            try
+            {
+                var detail = db.tbl_temp_swarna_paymentgateway.Find(viewmodel.SchemeNo);
+                if (detail == null)
+                {
+                    HttpNotFound();
+                }
+
+                detail.temp_swarna_customer_name = viewmodel.CustomerName;
+                detail.temp_swarna_mobile_no= viewmodel.MobileNo;
+                detail.temp_swarna_current_emi_no = viewmodel.EMIno;
+                detail.temp_swarna_payamount= viewmodel.Amount;
+                detail.temp_swarna_transaction_id= viewmodel.TransactionId;
+                detail.temp_swarna_banktransactionid= viewmodel.BankTransactionId;
+                detail.temp_swarna_paymentdate= viewmodel.PaymentDate;
+                detail.temp_payment_status= viewmodel.PaymentStatus;
+
+                db.SaveChanges();
+                return Json(new { success = true, message = "Receipt created successfully!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error creating receipt: " + ex.Message });
+            }
+            
+        }
+
+
     }
 }

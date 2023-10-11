@@ -7,30 +7,45 @@
 
 @*Search Filter*@
 <h6>Search</h6>
-@using(Html.BeginForm("SchemeDashboard", "NewScheme", FormMethod.Get))
+@using (Html.BeginForm("SchemeDashboard", "NewScheme", FormMethod.Get))
+{
+    <div>
+        @*@Html.Label("Search by Scheme Reg Id")
+            @Html.TextBox("schemeNo", ViewBag.CurrentFilter as int?)
+
+            @Html.Label("Search by Customer Name")
+            @Html.TextBox("customerName", ViewBag.CurrentFilter as string)
+
+            @Html.Label("Search by Customer Email")
+            @Html.TextBox("email", ViewBag.CurrentFilter as string)
+
+            @Html.Label("Search by Customer Mobile")
+            @Html.TextBox("mobile", ViewBag.CurrentFilter as string)*@
+
+        @Html.Label("Search Parameter")
+        @Html.DropDownList("searchFilter", new List<SelectListItem>
             {
-                <div>
-                    @Html.Label("Search by Scheme Reg Id")
-                    @Html.TextBox("schemeNo", ViewBag.CurrentFilter as int?)
+                new SelectListItem{Text="Search By", Value=""},
+                new SelectListItem{Text="Search by Scheme No", Value="schemeNo"},
+                new SelectListItem{Text="Search by Customer Name", Value="customerName"},
+                new SelectListItem{Text="Search by Email", Value="email"},
+                new SelectListItem{Text="Search by Mobile", Value="mobile"}
+            })
+        <div id="searchInputContainer">
+            <label for="searchInput">Search Input:</label>
+            @*<input id="searchInput", name="searchInput  " ,placeholder="Enter Search Value" />*@
+            @Html.TextBox("searchInput", null, new { id = "searchInput", placeholder = "Enter Search Value" })
+        </div>
 
-                    @Html.Label("Search by Customer Name")
-                    @Html.TextBox("customerName", ViewBag.CurrentFilter as string)
+        @Html.Label("Search by Start Date")
+        @Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type = "date" })
 
-                    @Html.Label("Search by Customer Email")
-                    @Html.TextBox("email", ViewBag.CurrentFilter as string)
-
-                    @Html.Label("Search by Customer Mobile")
-                    @Html.TextBox("mobile", ViewBag.CurrentFilter as string)
-
-                    @Html.Label("Search by Start Date")
-                    @Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type = "date" })
-
-                    @Html.Label("Search by End Date")
-                    @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
-                </div>
-                <button type="submit">Search</button>
-                <button type="reset" >Reset</button>
-            }
+        @Html.Label("Search by End Date")
+        @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
+    </div>
+    <button type="submit">Search</button>
+    <button type="reset" onclick="ResetForm()">Reset</button>
+}
 
 @*Link to convert data to Ecxel*@
 <br />
@@ -99,80 +114,139 @@
         </th>
     </tr>
 
-    @foreach(var item in Model)
-            {
-                <tr class="text-center">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserMobileNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserEmail)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SchemeAccountName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SchemeAccountMobile)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SchemeAccountEmail)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SchemeRegId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EMIAmount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Location)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Street)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StreetNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Country)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.State)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserCountry)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserCity)
-                    </td>
-                    <td>
-                        @Html.ActionLink("View", "ViewSchemeDetail", new {id=item.SchemeRegId})
-                    </td>
-                </tr>
-            }
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.UserNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserMobileNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchemeAccountName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchemeAccountMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchemeAccountEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchemeRegId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMIAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserCountry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserCity)
+            </td>
+            <td>
+                @*@Html.ActionLink("View", "ViewSchemeDetail", new { id = item.SchemeRegId })*@
+                <a href="@Url.Action("ViewSchemeDetail", new {id=item.SchemeRegId})" class="view-link">View</a>
+            </td>
+        </tr>
+    }
 
 
-    
+
 </table>
 
 
 
+@*Scripts*@
+
+@*Include Jquery and Modal Library*@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+
+
 
 @*Script to Reset Search*@
-@*<script>
-    function resetForm()
-    {
-        window.location.href = '@Url.Action("SchemeDashboard", "NewScheme")';
-    }
-</script>*@
+<script>
+        function ResetForm()
+        {
+            window.location.href = '@Url.Action("SchemeDashboard", "NewScheme")';
+            /*$('#searchForm')[0].reset();*/
+        }
+</script>
+
+
+
+@*script for Dropdown*@
+<script>
+    $(document).ready(function () {
+        console.log("Document is ready");
+        $('#searchFilter').change(function () {
+            var selectedValue = $(this).val();
+            console.log('Selected value:', selectedValue);
+            $('#searchInputContainer').show();
+            $('#searchInput').attr('placeholder', 'Enter' + selectedValue);
+
+            if (selectedValue == "schemeNo") {
+                $('#searchInput').attr('type', 'number');
+            }
+            else {
+                $('#searchInput').attr('type', 'text');
+            }
+
+        });
+
+    });
+
+</script>
+
+
+@*Script for opening View in Popup*@
+<script>
+    $(document).ready(function () {
+
+        $('.view-link').on('click', function (e) {
+            e.preventDefault();
+            alert('Link clicked!');
+            var url = $(this).attr('href');
+
+            $.modal({
+                content: 'Loading...',
+                ajax: {
+                    url: url,
+                    dataType: 'html',
+                    success: function (data) {
+                        this.setContent(data);
+                    }
+                }
+            });
+        });
+    });
+</script>

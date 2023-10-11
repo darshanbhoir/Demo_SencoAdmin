@@ -32,7 +32,7 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public int UserCity { get; set; }
         public int? SchemeMemberId { get; set; }
         public DateTime Created_On { get; set; }
-        public NewScheme SchemePayload { get; set; }
+        public NewSchemePayload SchemePayload { get; set; }
 
         
     }
