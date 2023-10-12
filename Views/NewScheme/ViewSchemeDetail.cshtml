@@ -5,9 +5,9 @@
 
 <h2>View Scheme Details</h2>
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "SchemeDashboard")
-</div>
+</div>*@
 
 <div>
 
@@ -48,3 +48,11 @@
     }
 </div>
 
+
+
+@*@if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
+{
+    <script>
+        alert('@Html.Raw(ViewBag.AlertMessage)');
+    </script>
+}*@

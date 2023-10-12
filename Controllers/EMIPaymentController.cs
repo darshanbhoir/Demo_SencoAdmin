@@ -25,7 +25,7 @@ namespace Demo_Senco_Admin.Controllers
         {
             var query = (from TSP in db.tbl_temp_swarna_paymentgateway
                          join UD in db.tbl_user_details on TSP.temp_swarna_member_id equals UD.user_no
-                         //where TSP.temp_swarna_yojna_id == 10822
+                         where TSP.temp_swarna_yojna_id == 10822
                          //where TSP.temp_payment_status==false
                          select new
                          {
@@ -62,19 +62,19 @@ namespace Demo_Senco_Admin.Controllers
                                 .Where(s=> !enddate.HasValue|| s.PaymentDate <= enddate)
                                 .Select(item => new EMIPaymentViewModel
                                 {
-                                    OrderNo = item.OrderNo,
+                                    OrderNo = item.OrderNo ,
                                     PaymentDate = (DateTime)item.PaymentDate,
-                                    EMIno = item.EMIno,
+                                    EMIno = item.EMIno ?? 0,
                                     Amount = (decimal)item.Amount,
-                                    PaymentStatus = item.PaymentStatus,
+                                    PaymentStatus = item.PaymentStatus ?? false,
                                     SchemeNo = item.SchemeNo,
-                                    TransactionId = item.TransactionId,
-                                    BankTransactionId = item.BankTransactionId,
-                                    PaymentEntryNo = item.PaymentEntryNo,
-                                    CustomerName = item.CustomerName,
-                                    MobileNo = item.MobileNo,
-                                    Email = item.Email,
-                                    PaymentReciept = item.PaymentReciept,
+                                    TransactionId = item.TransactionId ?? "N/A",
+                                    BankTransactionId = item.BankTransactionId ?? "N/A",
+                                    PaymentEntryNo = item.PaymentEntryNo ?? "N/A",
+                                    CustomerName = item.CustomerName ?? "N/A",
+                                    MobileNo = item.MobileNo ?? "N/A",
+                                    Email = item.Email ?? "N/A",
+                                    PaymentReciept = item.PaymentReciept ?? "N/A",
                                 }).ToList();
 
 
@@ -99,19 +99,19 @@ namespace Demo_Senco_Admin.Controllers
                          //where TSP.temp_payment_status == false && TSP.temp_payment_status== true
                          select new EMIPaymentViewModel
                          {
-                             OrderNo = TSP.temp_swarna_order_no,
+                             OrderNo = TSP.temp_swarna_order_no ?? "N/A",
                              PaymentDate = (DateTime)TSP.temp_swarna_paymentdate,
-                             EMIno = TSP.temp_swarna_current_emi_no,
+                             EMIno = TSP.temp_swarna_current_emi_no ?? 0,
                              Amount = (decimal)TSP.temp_swarna_payamount,
-                             PaymentStatus = TSP.temp_payment_status,
-                             SchemeNo = TSP.temp_swarna_yojna_id,
-                             TransactionId = TSP.temp_swarna_transaction_id,
-                             BankTransactionId = TSP.temp_swarna_banktransactionid,
-                             PaymentEntryNo = TSP.temp_swarna_paymententryno,
-                             CustomerName = TSP.temp_swarna_customer_name,
-                             MobileNo = TSP.temp_swarna_mobile_no,
-                             Email = TSP.temp_swarna_member_email,
-                             PaymentReciept = TSP.temp_swarna_payment_reciept,
+                             PaymentStatus = TSP.temp_payment_status ?? false,
+                             SchemeNo = TSP.temp_swarna_yojna_id ,
+                             TransactionId = TSP.temp_swarna_transaction_id ?? "N/A",
+                             BankTransactionId = TSP.temp_swarna_banktransactionid ?? "N/A",
+                             PaymentEntryNo = TSP.temp_swarna_paymententryno ?? "N/A",
+                             CustomerName = TSP.temp_swarna_customer_name ?? "N/A",
+                             MobileNo = TSP.temp_swarna_mobile_no ?? "N/A",
+                             Email = TSP.temp_swarna_member_email ?? "N/A",
+                             PaymentReciept = TSP.temp_swarna_payment_reciept ?? "N/A",
                          }).Take(10);
 
             var data = query.ToList();
@@ -199,30 +199,43 @@ namespace Demo_Senco_Admin.Controllers
             };
 
             //Console.WriteLine("{ emidetail.temp_swarna_payload_json}");
-             
-            var payloadData = JsonConvert.DeserializeObject<List<EMIPayload>>(emidetail.temp_swarna_payload_json, setting);
-           
-            var mostRecentEMI= payloadData.OrderBy(s=>s.id).FirstOrDefault();
-                
+
+            if(emidetail.temp_swarna_payload_json!= null)
+            {
+                var payloadData = JsonConvert.DeserializeObject<List<EMIPayload>>(emidetail.temp_swarna_payload_json, setting);
+
+                var mostRecentEMI = payloadData.OrderBy(s => s.id).FirstOrDefault();
+
 
                 var viewModel = new EMIPaymentViewModel
                 {
-                    OrderNo = emidetail.temp_swarna_order_no,
+                    OrderNo = emidetail.temp_swarna_order_no ?? "N/A",
                     PaymentDate = (DateTime)emidetail.temp_swarna_paymentdate,
-                    EMIno = emidetail.temp_swarna_current_emi_no,
+                    EMIno = emidetail.temp_swarna_current_emi_no ?? 0,
                     Amount = (decimal)emidetail.temp_swarna_payamount,
-                    PaymentStatus = emidetail.temp_payment_status,
+                    PaymentStatus = emidetail.temp_payment_status ?? false,
                     SchemeNo = emidetail.temp_swarna_yojna_id,
-                    TransactionId = emidetail.temp_swarna_transaction_id,
-                    BankTransactionId = emidetail.temp_swarna_banktransactionid,
-                    PaymentEntryNo = emidetail.temp_swarna_paymententryno,
-                    CustomerName = emidetail.temp_swarna_customer_name,
-                    MobileNo = emidetail.temp_swarna_mobile_no,
-                    Email = emidetail.temp_swarna_member_email,
-                    PaymentReciept = emidetail.temp_swarna_payment_reciept,
+                    TransactionId = emidetail.temp_swarna_transaction_id ?? "N/A",
+                    BankTransactionId = emidetail.temp_swarna_banktransactionid ?? "N/A",
+                    PaymentEntryNo = emidetail.temp_swarna_paymententryno ?? "N/A",
+                    CustomerName = emidetail.temp_swarna_customer_name ?? "N/A",
+                    MobileNo = emidetail.temp_swarna_mobile_no ?? "N/A",
+                    Email = emidetail.temp_swarna_member_email ?? "N/A",
+                    PaymentReciept = emidetail.temp_swarna_payment_reciept ?? "N/A",
                     PayloadData = mostRecentEMI,
                 };
-                return View(viewModel);        
+                return View(viewModel);
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Data is Missing";
+                return View("Error");
+                //var ErrorMessage = "Data is Missing";
+                //ViewBag.AlertMessage = ErrorMessage;
+                //return View();
+            }
+             
+            
 
             
         }
@@ -267,62 +280,60 @@ namespace Demo_Senco_Admin.Controllers
 
 
         //CreateReciept
+        [HttpPost]
         public ActionResult CreateReciept(int? id)
         {
-            if (id == null)
+            if(ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
-
-            if (detail == null)
-            {
-                HttpNotFound();
-            }
-            var viewmodel = new EMIPaymentViewModel
-            {
-                CustomerName = detail.temp_swarna_customer_name,
-                MobileNo = detail.temp_swarna_mobile_no,
-                EMIno = detail.temp_swarna_current_emi_no,
-                Amount = (decimal)detail.temp_swarna_payamount,
-                TransactionId = detail.temp_swarna_transaction_id,
-                BankTransactionId = detail.temp_swarna_banktransactionid,
-                PaymentDate = (DateTime)detail.temp_swarna_paymentdate,
-                PaymentStatus = detail.temp_payment_status,
-            };
-            return Json(viewmodel);
-        }
-        [HttpPost]
-        public ActionResult CreateReciept(EMIPaymentViewModel viewmodel)
-        {
-            try
-            {
-                var detail = db.tbl_temp_swarna_paymentgateway.Find(viewmodel.SchemeNo);
-                if (detail == null)
+                if (id == null)
                 {
-                    HttpNotFound();
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return Json(new { success = false, message = "Scheme number is missing." });
                 }
 
-                detail.temp_swarna_customer_name = viewmodel.CustomerName;
-                detail.temp_swarna_mobile_no= viewmodel.MobileNo;
-                detail.temp_swarna_current_emi_no = viewmodel.EMIno;
-                detail.temp_swarna_payamount= viewmodel.Amount;
-                detail.temp_swarna_transaction_id= viewmodel.TransactionId;
-                detail.temp_swarna_banktransactionid= viewmodel.BankTransactionId;
-                detail.temp_swarna_paymentdate= viewmodel.PaymentDate;
-                detail.temp_payment_status= viewmodel.PaymentStatus;
+                var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
 
-                db.SaveChanges();
-                return Json(new { success = true, message = "Receipt created successfully!" });
+                if (detail == null)
+                {
+                    //HttpNotFound();
+                    return Json(new { success = false, message = "Record not Found" }, JsonRequestBehavior.AllowGet);
+                }
+                var viewmodel = new EMIPaymentViewModel
+                {
+                    SchemeNo= detail.temp_swarna_yojna_id,
+                    CustomerName = detail.temp_swarna_customer_name ?? "N/A",
+                    MobileNo = detail.temp_swarna_mobile_no ?? "N/A",
+                    EMIno = detail.temp_swarna_current_emi_no ?? 0,
+                    Amount = (decimal)detail.temp_swarna_payamount ,
+                    TransactionId = detail.temp_swarna_transaction_id ?? "N/A",
+                    BankTransactionId = detail.temp_swarna_banktransactionid ?? "N/A",
+                    PaymentDate = ((DateTime)detail.temp_swarna_paymentdate),
+                    PaymentStatus = detail.temp_payment_status ?? false,
+                };
+
+                //storing vewmodel dataa in session to use in ViewReciept method
+                Session["RecieptView"] = viewmodel;
+
+                return Json(new { success = true, data = viewmodel }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = "Error creating receipt: " + ex.Message });
-            }
+            return Json(new { success = false, message = "Validation Failed" });
             
         }
+        
 
+
+        //View Reciept
+        public ActionResult ViewReciept()
+        {
+            var recieptDetail = Session["RecieptView"] as EMIPaymentViewModel;
+
+            if(recieptDetail== null)
+            {
+                return RedirectToAction("EMIPaymentDashboard");
+            }
+
+            return View(recieptDetail);
+        }
 
     }
 }

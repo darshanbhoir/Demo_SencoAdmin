@@ -3,232 +3,407 @@
     ViewBag.Title = "EMIPaymentDashboard";
 }
 
-<h3>EMI Payment Dashboard</h3>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fevicon -->
+    <!-- <link rel="shortcut icon" href="./content/images/" type="image/x-icon"> -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- Font Family Link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <!-- bootstrap CSS Link  -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap-grid.min">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <!-- Title -->
+    <title>Synco EMI Dashboard</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a class="navbar-brand" href="#">
+                            <img src="~/Content/images/synco-logo.jpg" class="img-fluid" alt="">
+                        </a>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("SchemeDashboard", "NewScheme")">Scheme Creation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("EMIPaymentDashboard", "EMIPayment")">EMI Payments</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="right-side-part">
+                            <div class="content-part">
+                                <strong>Hi, Vivek</strong>
+                                <a href="Javascript:void(0)">Log Out</a>
+                            </div>
+                            <div class="user-thumb-image">
+                                <img src="~/Content/images/user-thumb.png" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <h3>EMI Payment Dashboard</h3>
 
 
-<h6>Search</h6>
-@using (Html.BeginForm("EMIPaymentDashboard", "EMIPayment", FormMethod.Get))
-{
-    <div>
-        @*@Html.Label("Search by Scheme No")
-            @Html.TextBox("schemeNo", ViewBag.CurrentFilterSchemeNo as int?)
-
-            @Html.Label("Search by Customer Name")
-            @Html.TextBox("customerName", ViewBag.CurrentFilterCustomerName as string)
-
-            @Html.Label("Search by Email")
-            @Html.TextBox("email", ViewBag.CurrentFilterEmail as string)
-
-            @Html.Label("search by Mobile")
-            @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)*@
-
-        @Html.Label("Search Parameter")
-        @Html.DropDownList("searchFilter", new List<SelectListItem>
-            {
-                new SelectListItem{Text="Search By", Value=""},
-                new SelectListItem{Text="Search by Scheme No", Value="schemeNo"},
-                new SelectListItem{Text="Search by Customer Name", Value="customerName"},
-                new SelectListItem{Text="Search by Email", Value="email"},
-                new SelectListItem{Text="Search by Mobile", Value="mobile"}
-            })
-        <div id="searchInputContainer">
-            <label for="searchInput">Search Input:</label>
-            @*<input id="searchInput", name="searchInput  " ,placeholder="Enter Search Value" />*@
-            @Html.TextBox("searchInput", null, new { id = "searchInput", placeholder = "Enter Search Value" })
-        </div>
-
-
-        @Html.Label("Search by Payment Status")
-        @Html.DropDownList("paymentStatus", new List<SelectListItem>
-            {
-                new SelectListItem {Text="All", Value=""},
-                new SelectListItem{ Text= "Paid", Value="true"},
-                new SelectListItem { Text="Unpaid", Value="false"}
-            })
-
-        @Html.Label("Search by Start Date")
-        @Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type = "date" })
-
-        @Html.Label("Search by End Date")
-        @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
-    </div>
-    <button type="submit">Search</button>
-    <button type="reset" onclick="ResetForm()">Reset</button>
-}
-
-
-@*Link to convert data to Ecxel*@
-<br />
-@Html.ActionLink("Export to Excel", "ExporttoExcel")
-<br />
-
-
-<table class="table table-bordered">
-    <tr class="text-center">
-        <th>
-            @Html.DisplayNameFor(model => model.OrderNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMIno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SchemeNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TransactionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BankTransactionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentEntryNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobileNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-       
-        <th>
-            Check Status
-        </th>
-        <th>
-            Create Reciept
-        </th>
-        <th>
-            View Reciept
-        </th>
-        <th>
-            Modify Details
-        </th>
-
-    </tr>
-
-
-    @foreach (var item in Model)
+    <h6>Search</h6>
+    @using (Html.BeginForm("EMIPaymentDashboard", "EMIPayment", FormMethod.Get))
     {
-        <tr class="text-center">
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EMIno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SchemeNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BankTransactionId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentEntryNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MobileNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            
-            <td class="checkpaymentstatus" data-schemeNo="@item.SchemeNo">
-                Check
-            </td>
-            <td>
-                @Html.ActionLink("Create", "CreateReciept", new { id = item.SchemeNo })
-            </td>
-            <td>
-                @Html.ActionLink("View", "ViewReciept", new { id = item.SchemeNo })
-            </td>
-            <td>
-                @Html.ActionLink("View&Modify", "ViewandModifyDetail", new { id = item.SchemeNo })
-            </td>
-        </tr>
+        <div>
+            @*@Html.Label("Search by Scheme No")
+                @Html.TextBox("schemeNo", ViewBag.CurrentFilterSchemeNo as int?)
+
+                @Html.Label("Search by Customer Name")
+                @Html.TextBox("customerName", ViewBag.CurrentFilterCustomerName as string)
+
+                @Html.Label("Search by Email")
+                @Html.TextBox("email", ViewBag.CurrentFilterEmail as string)
+
+                @Html.Label("search by Mobile")
+                @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)*@
+
+            @Html.Label("Search Parameter")
+            @Html.DropDownList("searchFilter", new List<SelectListItem>
+                {
+                    new SelectListItem{Text="Search By", Value=""},
+                    new SelectListItem{Text="Search by Scheme No", Value="schemeNo"},
+                    new SelectListItem{Text="Search by Customer Name", Value="customerName"},
+                    new SelectListItem{Text="Search by Email", Value="email"},
+                    new SelectListItem{Text="Search by Mobile", Value="mobile"}
+                })
+            <div id="searchInputContainer">
+                <label for="searchInput">Search Input:</label>
+                @*<input id="searchInput", name="searchInput  " ,placeholder="Enter Search Value" />*@
+                @Html.TextBox("searchInput", null, new { id = "searchInput", placeholder = "Enter Search Value" })
+            </div>
+
+
+            @Html.Label("Search by Payment Status")
+            @Html.DropDownList("paymentStatus", new List<SelectListItem>
+                {
+                    new SelectListItem {Text="All", Value=""},
+                    new SelectListItem{ Text= "Paid", Value="true"},
+                    new SelectListItem { Text="Unpaid", Value="false"}
+                })
+
+            @Html.Label("Search by Start Date")
+            @Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type = "date" })
+
+            @Html.Label("Search by End Date")
+            @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
+        </div>
+        <button type="submit">Search</button>
+        <button type="reset" onclick="ResetForm()">Reset</button>
     }
-</table>
 
 
+    @*Link to convert data to Ecxel*@
+    @*<br />
+    @Html.ActionLink("Export to Excel", "ExporttoExcel")
+    <br />*@
 
 
-@*Scripts*@
-@*Script to Reset Search*@
-<script>
+    <table class="table table-bordered">
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMIno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SchemeNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankTransactionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentEntryNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+            <th>
+                Check Status
+            </th>
+            <th>
+                Create Reciept
+            </th>
+            <th>
+                View Reciept
+            </th>
+            <th>
+                Modify Details
+            </th>
+
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMIno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SchemeNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BankTransactionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentEntryNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="checkpaymentstatus" data-schemeNo="@item.SchemeNo">
+                    Check
+                </td>
+                <td class="createreciept" data-schemeno="@item.SchemeNo">
+                    @Html.ActionLink("Create", "CreateReciept", new { id = item.SchemeNo })
+                    @*<div>Debug: @item.SchemeNo</div>*@
+                </td>
+                <td>
+                    @Html.ActionLink("View", "ViewReciept", null, new { id = "viewlink" })
+                </td>
+                <td>
+                    @Html.ActionLink("View&Modify", "ViewandModifyDetail", new { id = item.SchemeNo }, new { @class = "viewmodify" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    <a href="@Url.Action("ExporttoExcel", "EMIPayment")" class="export-exel-part" title="Export To Excel">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+             class="bi bi-file-earmark-excel-fill" viewBox="0 0 16 16">
+            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z" />
+        </svg>
+    </a>
+
+
+    @*Scripts*@
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+
+
+    @*Script to Reset Search*@
+    <script>
         function ResetForm()
         {
             window.location.href = '@Url.Action("EMIPaymentDashboard", "EMIPayment")';
             /*$('#searchForm')[0].reset();*/
         }
-</script>
+    </script>
 
 
-@*script for dropdown*@
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        console.log("Document is ready");
-        $('#searchFilter').change(function () {
-            var selectedValue = $(this).val();
-            console.log('Selected value:', selectedValue);
-            $('#searchInputContainer').show();
-            $('#searchInput').attr('placeholder', 'Enter' + selectedValue);
+    @*script for dropdown*@
+    <script>
+        $(document).ready(function () {
+            console.log("Document is ready");
+            $('#searchFilter').change(function () {
+                var selectedValue = $(this).val();
+                console.log('Selected value:', selectedValue);
+                $('#searchInputContainer').show();
+                $('#searchInput').attr('placeholder', 'Enter' + selectedValue);
 
-            if (selectedValue == "schemeNo") {
-                $('#searchInput').attr('type', 'number');
-            }
-            else {
-                $('#searchInput').attr('type', 'text');
-            }
+                if (selectedValue == "schemeNo") {
+                    $('#searchInput').attr('type', 'number');
+                }
+                else {
+                    $('#searchInput').attr('type', 'text');
+                }
+
+            });
 
         });
 
-    });
-    
-</script>
+    </script>
 
 
-@*Script to check Payment status*@
-<script>
-    $(document).ready(function () {
-        $('.checkpaymentstatus').on('click', function () {
-            var schemeNo = $(this).data('schemeNo');
-            $.ajax({
-                URL: '/EMIPayment/EMIPaymentDashboard',
-                type: 'GET',
-                data: { SchemeNo: schemeNo },
-                success: function (data) {
-                    alert('Payment Status: ' + data.PaymentStatus);
-                },
-                error: function () {
-                    alert('Error in retriving Payment Status');
-                }
+    @*Script to check Payment status*@
+    <script>
+        $(document).ready(function () {
+            $('.checkpaymentstatus').on('click', function () {
+                var schemeNo = $(this).data('schemeNo');
+                $.ajax({
+                    URL: '/EMIPayment/EMIPaymentDashboard',
+                    type: 'GET',
+                    data: { SchemeNo: schemeNo },
+                    success: function (data) {
+                        alert('Payment Status: ' + data.PaymentStatus);
+                    },
+                    error: function () {
+                        alert('Error in retriving Payment Status');
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+
+
+    @*Script for Create Reciept*@
+
+    <script>
+        $(document).ready(function () {
+            $('.createreciept').on('click', function (e) {
+                e.preventDefault();
+
+                var schemeNo = $(this).data('schemeno');
+                console.log('SchemeNo:', schemeNo);
+                $.ajax({
+                    url: '/EMIPayment/CreateReciept',
+                    type: 'POST',
+                    data: { id: schemeNo },
+                    success: function (response) {
+                        console.log('Response Data:', response);
+                        if (response.success) {
+                            alert('Reciept Created');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred.');
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    @*Script to View Recipt in new tab*@
+    <script>
+        $(document).ready(function () {
+            $('#viewlink').attr('target', '_blank');
+        });
+    </script>
+
+
+    @*Script for ViewModify in Popup*@
+    <script>
+        $(document).ready(function () {
+            $('.viewmodify').on('click', function (e) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+
+                // Load the view content into a modal
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (data) {
+                        // Create a modal and set its content
+                        var modal = $('<div id="myModal" class="modal"></div>');
+                        modal.html(data);
+
+                        modal.css({
+                            'width': '600px',
+                            'height': '600px',
+                            'margin': 'auto',
+                        });
+
+                        // Add a close button
+                        var closeButton = $('<span class="close">&times;</span>');
+                        modal.prepend(closeButton);
+
+                        closeButton.css({
+                            'color': 'black',
+                            'float': 'right',
+                            'font-size': '30px',
+                            'font-weight': 'bold'
+                        });
+
+                        // Set the content area with scrolling
+                        var contentArea = $('<div class="content-area"></div>');
+                        contentArea.css({
+                            'height': '100%',
+                            'overflow-y': 'auto'
+                        });
+                        contentArea.append(modal.html());
+                        modal.html(contentArea);
+
+                        // Append modal to the body
+                        $('body').append(modal);
+
+                        // Open the modal
+                        modal.show();
+
+                        // Close the modal when the overlay or close button is clicked
+                        modal.on('click', function (event) {
+                            if ($(event.target).hasClass('modal') || $(event.target).hasClass('close')) {
+                                modal.remove();
+                            }
+                        });
+                        $(document).on('keyup', function (event) {
+                            if (event.key === "Escape") {
+                                modal.remove();
+                            }
+                        });
+                    },
+                    error: function () {
+                        alert('An error occurred while loading the view.');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>

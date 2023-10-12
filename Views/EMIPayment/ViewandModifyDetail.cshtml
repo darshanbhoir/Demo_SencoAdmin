@@ -4,9 +4,9 @@
 }
 
 <h3>View and Modify Detail</h3>
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "EMIPaymentDashboard")
-</div>
+</div>*@
 
 @*<h5>Order No: @Model.OrderNo</h5>
     <h5>Payment Date: @Model.PaymentDate</h5>
@@ -127,3 +127,9 @@
 </div>
 
 
+@*@if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
+{
+    <script>
+        alert('@Html.Raw(ViewBag.AlertMessage)');
+    </script>
+}*@

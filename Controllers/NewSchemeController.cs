@@ -26,7 +26,7 @@ namespace Demo_Senco_Admin.Controllers
             var query = (from SSCD in db.tbl_swarna_scheme_creation_details
                         join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
                         join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
-                        //where SSCD.scheme_member_id==157707               
+                        where SSCD.scheme_member_id==157707               
                         select new
                         {
                             UserNumber = UD.user_no,
@@ -56,22 +56,22 @@ namespace Demo_Senco_Admin.Controllers
                 .Where(s=> !enddate.HasValue || s.CreatedOn <= enddate)
                 .Select(item=> new SchemeDashboardViewModel
                 {
-                    UserNumber= item.UserNumber,
-                    UserName=item.UserName,
-                    UserMobileNumber = item.UserMobileNumber,
-                    UserEmail = item.UserEmail,
-                    CreatedOn = item.CreatedOn != null ? item.CreatedOn.Value.ToString("yyyy-MM-dd") : string.Empty,
-                    SchemeAccountName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null,
-                    SchemeAccountMobile= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>():null,
-                    SchemeAccountEmail= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null,
+                    UserNumber= item.UserNumber ,
+                    UserName=item.UserName ?? "N/A",
+                    UserMobileNumber = item.UserMobileNumber ?? "N/A",
+                    UserEmail = item.UserEmail ?? "N/A",
+                    CreatedOn = item.CreatedOn != null ? item.CreatedOn.Value.ToString("yyyy-MM-dd") : string.Empty ?? "N/A",
+                    SchemeAccountName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null ?? "N/A",
+                    SchemeAccountMobile= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>():null ?? "N/A",
+                    SchemeAccountEmail= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null ?? "N/A",
                     SchemeRegId=item.SchemeRegId,
-                    EMIAmount= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].EMIAmount")?.Value<string>() : null,
-                    Location = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].LocationName")?.Value<string>() : null,
-                    Street = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].Street")?.Value<string>() : null,
-                    StreetNumber = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].StreetNumber")?.Value<string>() : null,
-                    Country = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].CountryRegionId")?.Value<string>() : null,
-                    State = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].State")?.Value<string>() : null,
-                    City = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].City")?.Value<string>() : null,
+                    EMIAmount= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].EMIAmount")?.Value<string>() : null ?? "N/A",
+                    Location = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].LocationName")?.Value<string>() : null ?? "N/A" ,
+                    Street = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].Street")?.Value<string>() : null ?? "N/A",
+                    StreetNumber = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].StreetNumber")?.Value<string>() : null ?? "N/A",
+                    Country = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].CountryRegionId")?.Value<string>() : null ?? "N/A",
+                    State = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].State")?.Value<string>() : null ?? "N/A",
+                    City = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].City")?.Value<string>() : null ?? "N/A",
                     UserCountry = (int)item.UserCountry,
                     UserCity = (int)item.UserCity,
                 }).ToList();
@@ -113,17 +113,30 @@ namespace Demo_Senco_Admin.Controllers
             //NewScheme newScheme = JsonConvert.DeserializeObject<NewScheme>(schemedetail.scheme_payload, setting);
             //List<NewSchemePayload> payloadDataNewScheme = newScheme.Keys;
 
-            var payloadDataNewScheme = JsonConvert.DeserializeObject<NewSchemePayload>(schemedetail.scheme_payload, setting);
-
-            var viewModel = new SchemeDashboardViewModel
+            if(schemedetail.scheme_payload!= null)
             {
-                SchemeRegId = schemedetail.scheme_reg_id,
-                SchemeMemberId = schemedetail.scheme_member_id,
-                SchemePayload = payloadDataNewScheme,
-                Created_On = (DateTime)schemedetail.created_on,
-                
-            };
-            return View(viewModel);
+                var payloadDataNewScheme = JsonConvert.DeserializeObject<NewSchemePayload>(schemedetail.scheme_payload, setting);
+
+                var viewModel = new SchemeDashboardViewModel
+                {
+                    SchemeRegId = schemedetail.scheme_reg_id,
+                    SchemeMemberId = schemedetail.scheme_member_id,
+                    SchemePayload = payloadDataNewScheme,
+                    Created_On = (DateTime)schemedetail.created_on,
+
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                //var ErrorMessage = "Data is Missing";
+                //ViewBag.AlertMessage = ErrorMessage;
+                //return View();
+                ViewBag.ErrorMessage = "Data is Missing";
+                return View("Error");
+            }
+
+            
         }
 
 
@@ -138,7 +151,7 @@ namespace Demo_Senco_Admin.Controllers
                         select new
                         {
                             UserNumber = UD.user_no,
-                            UserName = UD.user_name,
+                            UserName = UD.user_name ,
                             UserMobileNumber = UD.user_mobile_no,
                             UserEmail = UD.user_email,
                             CreatedOn = SUR.created_on,
@@ -153,21 +166,21 @@ namespace Demo_Senco_Admin.Controllers
                             .Select(item => new SchemeDashboardViewModel
                             {
                                 UserNumber = item.UserNumber,
-                                UserName = item.UserName,
-                                UserMobileNumber = item.UserMobileNumber,
-                                UserEmail = item.UserEmail,
-                                CreatedOn = item.CreatedOn != null ? item.CreatedOn.Value.ToString("yyyy-MM-dd") : string.Empty,
-                                SchemeAccountName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null,
-                                SchemeAccountMobile = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>() : null,
-                                SchemeAccountEmail = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null,
+                                UserName = item.UserName ?? "N/A",
+                                UserMobileNumber = item.UserMobileNumber ?? "N/A",
+                                UserEmail = item.UserEmail ?? "N/A",
+                                CreatedOn = item.CreatedOn != null ? item.CreatedOn.Value.ToString("yyyy-MM-dd") : string.Empty ?? "N/A",
+                                SchemeAccountName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null ?? "N/A",
+                                SchemeAccountMobile = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>() : null ?? "N/A",
+                                SchemeAccountEmail = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null ?? "N/A",
                                 SchemeRegId = item.SchemeRegId,
-                                EMIAmount = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].EMIAmount")?.Value<string>() : null,
-                                Location = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].LocationName")?.Value<string>() : null,
-                                Street = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].Street")?.Value<string>() : null,
-                                StreetNumber = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].StreetNumber")?.Value<string>() : null,
-                                Country = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].CountryRegionId")?.Value<string>() : null,
-                                State = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].State")?.Value<string>() : null,
-                                City = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].City")?.Value<string>() : null,
+                                EMIAmount = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].EMIAmount")?.Value<string>() : null ?? "N/A",
+                                Location = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].LocationName")?.Value<string>() : null ?? "N/A",
+                                Street = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].Street")?.Value<string>() : null ?? "N/A",
+                                StreetNumber = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].StreetNumber")?.Value<string>() : null ?? "N/A",
+                                Country = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].CountryRegionId")?.Value<string>() : null ?? "N/A",
+                                State = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].State")?.Value<string>() : null ?? "N/A",
+                                City = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].City")?.Value<string>() : null ?? "N/A",
                                 UserCountry = (int)item.UserCountry,
                                 UserCity = (int)item.UserCity,
                             }).ToList();

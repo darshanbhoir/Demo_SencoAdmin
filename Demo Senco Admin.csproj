@@ -351,6 +351,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\synco-logo.jpg" />
+    <Content Include="Content\images\user-thumb.png" />
+    <Content Include="Content\js\custom.js" />
+    <Content Include="Content\js\jquery-3.6.0.min.js" />
+    <Content Include="Content\js\script.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -374,6 +381,7 @@
     <Content Include="Models\SencoAdminModel.edmx.diagram">
       <DependentUpon>SencoAdminModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\css\bootstrap-grid.min" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -403,6 +411,7 @@
     <Content Include="Views\EMIPayment\EMIPaymentDashboard.cshtml" />
     <Content Include="Views\EMIPayment\ViewandModifyDetail.cshtml" />
     <Content Include="Views\NewScheme\ViewSchemeDetail.cshtml" />
+    <Content Include="Views\EMIPayment\ViewReciept.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
