@@ -1,0 +1,35 @@
+﻿<header>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/Content/images/synco-logo.jpg" class="img-fluid" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Dashboard")">Scheme Creation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "EMI")">EMI Payments</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <div class="right-side-part">
+                        <div class="content-part">
+                            <strong>Hi, Vivek</strong>
+                            <a href="@Url.Action("Index","Login")">Log Out</a>
+                        </div>
+                        <div class="user-thumb-image">
+                            <img src="~/Content/images/user-thumb.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+

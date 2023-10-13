@@ -24,6 +24,7 @@ namespace Demo_Senco_Admin
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/css/style.css",
                       "~/Content/site.css"));
         }
     }

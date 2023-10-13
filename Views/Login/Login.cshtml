@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-grid.min">
+}
+<body>
+    <div class="login-page-section">
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    <div class="log-in-card">
+                        @using (Html.BeginForm("login", "Login", FormMethod.Post))
+                        {
+                            <div class="card-body">
+                                <img src="~/Content/images/synco-logo.jpg" class="img-fluid" alt="">
+                                <!-- <h2>SWARNA YOJANA DASHBOARD</h2> -->
+                                <p>Please enter your user information.</p>
+                            </div>
+                            <!-- Form -->
+                            <form>
+                                <!-- Username -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Username</label>
+                                    <input type="email" id="email" class="form-control" name="email"
+                                           placeholder="Username here" required="">
+                                </div>
+                                <!-- Password -->
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" id="password" class="form-control" name="password"
+                                           placeholder="**************" required="">
+                                </div>
+                                <!-- Checkbox -->
+                                <div class="d-lg-flex justify-content-between align-items-center
+                                mb-4">
+                                    <div class="form-check custom-checkbox">
+                                        <input type="checkbox" class="form-check-input" id="rememberme">
+                                        <label class="form-check-label" for="rememberme">
+                                            Remember
+                                            me
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <!-- Button -->
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn-submit">Log In</button>
+                                    </div>                                  
+                                </div>
+                            </form>
+                        }
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

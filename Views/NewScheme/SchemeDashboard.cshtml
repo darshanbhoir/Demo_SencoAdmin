@@ -292,41 +292,6 @@
 
 
     @*Script for opening View in Popup*@
-    @*<script>
-            $(document).ready(function () {
-
-                $('.viewlink').on('click', function (e) {
-                    e.preventDefault();
-                    //alert('Link clicked!');
-                    var url = $(this).attr('href');
-
-                    $.modal({
-                        content: 'Loading...',
-                        ajax: {
-                            url: url,
-                            dataType: 'html',
-                            success: function (data) {
-                                this.setContent(data);
-                            }
-                        }
-                    });
-                });
-            });
-        </script>*@
-
-    @*<script>
-            $(document).ready(function () {
-                $('.viewlink').on('click', function (e) {
-                    e.preventDefault();
-
-                    var url = $(this).attr('href');
-
-                    // Open the view in a popup
-                    window.open(url, '_blank', 'width=600,height=400');
-                });
-            });
-        </script>*@
-
     <script>
         $(document).ready(function () {
             $('.viewlink').on('click', function (e) {
@@ -344,8 +309,8 @@
                         modal.html(data);
 
                         modal.css({
-                            'width': '600px',  // Set your preferred width
-                            'height': '600px', // Set your preferred height
+                            'width': '600px',  
+                            'height': '600px', 
                             'margin': 'auto',
 
                         });

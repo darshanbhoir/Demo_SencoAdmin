@@ -902,6 +902,10 @@ footer {
     .modal-footer > :not(:last-child) {
         margin-right: 0.25rem;
     }
+.d-grid
+{
+    text-align:center;
+}
 
 .modal-scrollbar-measure {
     position: absolute;

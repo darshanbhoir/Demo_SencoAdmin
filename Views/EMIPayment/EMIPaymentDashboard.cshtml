@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="~/Content/css/bootstrap-grid.min">
     <link rel="stylesheet" href="~/Content/css/style.css">
     <!-- Title -->
-    <title>Synco EMI Dashboard</title>
+    <title>Senco EMI Dashboard</title>
 </head>
 
 <body>
@@ -63,54 +63,71 @@
 
 
     <h6>Search</h6>
-    @using (Html.BeginForm("EMIPaymentDashboard", "EMIPayment", FormMethod.Get))
-    {
-        <div>
-            @*@Html.Label("Search by Scheme No")
-                @Html.TextBox("schemeNo", ViewBag.CurrentFilterSchemeNo as int?)
+    <div class="form-section">
+        <div class="container">
+            @using (Html.BeginForm("EMIPaymentDashboard", "EMIPayment", FormMethod.Get))
+            {
+                <div class="row">
+                    @*@Html.Label("Search by Scheme No")
+                    @Html.TextBox("schemeNo", ViewBag.CurrentFilterSchemeNo as int?)
 
-                @Html.Label("Search by Customer Name")
-                @Html.TextBox("customerName", ViewBag.CurrentFilterCustomerName as string)
+                    @Html.Label("Search by Customer Name")
+                    @Html.TextBox("customerName", ViewBag.CurrentFilterCustomerName as string)
 
-                @Html.Label("Search by Email")
-                @Html.TextBox("email", ViewBag.CurrentFilterEmail as string)
+                    @Html.Label("Search by Email")
+                    @Html.TextBox("email", ViewBag.CurrentFilterEmail as string)
 
-                @Html.Label("search by Mobile")
-                @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)*@
+                    @Html.Label("search by Mobile")
+                    @Html.TextBox("mobile", ViewBag.CurrentFilterMobile as string)*@
 
-            @Html.Label("Search Parameter")
-            @Html.DropDownList("searchFilter", new List<SelectListItem>
-                {
-                    new SelectListItem{Text="Search By", Value=""},
-                    new SelectListItem{Text="Search by Scheme No", Value="schemeNo"},
-                    new SelectListItem{Text="Search by Customer Name", Value="customerName"},
-                    new SelectListItem{Text="Search by Email", Value="email"},
-                    new SelectListItem{Text="Search by Mobile", Value="mobile"}
-                })
-            <div id="searchInputContainer">
-                <label for="searchInput">Search Input:</label>
-                @*<input id="searchInput", name="searchInput  " ,placeholder="Enter Search Value" />*@
-                @Html.TextBox("searchInput", null, new { id = "searchInput", placeholder = "Enter Search Value" })
-            </div>
+                    <div class="col-lg-3">
+                        @Html.Label("Search Parameter")
+                        @Html.DropDownList("searchFilter", new List<SelectListItem>
+                            {
+                                new SelectListItem{Text="Search By", Value=""},
+                                new SelectListItem{Text="Search by Scheme No", Value="schemeNo"},
+                                new SelectListItem{Text="Search by Customer Name", Value="customerName"},
+                                new SelectListItem{Text="Search by Email", Value="email"},
+                                new SelectListItem{Text="Search by Mobile", Value="mobile"}
+                            })
+                    </div>
+                    <div class="col-lg-2" id="searchInputContainer">
+                        <label for="searchInput">Search Input:</label>
+                        @*<input id="searchInput", name="searchInput  " ,placeholder="Enter Search Value" />*@
+                        @Html.TextBox("searchInput", null, new { id = "searchInput", placeholder = "Enter Search Value" })
+                    </div>
 
+                    <div class="col-lg-3">
+                        @Html.Label("Search by Payment Status")
+                        @Html.DropDownList("paymentStatus", new List<SelectListItem>
+                            {
+                                new SelectListItem {Text="All", Value=""},
+                                new SelectListItem{ Text= "Paid", Value="true"},
+                                new SelectListItem { Text="Unpaid", Value="false"}
+                            })
+                    </div>
 
-            @Html.Label("Search by Payment Status")
-            @Html.DropDownList("paymentStatus", new List<SelectListItem>
-                {
-                    new SelectListItem {Text="All", Value=""},
-                    new SelectListItem{ Text= "Paid", Value="true"},
-                    new SelectListItem { Text="Unpaid", Value="false"}
-                })
+                    <div class="col-lg-2">
+                        <div class="date-box-part">
+                            @Html.Label("Search by Start Date")
+                            @Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type = "date" })
+                        </div>
+                    </div>
 
-            @Html.Label("Search by Start Date")
-            @Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type = "date" })
-
-            @Html.Label("Search by End Date")
-            @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
+                    <div class="col-lg-2">
+                        <div class="date-box-part">
+                            @Html.Label("Search by End Date")
+                            @Html.TextBox("enddate", ViewBag.EndDateFilter as string, new { Type = "date" })
+                        </div>
+                    </div>
+                </div>
+                <div class="button-part button-top">
+                    <button class="button btn-submit" type="submit">Search</button>
+                    <button class="button btn-submit" type="reset" onclick="ResetForm()">Reset</button>
+                </div>
+            }
         </div>
-        <button type="submit">Search</button>
-        <button type="reset" onclick="ResetForm()">Reset</button>
-    }
+    </div>
 
 
     @*Link to convert data to Ecxel*@

@@ -16,57 +16,52 @@ using Demo_Senco_Admin.Models.Payload;
 
 namespace Demo_Senco_Admin.Controllers
 {
-    public class NewSchemeController : Controller
+    public class DashboardController : Controller
     {
         private SENCO_DB_AdminEntities db = new SENCO_DB_AdminEntities();
-
-        // GET: Scheme Dashboard
-        public ActionResult SchemeDashboard( DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput)
+        // GET: Dashboard
+        public ActionResult Index(DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput)
         {
             var query = (from SSCD in db.tbl_swarna_scheme_creation_details
-                        join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
-                        join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
-                        //where SSCD.scheme_member_id==157707               
-                        select new
-                        {
-                            UserNumber = UD.user_no,
-                            UserName = UD.user_name,
-                            UserMobileNumber = UD.user_mobile_no,
-                            UserEmail = UD.user_email,
-                            CreatedOn = SUR.created_on ,                            
-                            SchemePayload = SSCD.scheme_payload,
-                            UserRegPayload = SUR.user_reg_payload,
-                            SchemeRegId = SSCD.scheme_reg_id,
-                            UserCountry = UD.user_current_country,
-                            UserCity = UD.user_current_city,
-                        }).Take(10);
+                         join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
+                         join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
+                         where SSCD.scheme_member_id == 157707
+                         select new
+                         {
+                             UserNumber = UD.user_no,
+                             UserName = UD.user_name,
+                             UserMobileNumber = UD.user_mobile_no,
+                             UserEmail = UD.user_email,
+                             CreatedOn = SUR.created_on,
+                             SchemePayload = SSCD.scheme_payload,
+                             UserRegPayload = SUR.user_reg_payload,
+                             SchemeRegId = SSCD.scheme_reg_id,
+                             UserCountry = UD.user_current_country,
+                             UserCity = UD.user_current_city,
+                         });
             var Result = query.ToList();
 
             var PResult = Result
-                .Where(s=>string.IsNullOrEmpty(searchFilter)  ||
-                    (s.SchemeRegId.ToString()==searchInput && searchFilter=="schemeNo") ||
+                .Where(s => string.IsNullOrEmpty(searchFilter) ||
+                    (s.SchemeRegId.ToString() == searchInput && searchFilter == "schemeNo") ||
                     (s.UserName.Contains(searchInput) && searchFilter == "customerName") ||
                     (s.UserEmail.Contains(searchInput) && searchFilter == "email") ||
-                    (s.UserMobileNumber.Contains(searchInput) && searchFilter == "mobile"))
-                //.Where(s=> !schemeNo.HasValue || s.SchemeRegId==schemeNo)
-                //.Where(s => string.IsNullOrEmpty(customerName) || s.UserName.Contains(customerName))
-                //.Where(s=> string.IsNullOrEmpty(email) || s.UserEmail.Contains(email))
-                //.Where(s=> string.IsNullOrEmpty(mobile) || s.UserMobileNumber.Contains(mobile))
-                .Where(s=> !startdate.HasValue || s.CreatedOn >= startdate)
-                .Where(s=> !enddate.HasValue || s.CreatedOn <= enddate)
-                .Select(item=> new SchemeDashboardViewModel
+                    (s.UserMobileNumber.Contains(searchInput) && searchFilter == "mobile"))                
+                .Where(s => !startdate.HasValue || s.CreatedOn >= startdate)
+                .Where(s => !enddate.HasValue || s.CreatedOn <= enddate)
+                .Select(item => new SchemeDashboardViewModel
                 {
-                    UserNumber= item.UserNumber ,
-                    UserName=item.UserName ?? "N/A",
+                    UserNumber = item.UserNumber,
+                    UserName = item.UserName ?? "N/A",
                     UserMobileNumber = item.UserMobileNumber ?? "N/A",
                     UserEmail = item.UserEmail ?? "N/A",
                     CreatedOn = item.CreatedOn != null ? item.CreatedOn.Value.ToString("yyyy-MM-dd") : string.Empty ?? "N/A",
                     SchemeAccountName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null ?? "N/A",
-                    SchemeAccountMobile= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>():null ?? "N/A",
-                    SchemeAccountEmail= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null ?? "N/A",
-                    SchemeRegId=item.SchemeRegId,
-                    EMIAmount= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].EMIAmount")?.Value<string>() : null ?? "N/A",
-                    Location = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].LocationName")?.Value<string>() : null ?? "N/A" ,
+                    SchemeAccountMobile = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>() : null ?? "N/A",
+                    SchemeAccountEmail = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null ?? "N/A",
+                    SchemeRegId = item.SchemeRegId,
+                    EMIAmount = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].EMIAmount")?.Value<string>() : null ?? "N/A",
+                    Location = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].LocationName")?.Value<string>() : null ?? "N/A",
                     Street = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].Street")?.Value<string>() : null ?? "N/A",
                     StreetNumber = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].StreetNumber")?.Value<string>() : null ?? "N/A",
                     Country = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].CountryRegionId")?.Value<string>() : null ?? "N/A",
@@ -77,64 +72,13 @@ namespace Demo_Senco_Admin.Controllers
                 }).ToList();
 
 
-            
+
             ViewBag.StartDateFilter = startdate;
-            ViewBag.EndDateFilter= enddate;
+            ViewBag.EndDateFilter = enddate;
             ViewBag.CurrentFilterSearchFilter = searchFilter;
             ViewBag.CurrentFilterInputFilter = searchInput;
 
-            //var json = new JavaScriptSerializer().Serialize(PResult);
-            return View("SchemeDashboard", PResult);
-
-        }
-
-
-
-        //View Scheme Detail
-        public ActionResult ViewSchemeDetail(int? id)
-        {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var schemedetail = db.tbl_swarna_scheme_creation_details.Find(id);
-
-            if(schemedetail == null)
-            {
-                return HttpNotFound();
-            }
-
-            var setting = new JsonSerializerSettings
-            {
-                DefaultValueHandling = DefaultValueHandling.Populate,
-            };
-
-            
-            if(schemedetail.scheme_payload!= null)
-            {
-                var payloadDataNewScheme = JsonConvert.DeserializeObject<NewSchemePayload>(schemedetail.scheme_payload, setting);
-
-                var viewModel = new SchemeDashboardViewModel
-                {
-                    SchemeRegId = schemedetail.scheme_reg_id,
-                    SchemeMemberId = schemedetail.scheme_member_id,
-                    SchemePayload = payloadDataNewScheme,
-                    Created_On = (DateTime)schemedetail.created_on,
-
-                };
-                return View(viewModel);
-            }
-            else
-            {
-                //var ErrorMessage = "Data is Missing";
-                //ViewBag.AlertMessage = ErrorMessage;
-                //return View();
-                ViewBag.ErrorMessage = "Data is Missing";
-                return View("Error");
-            }
-
-            
+            return View("index", PResult);
         }
 
 
@@ -143,24 +87,24 @@ namespace Demo_Senco_Admin.Controllers
         public ActionResult ExporttoExcel()
         {
             var query = (from SSCD in db.tbl_swarna_scheme_creation_details
-                        join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
-                        join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
-                        //where SUR.created_on >= new DateTime(2022, 12, 15) && SUR.created_on <= new DateTime(2022, 12, 20)               
-                        select new
-                        {
-                            UserNumber = UD.user_no,
-                            UserName = UD.user_name ,
-                            UserMobileNumber = UD.user_mobile_no,
-                            UserEmail = UD.user_email,
-                            CreatedOn = SUR.created_on,
-                            SchemePayload = SSCD.scheme_payload,
-                            UserRegPayload = SUR.user_reg_payload,
-                            SchemeRegId = SSCD.scheme_reg_id,
-                            UserCountry = UD.user_current_country,
-                            UserCity = UD.user_current_city,
-                        }).ToList();
+                         join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
+                         join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
+                         //where SUR.created_on >= new DateTime(2022, 12, 15) && SUR.created_on <= new DateTime(2022, 12, 20)               
+                         select new
+                         {
+                             UserNumber = UD.user_no,
+                             UserName = UD.user_name,
+                             UserMobileNumber = UD.user_mobile_no,
+                             UserEmail = UD.user_email,
+                             CreatedOn = SUR.created_on,
+                             SchemePayload = SSCD.scheme_payload,
+                             UserRegPayload = SUR.user_reg_payload,
+                             SchemeRegId = SSCD.scheme_reg_id,
+                             UserCountry = UD.user_current_country,
+                             UserCity = UD.user_current_city,
+                         }).ToList();
 
-            var data =      query
+            var data = query
                             .Select(item => new SchemeDashboardViewModel
                             {
                                 UserNumber = item.UserNumber,
@@ -209,20 +153,20 @@ namespace Demo_Senco_Admin.Controllers
                 "UserCity"
             };
 
-            for(int i=0; i< headers.Length; i++)
+            for (int i = 0; i < headers.Length; i++)
             {
-                worksheet.Cells[1, i+1].Value = headers[i];
+                worksheet.Cells[1, i + 1].Value = headers[i];
             }
 
             //for data
             int row = 2;
-            foreach(var item in data)
+            foreach (var item in data)
             {
                 int column = 1;
 
-                foreach(var prop in typeof(SchemeDashboardViewModel).GetProperties())
+                foreach (var prop in typeof(SchemeDashboardViewModel).GetProperties())
                 {
-                    worksheet.Cells[row, column].Value= prop.GetValue(item);
+                    worksheet.Cells[row, column].Value = prop.GetValue(item);
                     column++;
                 }
                 row++;
@@ -249,45 +193,53 @@ namespace Demo_Senco_Admin.Controllers
         }
 
 
+        //View Detail
+        public ActionResult View(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            var schemedetail = db.tbl_swarna_scheme_creation_details.Find(id);
+
+            if (schemedetail == null)
+            {
+                return HttpNotFound();
+            }
+
+            var setting = new JsonSerializerSettings
+            {
+                DefaultValueHandling = DefaultValueHandling.Populate,
+            };
+
+
+            if (schemedetail.scheme_payload != null)
+            {
+                var payloadDataNewScheme = JsonConvert.DeserializeObject<NewSchemePayload>(schemedetail.scheme_payload, setting);
+
+                var viewModel = new SchemeDashboardViewModel
+                {
+                    SchemeRegId = schemedetail.scheme_reg_id,
+                    SchemeMemberId = schemedetail.scheme_member_id,
+                    SchemePayload = payloadDataNewScheme,
+                    Created_On = (DateTime)schemedetail.created_on,
+
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                //var ErrorMessage = "Data is Missing";
+                //ViewBag.AlertMessage = ErrorMessage;
+                //return View();
+                ViewBag.ErrorMessage = "Data is Missing";
+                return View("Error");
+            }
+
+        }
 
 
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//SchemeAccountName = GetSchemeAccountName(SSCD.scheme_payload),  
-//SchemeAccountName= SSCD.scheme_payload != null ? JObject.Parse(SSCD.scheme_payload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null,
-//SchemeAccountName= JObject.Parse(SSCD.scheme_payload).SelectToken("_keys[0].CustomerName")?.Value<string>(),
-
-//
-//private string GetSchemeAccountName(string scheme_payload)
-//{
-//    if (scheme_payload != null)
-//    {
-//        var json = JObject.Parse(scheme_payload);
-//        var customerName = json.SelectToken("_keys[0].CustomerName");
-//        return customerName != null ? customerName.Value<string>() : null;
-//    }
-//    return null;
-//}

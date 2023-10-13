@@ -154,8 +154,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EMIController.cs" />
     <Compile Include="Controllers\EMIPaymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NewSchemeController.cs" />
     <Compile Include="Controllers\SencoDBconn.cs" />
     <Compile Include="Global.asax.cs">
@@ -355,9 +358,9 @@
     <Content Include="Content\images\search.png" />
     <Content Include="Content\images\synco-logo.jpg" />
     <Content Include="Content\images\user-thumb.png" />
-    <Content Include="Content\js\custom.js" />
-    <Content Include="Content\js\jquery-3.6.0.min.js" />
-    <Content Include="Content\js\script.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -412,9 +415,17 @@
     <Content Include="Views\EMIPayment\ViewandModifyDetail.cshtml" />
     <Content Include="Views\NewScheme\ViewSchemeDetail.cshtml" />
     <Content Include="Views\EMIPayment\ViewReciept.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\EMI\Index.cshtml" />
+    <Content Include="Views\Dashboard\ViewDetail.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Pagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

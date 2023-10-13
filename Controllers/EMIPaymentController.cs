@@ -42,7 +42,7 @@ namespace Demo_Senco_Admin.Controllers
                              MobileNo = TSP.temp_swarna_mobile_no,
                              Email = TSP.temp_swarna_member_email ?? "NA",
                              PaymentReciept = TSP.temp_swarna_payment_reciept,
-                         }).Take(10);
+                         }).Take(100);
 
             var Result = query.ToList();
 

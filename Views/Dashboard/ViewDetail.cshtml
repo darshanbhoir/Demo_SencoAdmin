@@ -1,0 +1,48 @@
+﻿@model Demo_Senco_Admin.Models.ViewModel.SchemeDashboardViewModel
+@{
+    ViewBag.Title = "ViewDetail";
+}
+
+<h4>View Scheme Details</h4>
+
+
+<div>
+
+    <p>Scheme Register Id: @Model.SchemeRegId</p>
+    <p>Scheme Member Id: @Model.SchemeMemberId</p>
+    <p>Scheme Details:-</p>
+
+    @foreach (var item in Model.SchemePayload.Keys)
+    {
+        <p>BirthDate: @item.BirthDate</p>
+        <p>Customer Bank Account No: @item.CustomerBankAccountNo</p>
+        <p>Customer Bank IFSC code: @item.CustomerBankIFSCCode</p>
+        <p>Customer Bank Name: @item.CustomerBankName</p>
+        <p>Customer Code: @item.CustomerCode</p>
+        <p>Customer Name: @item.CustomerName</p>
+        <p>EMI Amount: @item.EMIAmount</p>
+        <p>Identity Proof: @item.IdentityProof</p>
+        <p>Id Proof No: @item.IdProofNo</p>
+        <p>Minor: @item.Minor</p>
+        <p>Nominee Address: @item.NomineeAddress</p>
+        <p>Nominee BirthDate: @item.NomineeBirthDate</p>
+        <p>Nominee City: @item.NomineeCity</p>
+        <p>Nominee Country Region Code: @item.NomineeCountryRegionId</p>
+        <p>Nominee Email: @item.NomineeEmail</p>
+        <p>Nominee Mobile: @item.NomineeMobile</p>
+        <p>Nominee Name: @item.NomineeName</p>
+        <p>Nominee Relation: @item.NomineeRelation</p>
+        <p>Nominee State: @item.NomineeState</p>
+        <p>Nominee Telephone: @item.NomineeTelephone</p>
+        <p>Nominee Zip Code: @item.NomineeZipCode</p>
+        <p>PassBook No: @item.PassbookNo</p>
+        <p>Relation with Minor: @item.RelationWithMinor</p>
+        <p>Scheme Code: @item.SchemeCode</p>
+        <p>Store: @item.store</p>
+        <p>Invent Location Id: @item.InventLocationId</p>
+        <p>KYC Document Id: @item.KycDocumentId</p>
+        <p>KYC Document No: @item.KycDocumentNo</p>
+    }
+</div>
+
+
