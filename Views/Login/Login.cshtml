@@ -13,6 +13,12 @@
                     <div class="log-in-card">
                         @using (Html.BeginForm("login", "Login", FormMethod.Post))
                         {
+                            if (ViewBag.Message != null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        @ViewBag.Message
+                                    </div>
+                                }
                             <div class="card-body">
                                 <img src="~/Content/images/synco-logo.jpg" class="img-fluid" alt="">
                                 <!-- <h2>SWARNA YOJANA DASHBOARD</h2> -->
@@ -42,7 +48,6 @@
                                             me
                                         </label>
                                     </div>
-
                                 </div>
                                 <div>
                                     <!-- Button -->

@@ -1,234 +1,196 @@
 ﻿@model IEnumerable<Demo_Senco_Admin.Models.ViewModel.SchemeDashboardViewModel>
 @{
     int counter = 1;
-    Layout = "~/Views/Shared/_Layout.cshtml";    
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div class="form-section">
-        <div class="container">
-            <form>
-                <div class="row">
-                    <div class="col-lg-3 ">
-                        <div class="date-box-part">
-                            <input class="form-control datepicker" type="text" placeholder="From Date">
-                            <div class="svg-part">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi bi-calendar-week" viewBox="0 0 16 16">
-                                    <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                </svg>
-                            </div>
+<div class="form-section">
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-lg-3 ">
+                    <div class="date-box-part">
+                        <input class="form-control datepicker" type="text" placeholder="From Date" id="startdate" name="startdate">
+                        <div class="svg-part">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                            </svg>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="date-box-part">
-                            <input class="form-control datepicker" type="text" placeholder="To Date">
-                            <div class="svg-part">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi bi-calendar-week" viewBox="0 0 16 16">
-                                    <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-
-                        <select class="form-control select-input">
-                            <option selected>Search Param</option>
-                            <option>Scheme No</option>
-                            <option>Customer Name</option>
-                            <option>Email id</option>
-                            <option>Mobile No.</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-3">
-                        <input class="form-control" placeholder="Search Value">
-                    </div>
-                    <div class="button-part">
-                        <button class="button btn-submit " type="submit">Search</button>
-                        <button class="button btn-submit " type="submit">Reset</button>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-    <div class="table-section">
-        <div class="container-fluid">
-            <div class="table-container">
-                <div class="row">
-                    <div class="col-md-12 col-12">
-                        <div class="table-schemes">
-                            <div class="schemes">
-                                <h4>Scheme Creation</h4>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">SR.NO</th>
-                                            <th scope="col">Member Id</th>
-                                            <th scope="col">Customer Name</th>
-                                            <th scope="col">Mobile & Email id</th>
-                                            <th scope="col">Customer Account No</th>
-                                            <th scope="col">Scheme No</th>
-                                            <th scope="col">Scheme Create date</th>
-                                            <th scope="col">Installments Paid</th>
-                                            <th scope="col">View</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            <tr>
-                                                <td>@counter</td>
-                                                <td>@item.UserNumber</td>
-                                                <td>@item.UserName</td>
-                                                <td>@item.UserMobileNumber | @item.UserEmail</td>
-                                                <td>12212</td>
-                                                <td>@item.SchemeRegId</td>
-                                                <td>@item.CreatedOn</td>
-                                                <td>@item.EMIAmount</td>
-                                                <td>
-                                                    <a href="@Url.Action("View", "Dashboard")" data-bs-toggle="modal"
-                                                       data-bs-target="#exampleModal" class="view-btn view-bgc viewlink" id="@item.SchemeRegId">
-                                                    @*@Html.ActionLink("View", "Dashboard", new { id= item.SchemeRegId}, new { @class= "view-btn view-bgc viewlink" })*@
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                             fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-                                                        </svg>
-                                                    </a>
-                                                    <!-- Modal -->
-                                                    @*<div class="modal fade" id="exampleModal" tabindex="-1"
-                                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">
-                                                                            Modal
-                                                                            title
-                                                                        </h5>
-                                                                        <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal" aria-label="Close">
-                                                                            <svg class="bi bi-x" fill="currentColor" height="16"
-                                                                                 viewBox="0 0 16 16" width="16"
-                                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z">
-                                                                                </path>
-                                                                            </svg>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p>Scheme Reg Id: @item.SchemeRegId</p>
-                                                                        <p>Sheme Memeber Id: @item.SchemeMemberId</p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                                data-bs-dismiss="modal">
-                                                                            Close
-                                                                        </button>
-                                                                        <button type="button" class="btn btn-primary">
-                                                                            Save
-                                                                            changes
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>*@
-                                                </td>
-                                            </tr>
-                                            counter++;
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="divider"></div>
+                <div class="col-lg-3">
+                    <div class="date-box-part">
+                        <input class="form-control datepicker" type="text" placeholder="To Date" id="enddate" name="enddate">
+                        <div class="svg-part">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                            </svg>
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <select class="form-control select-input" id="searchFilter" name="searchFilter">
+                        <option selected>Search Param</option>
+                        <option value="schemeNo">Scheme No</option>
+                        <option value="customerName">Customer Name</option>
+                        <option value="email">Email id</option>
+                        <option value="mobile">Mobile No.</option>
+                    </select>
+                </div>
+                <div class="col-lg-3" id="searchInputContainer">
+                    <input class="form-control" placeholder="Search Value" id="searchInput" name="searchInput">
+                </div>
+                <div class="button-part">
+                    <button class="button btn-submit " type="submit">Search</button>
+                    <button class="button btn-submit " type="reset" onclick="ResetForm()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="table-section">
+    <div class="container-fluid">
+        <div class="table-container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <div class="table-schemes">
+                        <div class="schemes">
+                            <h4>Scheme Creation</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">SR.NO</th>
+                                        <th scope="col">Member Id</th>
+                                        <th scope="col">Customer Name</th>
+                                        <th scope="col">Mobile & Email id</th>
+                                        <th scope="col">Customer Account No</th>
+                                        <th scope="col">Scheme No</th>
+                                        <th scope="col">Scheme Create date</th>
+                                        <th scope="col">Installments Paid</th>
+                                        <th scope="col">View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>@item.UserNumber</td>
+                                            <td>@item.UserName</td>
+                                            <td>@item.UserMobileNumber | @item.UserEmail</td>
+                                            <td>12212</td>
+                                            <td>@item.SchemeRegId</td>
+                                            <td>@item.CreatedOn</td>
+                                            <td>@item.EMIAmount</td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                   data-bs-target="#exampleModal" class="view-btn view-bgc">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                         fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                                    </svg>
+                                                </a>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                                    Modal
+                                                                    title
+                                                                </h5>
+                                                                <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                    <svg class="bi bi-x" fill="currentColor" height="16"
+                                                                         viewBox="0 0 16 16" width="16"
+                                                                         xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ...
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    Close
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary">
+                                                                    Save
+                                                                    changes
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        counter++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="divider"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Table footer  -->
-    <!--Export to Excel-->
-    <div>
-        <a class="export-exel-part" title="Export To Excel" href="@Url.Action("ExporttoExcel", "Dashboard")">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                 class="bi bi-file-earmark-excel-fill" viewBox="0 0 16 16">
-                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z" />
-            </svg>
-        </a>
-    </div>
+</div>
+<!-- Table footer  -->
+<!--Export to Excel-->
+<div>
+    <a class="export-exel-part" title="Export To Excel" href="@Url.Action("ExporttoExcel", "Dashboard")">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+             class="bi bi-file-earmark-excel-fill" viewBox="0 0 16 16">
+            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z" />
+        </svg>
+    </a>
+</div>
 
 
-    @*Script for opening View in Popup*@
-    <script>
-        $(document).ready(function () {
-            $('.viewlink').on('click', function (e) {
-                e.preventDefault();
 
-                var url = $(this).attr('href');
 
-                // Load the view content into a modal
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function (data) {
-                        // Create a modal and set its content
-                        var modal = $('<div id="myModal" class="modal"></div>');
-                        modal.html(data);
 
-                        modal.css({
-                            'width': '600px',
-                            'height': '600px',
-                            'margin': 'auto',
 
-                        });
 
-                        // Add a close button
-                        var closeButton = $('<span class="close">&times;</span>');
-                        modal.prepend(closeButton);
+@*script for Dropdown*@
+<script>
+    $(document).ready(function () {
+        console.log("Document is ready");
+        $('#searchFilter').change(function () {
+            var selectedValue = $(this).val();
+            console.log('Selected value:', selectedValue);
+            $('#searchInputContainer').show();
+            $('#searchInput').attr('placeholder', 'Enter' + selectedValue);
 
-                        closeButton.css({
-                            'color': 'black',
-                            'float': 'right',
-                            'font-size': '30px',
-                            'font-weight': 'bold'
-                        });
+            if (selectedValue == "schemeNo") {
+                $('#searchInput').attr('type', 'number');
+            }
+            else {
+                $('#searchInput').attr('type', 'text');
+            }
 
-                        // Set the content area with scrolling
-                        var contentArea = $('<div class="content-area"></div>');
-                        contentArea.css({
-                            'height': '100%',  // Set the height for scrolling
-                            'overflow-y': 'auto'  // Add vertical scrolling
-                        });
-                        contentArea.append(modal.html());
-                        modal.html(contentArea);
-
-                        // Append modal to the body
-                        $('body').append(modal);
-
-                        // Open the modal
-                        modal.show();
-
-                        // Close the modal when the overlay or close button is clicked
-                        modal.on('click', function (event) {
-                            if ($(event.target).hasClass('modal') || $(event.target).hasClass('close')) {
-                                modal.remove();
-                            }
-                        });
-                        $(document).on('keyup', function (event) {
-                            if (event.key === "Escape") {
-                                modal.remove();
-                            }
-                        });
-                    },
-                    error: function () {
-                        alert('An error occurred while loading the view.');
-                    }
-                });
-            });
         });
-    </script>
+
+    });
+
+</script>
 
 
+<script>
+        function ResetForm()
+        {
+            window.location.href = '@Url.Action("Index", "Dashboard")';            
+        }
+</script>
