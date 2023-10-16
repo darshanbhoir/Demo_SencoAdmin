@@ -358,6 +358,9 @@
     <Content Include="Content\images\search.png" />
     <Content Include="Content\images\synco-logo.jpg" />
     <Content Include="Content\images\user-thumb.png" />
+    <Content Include="Content\js\custom.js" />
+    <Content Include="Content\js\jquery-3.6.0.min.js" />
+    <Content Include="Content\js\script.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\script.js" />
@@ -425,7 +428,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

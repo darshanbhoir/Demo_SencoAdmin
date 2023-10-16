@@ -41,6 +41,8 @@ namespace Demo_Senco_Admin.Controllers
                          });
             var Result = query.ToList();
 
+            
+
             var PResult = Result
                 .Where(s => string.IsNullOrEmpty(searchFilter) ||
                     (s.SchemeRegId.ToString() == searchInput && searchFilter == "schemeNo") ||
@@ -70,6 +72,7 @@ namespace Demo_Senco_Admin.Controllers
                     UserCountry = (int)item.UserCountry,
                     UserCity = (int)item.UserCity,
                 }).ToList();
+
 
 
 
