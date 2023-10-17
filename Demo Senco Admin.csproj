@@ -360,6 +360,7 @@
     <Content Include="Content\images\user-thumb.png" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\jquery-3.6.0.min.js" />
+    <Content Include="Content\js\popper.min.js" />
     <Content Include="Content\js\script.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

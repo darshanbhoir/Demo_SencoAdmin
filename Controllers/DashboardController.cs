@@ -25,7 +25,7 @@ namespace Demo_Senco_Admin.Controllers
             var query = (from SSCD in db.tbl_swarna_scheme_creation_details
                          join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
                          join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
-                         //where SSCD.scheme_member_id == 157707
+                         where SSCD.scheme_member_id == 157707
                          select new
                          {
                              UserNumber = UD.user_no,
@@ -229,7 +229,7 @@ namespace Demo_Senco_Admin.Controllers
                     Created_On = (DateTime)schemedetail.created_on,
 
                 };
-                return View(viewModel);
+                return Json(viewModel);
             }
             else
             {
