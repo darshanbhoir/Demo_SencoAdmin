@@ -15,6 +15,7 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public int UserNumber { get; set; }
         public string UserName { get; set; }
         public string UserMobileNumber { get; set; }
+        public DateTime UserBirthdate { get; set; }
         public string UserEmail { get; set; }
         public string CreatedOn { get; set; }
         public string SchemeAccountName { get; set; }
@@ -32,6 +33,8 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public int UserCity { get; set; }
         public int? SchemeMemberId { get; set; }
         public DateTime Created_On { get; set; }
+        public string CustomerCode { get; set; }
+        public string SchemeCode { get; set; }
         public NewSchemePayload SchemePayload { get; set; }
 
         

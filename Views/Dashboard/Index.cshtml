@@ -73,10 +73,10 @@
                                         <th scope="col">Member Id</th>
                                         <th scope="col">Customer Name</th>
                                         <th scope="col">Mobile & Email id</th>
-                                        <th scope="col">Customer Account No</th>
-                                        <th scope="col">Scheme No</th>
+                                        <th scope="col">Customer Code</th>
+                                        <th scope="col">Scheme Code</th>
                                         <th scope="col">Scheme Create date</th>
-                                        <th scope="col">Installments Paid</th>
+                                        <th scope="col">EMI</th>
                                         <th scope="col">View</th>
                                     </tr>
                                 </thead>
@@ -88,13 +88,13 @@
                                             <td>@item.UserNumber</td>
                                             <td>@item.UserName</td>
                                             <td>@item.UserMobileNumber | @item.UserEmail</td>
-                                            <td>12212</td>
-                                            <td>@item.SchemeRegId</td>
+                                            <td>@item.CustomerCode</td>
+                                            <td>@item.SchemeCode</td>
                                             <td>@item.CreatedOn</td>
                                             <td>@item.EMIAmount</td>
                                             <td>
                                                 <!-- Button trigger modal -->
-                                                <a href="@Url.Action("View", "Dashboard", new { id=item.SchemeRegId })" data-bs-toggle="modal" data-bs-target="#exampleModal-@item.SchemeRegId" class="view-btn view-bgc" >
+                                                <a href="@Url.Action("View", "Dashboard", new { id=item.SchemeRegId })" class="view-btn view-bgc viewlink">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                         <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
@@ -173,44 +173,85 @@
 
 
 
-<!-- Modal -->
-@foreach (var item in Model)
-{
-    <div class="modal fade" id="exampleModal-@item.SchemeRegId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">View Detail</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                    <div id="modalContent">
-                        name:@item.SchemeAccountName
+@*Script for opening View in Popup*@
+<script>
+    $(document).ready(function () {
+        $('.viewlink').on('click', function (e) {
+            e.preventDefault();
 
-                        B: @(item.SchemePayload != null && item.SchemePayload.Keys.Count > 0 ? item.SchemePayload.Keys[0].BirthDate : "N/A")
-                        <p>EMIAmount: @(item.SchemePayload != null && item.SchemePayload.Keys.Count > 0 ? item.SchemePayload.Keys[0].EMIAmount : "N/A")</p>
+            var url = $(this).attr('href');
+
+            // Load the view content into a modal
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data) {
+                    // Create a modal and set its content
+                    var modal = $('<div id="myModal" class="modal"></div>');
+                    modal.html(data);
+                    // Append modal to the body
+                    $('body').append(modal);
+
+                    // Open the modal
+                    modal.modal('show');
+
+                     //Close the modal when the overlay or close button is clicked
+                    modal.on('click', function (event) {
+                        if ($(event.target).hasClass('modal') || $(event.target).hasClass('btn-close')) {
+                            modal.modal('hide');
+                        }
+                    });
+
+                    modal.on('hidden.bs.modal', function () {
+                        modal.remove();
+                    });
+                },
+                error: function () {
+                    alert('An error occurred while loading the view.');
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+@*Modal
+    @foreach (var item in Model)
+    {
+        <div class="modal fade" id="exampleModal-@item.SchemeRegId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">View Detail</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    @*<p>
-            Birthdate:  @(item != null && item.SchemePayload != null && item.SchemePayload.Keys.Count > 0 ? item.SchemePayload.Keys[0].BirthDate : "N/A")
-        </p>
-        <p>
-            name:  @item.SchemeAccountName
-        </p>*@
-                    <p>item.SchemePayload is null: @(item.SchemePayload == null)</p>
-                    <p>item.SchemePayload.Keys is null: @(item.SchemePayload != null && item.SchemePayload.Keys == null)</p>
-                    <p>item.SchemePayload.Keys is empty: @(item.SchemePayload != null && item.SchemePayload.Keys != null && item.SchemePayload.Keys.Count == 0)</p>
+                    <div class="modal-body">
+                        ...
+                        <div id="modalContent">
+                            name:@item.SchemeAccountName
+
+                            B: @(item.SchemePayload != null && item.SchemePayload.Keys.Count > 0 ? item.SchemePayload.Keys[0].BirthDate : "N/A")
+                            <p>EMIAmount: @(item.SchemePayload != null && item.SchemePayload.Keys.Count > 0 ? item.SchemePayload.Keys[0].EMIAmount : "N/A")</p>
+
+                        </div>
+
+                        <p>item.SchemePayload is null: @(item.SchemePayload == null)</p>
+                        <p>item.SchemePayload.Keys is null: @(item.SchemePayload != null && item.SchemePayload.Keys == null)</p>
+                        <p>item.SchemePayload.Keys is empty: @(item.SchemePayload != null && item.SchemePayload.Keys != null && item.SchemePayload.Keys.Count == 0)</p>
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-}
+    }*@
 
 
 

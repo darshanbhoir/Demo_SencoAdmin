@@ -13,7 +13,10 @@ Functionality - Scheme Creation Dashboard
 3. Ability to serach based on Scheme No, Customer Name, Email and Mobile.
 4. Ability to export the data in an excel sheet format whenever required.
 5. Ability to view full scheme creation details.
+		
+		Scheme No: SCHC0212023007987309
 
+scheme_payload
 	{"_keys":[{"BirthDate":"04\/06\/1990",
 		"CustomerBankAccountNo":"",
 		"CustomerBankIFSCCode":"",
@@ -43,6 +46,58 @@ Functionality - Scheme Creation Dashboard
 		"InventLocationId":"998",
 		"KycDocumentId":"D005",
 		"KycDocumentNo":"881114663545"}]}
+	
+	{"_keys":[{"BirthDate":"16\/08\/1968",
+	"CustomerBankAccountNo":"0091000102160556",
+	"CustomerBankIFSCCode":"PUNB0009100",
+	"CustomerBankName":"mamata Pandey ",
+	"CustomerCode":"CUS776038",
+	"CustomerName":"MAMATA PANDEY",
+	"EMIAmount":"1000.00",
+	"GaurdianName":"",
+	"IdentityProof":"PAN Card",
+	"IdProofNo":"ATKPP3931E",
+	"Minor":"No",
+	"NomineeAddress":"Snehlata Appartment Flat C_2E\/E3 Hatiara Road Kol 70059",
+	"NomineeBirthDate":"08\/03\/1955",
+	"NomineeCity":"WB",
+	"NomineeCountryRegionId":"IND",
+	"NomineeEmail":"rajendra.pandey555@gmail.com ",
+	"NomineeMobile":"7044070170",
+	"NomineeName":"rajendra.pandey555@gmail.com Prasad Pandey ",
+	"NomineeRelation":"Husband ",	
+	"NomineeState":"WB",
+	"NomineeTelephone":"",
+	"NomineeZipCode":"700059",
+	"PassbookNo":"4",
+	"RelationWithMinor":"",
+	"SchemeCode":"SY22-23",
+	"store":"C998",
+	"InventLocationId":"998",
+	"KycDocumentId":"D005",
+	"KycDocumentNo":"361138283403"}]}
+	
+	
+user_reg_payload	
+	{"_keys":[{"FirstName":"Amrit",
+	"MiddleName":"Kumer",
+	"LastName":"Malviya",
+	"Name":"Amrit Kumer Malviya",
+	"LocationName":"Kamleshwarpur",	
+	"Street":"MainpatRd",	
+	"StreetNumber":"497111", 
+	"CountryRegionId":"IND",
+	"State":"MH",
+	"City":"MH",
+	"Email":"sapphire@intermind.in",
+	"Mobile":"9619589050",
+	"PAN":"",
+	"BIRTHDATE":"04\/06\/1990",
+	"GSTIN":"",
+	"ANNIVERSARYDATE":"",
+	"GENDER":"Male",
+	"MARITALSTATUS":"Married",
+	"COMMENTS":"Test"}]}
 
 Dashboard Grid Columns
 ------------------------------
@@ -134,7 +189,26 @@ Functionality - EMI Payments Dashboard
 7. Ability view payment receipt
 8. Ability to view full payment details including payload data.
 
-			Payload- [{"$id":"1","Status":"200","Message":"Success.","EMI":[{"$id":"2","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220623111212800110168208961612198","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"2","PAYMENTENTRYNO":"ORD-275","PAYMENTDATE":"23-06-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"},
+			Payload- [{"$id":"1",
+			"Status":"200",
+			"Message":"Success.",
+			"EMI":[{"$id":"2",
+				"CANCELLEDBY":"",
+				"INSTALLMENTMONTH":"",
+				"RECEIPTID":"",
+				"CANCELLEDREASON":"",
+				"TENDERTYPE":"",
+				"TRANSACTIONID":"20220623111212800110168208961612198",
+				"SCHEMEENTRYNO":"SCHTR0096517",
+				"PAYMENTYEAR":"0",
+				"PAYMENTTYPE":"EMI",
+				"PAYMENTMONTH":"2",
+				"PAYMENTENTRYNO":"ORD-275",
+				"PAYMENTDATE":"23-06-2022",
+				"PAYMENTAMOUNT":"1.00",
+				"LINENUM":"1",
+				"CUSTOMERCODE":"CUS635612",
+				"CANCELLED":"No"},
 			{"$id":"3","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220623111212800110168900261558057","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"1","PAYMENTENTRYNO":"ORD-266","PAYMENTDATE":"23-06-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"},
 			{"$id":"4","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220630111212800110168687963464640","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"3","PAYMENTENTRYNO":"ORD-11","PAYMENTDATE":"30-06-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"},{"$id":"5","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220712111212800110168153166408449","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"4","PAYMENTENTRYNO":"ORD-3549","PAYMENTDATE":"12-07-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"},{"$id":"6","CANCELLEDBY":"","INSTALLMENTMONTH":"","RECEIPTID":"","CANCELLEDREASON":"","TENDERTYPE":"","TRANSACTIONID":"20220712111212800110168371466280989","SCHEMEENTRYNO":"SCHTR0096517","PAYMENTYEAR":"0","PAYMENTTYPE":"EMI","PAYMENTMONTH":"5","PAYMENTENTRYNO":"ORD-3550","PAYMENTDATE":"12-07-2022","PAYMENTAMOUNT":"1.00","LINENUM":"1","CUSTOMERCODE":"CUS635612","CANCELLED":"No"}]}]
 
@@ -207,3 +281,15 @@ LINQ:
                                 }).ToList();
 
 
+
+
+
+
+
+for making View on EMI Payment
+temp_swarna_payment_reciept
+Is No Null
+
+https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/SY_EMI_Payment_Receipt_41220229323647.pdf
+kalpesh singh6:18 PM
+SY_EMI_Payment_Receipt_41220229323647.pdf

@@ -1,4 +1,5 @@
 ﻿using Demo_Senco_Admin.Models;
+using Demo_Senco_Admin.Models.Payload;
 using Demo_Senco_Admin.Models.ViewModel;
 using Microsoft.Extensions.Primitives;
 using OfficeOpenXml;
@@ -18,7 +19,8 @@ namespace Demo_Senco_Admin.Controllers
         public ActionResult Index(string paymentStatus, DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput)
         {
             var query = (from TSP in db.tbl_temp_swarna_paymentgateway
-                         join UD in db.tbl_user_details on TSP.temp_swarna_member_id equals UD.user_no                         
+                         join UD in db.tbl_user_details on TSP.temp_swarna_member_id equals UD.user_no
+                         orderby TSP.temp_swarna_yojna_id descending
                          select new
                          {
                              OrderNo = TSP.temp_swarna_order_no,
@@ -26,7 +28,7 @@ namespace Demo_Senco_Admin.Controllers
                              EMIno = TSP.temp_swarna_current_emi_no,
                              Amount = TSP.temp_swarna_payamount,
                              PaymentStatus = TSP.temp_payment_status,
-                             SchemeNo = TSP.temp_swarna_yojna_id,
+                             SchemeNo = TSP.temp_swarna_payment_schemeentryno,
                              TransactionId = TSP.temp_swarna_transaction_id,
                              BankTransactionId = TSP.temp_swarna_banktransactionid,
                              PaymentEntryNo = TSP.temp_swarna_paymententryno,
@@ -34,6 +36,7 @@ namespace Demo_Senco_Admin.Controllers
                              MobileNo = TSP.temp_swarna_mobile_no,
                              Email = TSP.temp_swarna_member_email ?? "NA",
                              PaymentReciept = TSP.temp_swarna_payment_reciept,
+                             SchemeEntryNo= TSP.temp_swarna_payment_schemeentryno,
                          }).Take(100);
 
             var Result = query.ToList();
@@ -54,7 +57,7 @@ namespace Demo_Senco_Admin.Controllers
                                     EMIno = item.EMIno ?? 0,
                                     Amount = (decimal)item.Amount,
                                     PaymentStatus = item.PaymentStatus ?? false,
-                                    SchemeNo = item.SchemeNo,
+                                    SchemeNo = item.SchemeEntryNo,
                                     TransactionId = item.TransactionId ?? "N/A",
                                     BankTransactionId = item.BankTransactionId ?? "N/A",
                                     PaymentEntryNo = item.PaymentEntryNo ?? "N/A",
@@ -62,6 +65,7 @@ namespace Demo_Senco_Admin.Controllers
                                     MobileNo = item.MobileNo ?? "N/A",
                                     Email = item.Email ?? "N/A",
                                     PaymentReciept = item.PaymentReciept ?? "N/A",
+                                    SchemeEntryNo= item.SchemeEntryNo ?? "N/A",
                                 }).ToList();
 
 
@@ -88,7 +92,7 @@ namespace Demo_Senco_Admin.Controllers
                              EMIno = TSP.temp_swarna_current_emi_no ?? 0,
                              Amount = (decimal)TSP.temp_swarna_payamount,
                              PaymentStatus = TSP.temp_payment_status ?? false,
-                             SchemeNo = TSP.temp_swarna_yojna_id,
+                             SchemeNo = TSP.temp_swarna_payment_schemeentryno,
                              TransactionId = TSP.temp_swarna_transaction_id ?? "N/A",
                              BankTransactionId = TSP.temp_swarna_banktransactionid ?? "N/A",
                              PaymentEntryNo = TSP.temp_swarna_paymententryno ?? "N/A",

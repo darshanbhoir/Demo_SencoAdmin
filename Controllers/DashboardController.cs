@@ -25,7 +25,8 @@ namespace Demo_Senco_Admin.Controllers
             var query = (from SSCD in db.tbl_swarna_scheme_creation_details
                          join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
                          join SUR in db.tbl_swarna_user_registration on SSCD.scheme_member_id equals SUR.user_member_id
-                         where SSCD.scheme_member_id == 157707
+                         orderby SSCD.scheme_reg_id descending
+                         //where SSCD.scheme_member_id == 157707
                          select new
                          {
                              UserNumber = UD.user_no,
@@ -61,7 +62,9 @@ namespace Demo_Senco_Admin.Controllers
                     SchemeAccountName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null ?? "N/A",
                     SchemeAccountMobile = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>() : null ?? "N/A",
                     SchemeAccountEmail = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null ?? "N/A",
+                    CustomerCode= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerCode")?.Value<string>() : null ?? "N/A",
                     SchemeRegId = item.SchemeRegId,
+                    SchemeCode= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].SchemeCode")?.Value<string>() : null ?? "N/A",
                     EMIAmount = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].EMIAmount")?.Value<string>() : null ?? "N/A",
                     Location = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].LocationName")?.Value<string>() : null ?? "N/A",
                     Street = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].Street")?.Value<string>() : null ?? "N/A",
@@ -229,7 +232,7 @@ namespace Demo_Senco_Admin.Controllers
                     Created_On = (DateTime)schemedetail.created_on,
 
                 };
-                return Json(viewModel);
+                return View(viewModel);
             }
             else
             {

@@ -34,7 +34,7 @@ namespace Demo_Senco_Admin.Controllers
                              EMIno = TSP.temp_swarna_current_emi_no,
                              Amount = TSP.temp_swarna_payamount,
                              PaymentStatus = TSP.temp_payment_status,
-                             SchemeNo = TSP.temp_swarna_yojna_id,
+                             SchemeNo = TSP.temp_swarna_payment_schemeentryno,
                              TransactionId = TSP.temp_swarna_transaction_id,
                              BankTransactionId = TSP.temp_swarna_banktransactionid,
                              PaymentEntryNo = TSP.temp_swarna_paymententryno,
@@ -104,7 +104,7 @@ namespace Demo_Senco_Admin.Controllers
                              EMIno = TSP.temp_swarna_current_emi_no ?? 0,
                              Amount = (decimal)TSP.temp_swarna_payamount,
                              PaymentStatus = TSP.temp_payment_status ?? false,
-                             SchemeNo = TSP.temp_swarna_yojna_id ,
+                             SchemeNo = TSP.temp_swarna_payment_schemeentryno ,
                              TransactionId = TSP.temp_swarna_transaction_id ?? "N/A",
                              BankTransactionId = TSP.temp_swarna_banktransactionid ?? "N/A",
                              PaymentEntryNo = TSP.temp_swarna_paymententryno ?? "N/A",
@@ -214,7 +214,7 @@ namespace Demo_Senco_Admin.Controllers
                     EMIno = emidetail.temp_swarna_current_emi_no ?? 0,
                     Amount = (decimal)emidetail.temp_swarna_payamount,
                     PaymentStatus = emidetail.temp_payment_status ?? false,
-                    SchemeNo = emidetail.temp_swarna_yojna_id,
+                    SchemeNo = emidetail.temp_swarna_payment_schemeentryno,
                     TransactionId = emidetail.temp_swarna_transaction_id ?? "N/A",
                     BankTransactionId = emidetail.temp_swarna_banktransactionid ?? "N/A",
                     PaymentEntryNo = emidetail.temp_swarna_paymententryno ?? "N/A",
@@ -258,7 +258,7 @@ namespace Demo_Senco_Admin.Controllers
                     emidetail.temp_swarna_current_emi_no = viewModel.EMIno;
                     emidetail.temp_swarna_payamount = viewModel.Amount;
                     emidetail.temp_payment_status= viewModel.PaymentStatus;
-                    emidetail.temp_swarna_yojna_id = viewModel.SchemeNo;
+                    emidetail.temp_swarna_payment_schemeentryno = viewModel.SchemeNo;
                     emidetail.temp_swarna_transaction_id = viewModel.TransactionId;
                     emidetail.temp_swarna_banktransactionid = viewModel.BankTransactionId;
                     emidetail.temp_swarna_paymententryno= viewModel.PaymentEntryNo;
@@ -300,7 +300,7 @@ namespace Demo_Senco_Admin.Controllers
                 }
                 var viewmodel = new EMIPaymentViewModel
                 {
-                    SchemeNo= detail.temp_swarna_yojna_id,
+                    SchemeNo= detail.temp_swarna_payment_schemeentryno,
                     CustomerName = detail.temp_swarna_customer_name ?? "N/A",
                     MobileNo = detail.temp_swarna_mobile_no ?? "N/A",
                     EMIno = detail.temp_swarna_current_emi_no ?? 0,

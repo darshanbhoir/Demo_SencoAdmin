@@ -13,7 +13,7 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public int? EMIno { get; set; }
         public decimal Amount { get; set; }
         public bool? PaymentStatus { get; set; }
-        public int SchemeNo { get; set; }
+        public string SchemeNo { get; set; }
         public string TransactionId { get; set; }
         public string BankTransactionId { get; set; }
         public string PaymentEntryNo { get; set; }
@@ -21,6 +21,7 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public string MobileNo { get; set; }
         public string Email { get; set; }
         public string PaymentReciept { get; set; }
+        public string SchemeEntryNo { get; set; }
         public EMIPayload PayloadData { get; set; }
 
     }
