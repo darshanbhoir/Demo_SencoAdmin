@@ -78,6 +78,9 @@ scheme_payload
 	"KycDocumentNo":"361138283403"}]}
 	
 	
+	{"_keys":[{"BirthDate":"10\/08\/1991","CustomerBankAccountNo":"","CustomerBankIFSCCode":"","CustomerBankName":"","CustomerCode":"CUS636085","CustomerName":"Patel Jaunpur Shekhar Shiv","EMIAmount":"1000.00","GaurdianName":"","IdentityProof":"Aadhar","IdProofNo":"881114663545","Minor":"No","NomineeAddress":"","NomineeBirthDate":"","NomineeCity":"","NomineeCountryRegionId":"IND","NomineeEmail":"","NomineeMobile":"","NomineeName":"","NomineeRelation":"","NomineeState":"","NomineeTelephone":"","NomineeZipCode":"","PassbookNo":"","RelationWithMinor":"","SchemeCode":"SL22-23","store":"C998 ","InventLocationId":"998  ","KycDocumentId":"D005","KycDocumentNo":"881114663545"}]}
+	
+	
 user_reg_payload	
 	{"_keys":[{"FirstName":"Amrit",
 	"MiddleName":"Kumer",

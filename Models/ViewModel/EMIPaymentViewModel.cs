@@ -8,6 +8,7 @@ namespace Demo_Senco_Admin.Models.ViewModel
 {
     public class EMIPaymentViewModel
     {
+        public int YojnaId { get; set; }
         public string OrderNo { get; set; }
         public DateTime PaymentDate { get; set; }
         public int? EMIno { get; set; }

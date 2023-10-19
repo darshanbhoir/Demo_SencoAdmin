@@ -2,11 +2,13 @@
 using Demo_Senco_Admin.Models.Payload;
 using Demo_Senco_Admin.Models.ViewModel;
 using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,9 +22,11 @@ namespace Demo_Senco_Admin.Controllers
         {
             var query = (from TSP in db.tbl_temp_swarna_paymentgateway
                          join UD in db.tbl_user_details on TSP.temp_swarna_member_id equals UD.user_no
+                         //where TSP.temp_swarna_yojna_id == 10822
                          orderby TSP.temp_swarna_yojna_id descending
                          select new
                          {
+                             YojnaId= TSP.temp_swarna_yojna_id,
                              OrderNo = TSP.temp_swarna_order_no,
                              PaymentDate = TSP.temp_swarna_paymentdate,
                              EMIno = TSP.temp_swarna_current_emi_no,
@@ -52,6 +56,7 @@ namespace Demo_Senco_Admin.Controllers
                                 .Where(s => !enddate.HasValue || s.PaymentDate <= enddate)
                                 .Select(item => new EMIPaymentViewModel
                                 {
+                                    YojnaId= item.YojnaId,
                                     OrderNo = item.OrderNo,
                                     PaymentDate = (DateTime)item.PaymentDate,
                                     EMIno = item.EMIno ?? 0,
@@ -162,6 +167,100 @@ namespace Demo_Senco_Admin.Controllers
             return RedirectToAction("Index");
 
 
+        }
+
+
+        //View&Modify EMI Details
+        public ActionResult ViewandModify(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var emidetail = db.tbl_temp_swarna_paymentgateway.Find(id);
+
+            if (emidetail == null)
+            {
+                HttpNotFound();
+            }
+
+            var setting = new JsonSerializerSettings
+            {
+                DefaultValueHandling = DefaultValueHandling.Populate,
+            };            
+
+            if (emidetail.temp_swarna_payload_json != null)
+            {
+                var payloadData = JsonConvert.DeserializeObject<List<EMIPayload>>(emidetail.temp_swarna_payload_json, setting);
+
+                var mostRecentEMI = payloadData?.OrderBy(s => s.id).FirstOrDefault();
+
+
+                var viewModel = new EMIPaymentViewModel
+                {
+                    YojnaId= emidetail.temp_swarna_yojna_id,
+                    OrderNo = emidetail.temp_swarna_order_no ?? "N/A",
+                    PaymentDate = (DateTime)emidetail.temp_swarna_paymentdate,
+                    EMIno = emidetail.temp_swarna_current_emi_no ?? 0,
+                    Amount = (decimal)emidetail.temp_swarna_payamount,
+                    PaymentStatus = emidetail.temp_payment_status ?? false,
+                    SchemeNo = emidetail.temp_swarna_payment_schemeentryno,
+                    TransactionId = emidetail.temp_swarna_transaction_id ?? "N/A",
+                    BankTransactionId = emidetail.temp_swarna_banktransactionid ?? "N/A",
+                    PaymentEntryNo = emidetail.temp_swarna_paymententryno ?? "N/A",
+                    CustomerName = emidetail.temp_swarna_customer_name ?? "N/A",
+                    MobileNo = emidetail.temp_swarna_mobile_no ?? "N/A",
+                    Email = emidetail.temp_swarna_member_email ?? "N/A",
+                    PaymentReciept = emidetail.temp_swarna_payment_reciept ?? "N/A",
+                    PayloadData = mostRecentEMI,
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Data is Missing";
+                return View("Error");
+                
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult ViewandModify(EMIPaymentViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var emidetail = db.tbl_temp_swarna_paymentgateway.Find(viewModel.SchemeNo);
+                    if (emidetail == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    emidetail.temp_swarna_order_no = viewModel.OrderNo;
+                    emidetail.temp_swarna_paymentdate = viewModel.PaymentDate;
+                    emidetail.temp_swarna_current_emi_no = viewModel.EMIno;
+                    emidetail.temp_swarna_payamount = viewModel.Amount;
+                    emidetail.temp_payment_status = viewModel.PaymentStatus;
+                    emidetail.temp_swarna_payment_schemeentryno = viewModel.SchemeNo;
+                    emidetail.temp_swarna_transaction_id = viewModel.TransactionId;
+                    emidetail.temp_swarna_banktransactionid = viewModel.BankTransactionId;
+                    emidetail.temp_swarna_paymententryno = viewModel.PaymentEntryNo;
+                    emidetail.temp_swarna_customer_name = viewModel.CustomerName;
+                    emidetail.temp_swarna_mobile_no = viewModel.MobileNo;
+                    //emidetail.temp_swarna_payload_json = viewModel.PayloadData;
+
+                    db.SaveChanges();
+                    return RedirectToAction("ViewandModifyDetail");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "An error occurred while updating the detail.");
+                }
+            }
+            return View(viewModel);
         }
     }
 }

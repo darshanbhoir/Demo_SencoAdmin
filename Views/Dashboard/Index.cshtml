@@ -10,16 +10,15 @@
         <form>
             <div class="row">
                 <div class="col-lg-3 ">
-                    <div class="date-box-part">
-                        @*@Html.TextBox("startdate", ViewBag.StartDateFilter as string, new { Type="date" })*@
-                        <input class="form-control datepicker" type="date" placeholder="From Date" id="startdate" name="startdate" aspfor="StartDateFilter">
-                        @*<div class="svg-part">
+                    <div class="date-box-part">                        
+                        <input class="form-control datepicker" type="text" placeholder="From Date" id="startdate" name="startdate" >
+                        <div class="svg-part">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-calendar-week" viewBox="0 0 16 16">
                                         <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0     1 .5-.5h1a.5.5  0 0        1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0    1 .5.5v1a.5.5 0 0   1-.5.5h-1a.5.5 0 0      1-.5-.5v-1zm3        0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0   1-.5.5h-1a.5.5 0 0   1-.5-.5v-1z" />
                                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1         2-2h1V.5a.5.5  0 0   1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                     </svg>
-                            </div>*@
+                            </div>
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -37,7 +36,7 @@
                 <div class="col-lg-3">
                     <select class="form-control select-input" id="searchFilter" name="searchFilter">
                         <option value="" selected>Search Param</option>
-                        <option value="schemeNo">Scheme No</option>
+                        <option value="userNo">Member Id</option>
                         <option value="customerName">Customer Name</option>
                         <option value="email">Email id</option>
                         <option value="mobile">Mobile No.</option>
@@ -71,12 +70,15 @@
                                     <tr>
                                         <th scope="col">SR.NO</th>
                                         <th scope="col">Member Id</th>
-                                        <th scope="col">Customer Name</th>
-                                        <th scope="col">Mobile & Email id</th>
-                                        <th scope="col">Customer Code</th>
+                                        <th scope="col">App User Name</th>
+                                        <th scope="col">App User Mobile & Email id</th>
+                                        <th scope="col">Account Code</th>
+                                        <th scope="col">Account Name</th>
                                         <th scope="col">Scheme Code</th>
+                                        <th scope="col">Scheme Name</th>
                                         <th scope="col">Scheme Create date</th>
                                         <th scope="col">EMI</th>
+                                        <th scope="col">Tenure</th>
                                         <th scope="col">View</th>
                                     </tr>
                                 </thead>
@@ -89,9 +91,12 @@
                                             <td>@item.UserName</td>
                                             <td>@item.UserMobileNumber | @item.UserEmail</td>
                                             <td>@item.CustomerCode</td>
+                                            <td>@item.CustomerName</td>
                                             <td>@item.SchemeCode</td>
+                                            <td>@item.SchemeName</td>
                                             <td>@item.CreatedOn</td>
                                             <td>@item.EMIAmount</td>
+                                            <td>@item.SchemeTenure</td>
                                             <td>
                                                 <!-- Button trigger modal -->
                                                 <a href="@Url.Action("View", "Dashboard", new { id=item.SchemeRegId })" class="view-btn view-bgc viewlink">

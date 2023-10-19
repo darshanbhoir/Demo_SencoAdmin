@@ -6,43 +6,7 @@
 
 }
 
-@*<div>
-    <p>Scheme Register Id: @Model.SchemeRegId</p>
-    <p>Scheme Member Id: @Model.SchemeMemberId</p>
-    <p>Scheme Details:-</p>
 
-    @foreach (var item in Model.SchemePayload.Keys)
-    {
-        <p>BirthDate: @item.BirthDate</p>
-        <p>Customer Bank Account No: @item.CustomerBankAccountNo</p>
-        <p>Customer Bank IFSC code: @item.CustomerBankIFSCCode</p>
-        <p>Customer Bank Name: @item.CustomerBankName</p>
-        <p>Customer Code: @item.CustomerCode</p>
-        <p>Customer Name: @item.CustomerName</p>
-        <p>EMI Amount: @item.EMIAmount</p>
-        <p>Identity Proof: @item.IdentityProof</p>
-        <p>Id Proof No: @item.IdProofNo</p>
-        <p>Minor: @item.Minor</p>
-        <p>Nominee Address: @item.NomineeAddress</p>
-        <p>Nominee BirthDate: @item.NomineeBirthDate</p>
-        <p>Nominee City: @item.NomineeCity</p>
-        <p>Nominee Country Region Code: @item.NomineeCountryRegionId</p>
-        <p>Nominee Email: @item.NomineeEmail</p>
-        <p>Nominee Mobile: @item.NomineeMobile</p>
-        <p>Nominee Name: @item.NomineeName</p>
-        <p>Nominee Relation: @item.NomineeRelation</p>
-        <p>Nominee State: @item.NomineeState</p>
-        <p>Nominee Telephone: @item.NomineeTelephone</p>
-        <p>Nominee Zip Code: @item.NomineeZipCode</p>
-        <p>PassBook No: @item.PassbookNo</p>
-        <p>Relation with Minor: @item.RelationWithMinor</p>
-        <p>Scheme Code: @item.SchemeCode</p>
-        <p>Store: @item.store</p>
-        <p>Invent Location Id: @item.InventLocationId</p>
-        <p>KYC Document Id: @item.KycDocumentId</p>
-        <p>KYC Document No: @item.KycDocumentNo</p>
-    }
-</div>*@
 
 <div class="modal fade">
     <div class="modal-dialog">
@@ -88,6 +52,9 @@
                         <p>Invent Location Id: @item.InventLocationId</p>
                         <p>KYC Document Id: @item.KycDocumentId</p>
                         <p>KYC Document No: @item.KycDocumentNo</p>
+                        <p>Scheme Tenure: @item.SchemeTenure</p>
+                        <p>Scheme Name: @item.SchemeName</p>
+                        <p>Scheme Entry No: @item.SchemeEntryNo</p>
                     }
                 </div>
             </div>
@@ -104,29 +71,4 @@
 
  
 
-    @*<div class="modal fade"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">View Detail</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                    <div id="modalContent">
-                        name:@Model.SchemeAccountName
-
-                       @foreach(var item in Model.SchemePayload.Keys)
-                        {
-                            <p>Birthdate: @item.BirthDate</p>
-                        }
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
+    

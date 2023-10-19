@@ -18,9 +18,9 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public DateTime UserBirthdate { get; set; }
         public string UserEmail { get; set; }
         public string CreatedOn { get; set; }
-        public string SchemeAccountName { get; set; }
-        public string SchemeAccountMobile { get; set; }
-        public string SchemeAccountEmail { get; set;}
+        public string UserAccountName { get; set; }
+        public string UserAccountMobile { get; set; }
+        public string UserAccountEmail { get; set;}
         public int SchemeRegId { get; set; }
         public string EMIAmount { get; set; }
         public string Location { get; set;}
@@ -34,7 +34,11 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public int? SchemeMemberId { get; set; }
         public DateTime Created_On { get; set; }
         public string CustomerCode { get; set; }
+        public string CustomerName { get; set; }
         public string SchemeCode { get; set; }
+        public string SchemeTenure { get; set; }
+        public string SchemeName { get; set; }
+        public string SchemeEntryNo { get; set; }
         public NewSchemePayload SchemePayload { get; set; }
 
         

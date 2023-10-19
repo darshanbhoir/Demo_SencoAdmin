@@ -11,10 +11,10 @@ namespace Demo_Senco_Admin.Models.Payload
         [JsonProperty("$id")]
         public string id { get; set; }
 
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        
         public string Status { get; set; }
 
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        
         public string Message { get; set; }
         
         public List<EMI> EMI { get; set; }

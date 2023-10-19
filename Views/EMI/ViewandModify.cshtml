@@ -1,0 +1,139 @@
+﻿@model Demo_Senco_Admin.Models.ViewModel.EMIPaymentViewModel
+@{
+    ViewBag.Title = "ViewandModify";
+}
+
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    @using (Html.BeginForm("ViewandModifyDetail", "EMIPayment", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.SchemeNo)
+                            @Html.TextBoxFor(Model => Model.SchemeNo, new { @readonly = "readonly", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.OrderNo)
+                            @Html.TextBoxFor(Model => Model.OrderNo, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.PaymentDate)
+                            @Html.TextBoxFor(Model => Model.PaymentDate, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.EMIno)
+                            @Html.TextBoxFor(Model => Model.EMIno, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.Amount)
+                            @Html.TextBoxFor(Model => Model.Amount, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.PaymentStatus)
+                            @Html.TextBoxFor(Model => Model.PaymentStatus, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.TransactionId)
+                            @Html.TextBoxFor(Model => Model.TransactionId, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.BankTransactionId)
+                            @Html.TextBoxFor(Model => Model.BankTransactionId, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.PaymentEntryNo)
+                            @Html.TextBoxFor(Model => Model.PaymentEntryNo, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.CustomerName)
+                            @Html.TextBoxFor(Model => Model.CustomerName, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.MobileNo)
+                            @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.Email)
+                            @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.PaymentReciept)
+                            @Html.TextBoxFor(Model => Model.PaymentReciept, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.PayloadData.id)
+                            @Html.TextBoxFor(Model => Model.PayloadData.id, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.PayloadData.Status)
+                            @Html.TextBoxFor(Model => Model.PayloadData.Status, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => Model.PayloadData.Message)
+                            @Html.TextBoxFor(Model => Model.PayloadData.Message, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Update Details" class="btn btn-primary" />
+                        </div>
+                    }
+
+                    <hr />
+                    <hr />
+
+                    <div>
+                        <h5>EMI Details:</h5>
+                        @if (Model.PayloadData != null && Model.PayloadData.EMI != null)
+                        {
+                            foreach (var item in Model.PayloadData.EMI)
+                            {
+                                <div>
+                                    <p>EMI id: @item.id ?? "N/A"</p>
+                                    <p>Cancelled By: @item.CANCELLEDBY ?? "N/A"</p>
+                                    <p>Installment Month: @item.INSTALLMENTMONTH ?? "N/A"</p>
+                                    <p>Reciept Id: @item.RECEIPTID ?? "N/A"</p>
+                                    <p>Cancelled Reason: @item.CANCELLEDREASON ?? "N/A"</p>
+                                    <p>Tender Type: @item.TENDERTYPE ?? "N/A"</p>
+                                    <p>Transaction Id: @item.TRANSACTIONID ?? "N/A"</p>
+                                    <p>Scheme Entry No: @item.SCHEMEENTRYNO ?? "N/A"</p>
+                                    <p>Payment Year: @item.PAYMENTYEAR ?? "N/A"</p>
+                                    <p>Payment Type: @item.PAYMENTTYPE ?? "N/A"</p>
+                                    <p>Payment Month: @item.PAYMENTMONTH ?? "N/A"</p>
+                                    <p>Payment Entry No: @item.PAYMENTENTRYNO ?? "N/A"</p>
+                                    <p>Payment Date: @item.PAYMENTDATE ?? "N/A"</p>
+                                    <p>Payment Amount: @item.PAYMENTAMOUNT ?? "N/A"</p>
+                                    <p>Linium: @item.LINENUM ?? "N/A"</p>
+                                    <p>Customer Code: @item.CUSTOMERCODE ?? "N/A"</p>
+                                    <p>Cancelled: @item.CANCELLED ?? "N/A"</p>
+                                    <hr />
+                                </div>
+                            }
+                        }
+                        else
+                                    {
+                                        <p>No Data Available</p>
+                                    }
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
