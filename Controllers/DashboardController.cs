@@ -13,6 +13,8 @@ using System.Web.Script.Serialization;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using Demo_Senco_Admin.Models.Payload;
+using System.Web.UI.WebControls;
+using System.Web.UI;
 
 namespace Demo_Senco_Admin.Controllers
 {
@@ -105,8 +107,10 @@ namespace Demo_Senco_Admin.Controllers
                              UserNumber = UD.user_no,
                              UserName = UD.user_name,
                              UserMobileNumber = UD.user_mobile_no,
+                             BirthDate= (DateTime)UD.user_birth_date,
                              UserEmail = UD.user_email,
                              CreatedOn = SUR.created_on,
+                             SchemeMemberId= SSCD.scheme_member_id,
                              SchemePayload = SSCD.scheme_payload,
                              UserRegPayload = SUR.user_reg_payload,
                              SchemeRegId = SSCD.scheme_reg_id,
@@ -119,9 +123,10 @@ namespace Demo_Senco_Admin.Controllers
                             {
                                 UserNumber = item.UserNumber,
                                 UserName = item.UserName ?? "N/A",
-                                UserMobileNumber = item.UserMobileNumber ?? "N/A",
+                                UserMobileNumber = item.UserMobileNumber ?? "N/A", 
+                                UserBirthdate = item.BirthDate,
                                 UserEmail = item.UserEmail ?? "N/A",
-                                CreatedOn = item.CreatedOn != null ? item.CreatedOn.Value.ToString("yyyy-MM-dd") : string.Empty ?? "N/A",
+                                CreatedOn = item.CreatedOn != null ? item.CreatedOn.Value.ToString("dd-MM-yyyy") : string.Empty ?? "N/A",
                                 UserAccountName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].CustomerName")?.Value<string>() : null ?? "N/A",
                                 UserAccountMobile = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeMobile")?.Value<string>() : null ?? "N/A",
                                 UserAccountEmail = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].NomineeEmail")?.Value<string>() : null ?? "N/A",
@@ -137,71 +142,88 @@ namespace Demo_Senco_Admin.Controllers
                                 City = item.UserRegPayload != null ? JObject.Parse(item.UserRegPayload).SelectToken("_keys[0].City")?.Value<string>() : null ?? "N/A",
                                 UserCountry = (int)item.UserCountry,
                                 UserCity = (int)item.UserCity,
+                                SchemeMemberId= item.SchemeMemberId,
+                                SchemeCode= item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].SchemeCode")?.Value<string>() : null ?? "N/A",
                                 SchemeName = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].SchemeName")?.Value<string>() : null ?? "N/A",
                                 SchemeTenure = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].SchemeTenure")?.Value<string>() : null ?? "N/A",
                                 SchemeEntryNo = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].SchemeEntryNo")?.Value<string>() : null ?? "N/A",
                             }).ToList();
 
-            ExcelPackage excelPackage = new ExcelPackage();
-            var worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
+            //ExcelPackage excelPackage = new ExcelPackage();
+            //var worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
 
-            //headers
-            var headers = new string[]
-            {
-                "UserNumber",
-                "UserName",
-                "UserMobileNumber",
-                "UserEmail",
-                "CreatedOn",
-                "SchemeAccountName",
-                "SchemeAccountMobile",
-                "SchemeAccountEmail",
-                "CustomerName",
-                "CustomerCode",
-                "SchemeRegId",
-                "EMIAmount",
-                "Location",
-                "Street",
-                "StreetNumber",
-                "Country",
-                "State",
-                "City",
-                "UserCountry",
-                "UserCity",
-                "SchemeName",
-                "SchemeTenure",
-                "SchemeEntryNo"
-            };
+            ////headers
+            //var headers = new string[]
+            //{
+            //    "AppUserNumber",
+            //    "UserName",
+            //    "UserMobileNumber",                
+            //    "UserEmail",
+            //    "CreatedOn",
+            //    "UserAccountName",
+            //    "UserAccountMobile",
+            //    "UserAccountEmail",
+            //    "CustomerName",
+            //    "CustomerCode",
+            //    "SchemeRegId",
+            //    "EMIAmount",
+            //    "Location",
+            //    "Street",
+            //    "StreetNumber",
+            //    "Country",
+            //    "State",
+            //    "City",
+            //    "UserCountry",
+            //    "UserCity",
+            //    "SchemeName",
+            //    "SchemeTenure",
+            //    "SchemeEntryNo"
+            //};
 
-            for (int i = 0; i < headers.Length; i++)
-            {
-                worksheet.Cells[1, i + 1].Value = headers[i];
-            }
+            //for (int i = 0; i < headers.Length; i++)
+            //{
+            //    worksheet.Cells[1, i + 1].Value = headers[i];
+            //}
 
-            //for data
-            int row = 2;
-            foreach (var item in data)
-            {
-                int column = 1;
+            ////for data
+            //int row = 2;
+            //foreach (var item in data)
+            //{
+            //    int column = 1;
 
-                foreach (var prop in typeof(SchemeDashboardViewModel).GetProperties())
-                {
-                    worksheet.Cells[row, column].Value = prop.GetValue(item);
-                    column++;
-                }
-                row++;
-            }
+            //    foreach (var prop in typeof(SchemeDashboardViewModel).GetProperties())
+            //    {
+            //        worksheet.Cells[row, column].Value = prop.GetValue(item);
+            //        column++;
+            //    }
+            //    row++;
+            //}
 
-            var stream = new MemoryStream();
-            excelPackage.SaveAs(stream);
+            //var stream = new MemoryStream();
+            //excelPackage.SaveAs(stream);
 
-            stream.Position = 0;
+            //stream.Position = 0;
+            //Response.Clear();
+            //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            //Response.Headers.Add("Content-Disposition", new StringValues("attachment; filename=ExportedSchemeData.xlsx"));
 
+            //stream.CopyTo(Response.OutputStream);
+
+            GridView gridView = new GridView();
+            gridView.DataSource = data.ToList();
+            gridView.DataBind();
             Response.Clear();
+            Response.Buffer = true;            
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.Headers.Add("Content-Disposition", new StringValues("attachment; filename=ExportedSchemeData.xlsx"));
+            Response.AddHeader("Content-disposition", "attachment;filename=SchemeData.xls");
+            Response.Charset = "";
 
-            stream.CopyTo(Response.OutputStream);
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            gridView.RenderControl(htw);
+
+            Response.Output.Write(sw.ToString());            
 
             Response.Flush();
 

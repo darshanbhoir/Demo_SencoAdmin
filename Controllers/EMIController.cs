@@ -11,6 +11,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Demo_Senco_Admin.Controllers
 {
@@ -109,56 +111,72 @@ namespace Demo_Senco_Admin.Controllers
 
             var data = query.ToList();
 
-            ExcelPackage excelPackage = new ExcelPackage();
-            var worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
+            //ExcelPackage excelPackage = new ExcelPackage();
+            //var worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
 
-            //for headers
-            var headers = new string[]
-            {
-                "OrderNo",
-                "PaymentDate",
-                "EMIno",
-                "Amount",
-                "PaymentStatus",
-                "SchemeNo",
-                "TransactionId",
-                "BankTransactionId",
-                "PaymentEntryNo",
-                "CustomerName",
-                "MobileNo",
-                "Email",
-                
-            };
+            ////for headers
+            //var headers = new string[]
+            //{
+            //    "OrderNo",
+            //    "PaymentDate",
+            //    "EMIno",
+            //    "Amount",
+            //    "PaymentStatus",
+            //    "SchemeNo",
+            //    "TransactionId",
+            //    "BankTransactionId",
+            //    "PaymentEntryNo",
+            //    "CustomerName",
+            //    "MobileNo",
+            //    "Email",
 
-            for (int i = 0; i < headers.Length; i++)
-            {
-                worksheet.Cells[1, i + 1].Value = headers[i];
-            }
+            //};
 
-            //for data
-            int row = 2;
-            foreach (var item in data)
-            {
-                int column = 1;
+            //for (int i = 0; i < headers.Length; i++)
+            //{
+            //    worksheet.Cells[1, i + 1].Value = headers[i];
+            //}
 
-                foreach (var prop in typeof(EMIPaymentViewModel).GetProperties())
-                {
-                    worksheet.Cells[row, column].Value = prop.GetValue(item);
-                    column++;
-                }
-                row++;
-            }
+            ////for data
+            //int row = 2;
+            //foreach (var item in data)
+            //{
+            //    int column = 1;
 
-            var stream = new MemoryStream();
-            excelPackage.SaveAs(stream);
+            //    foreach (var prop in typeof(EMIPaymentViewModel).GetProperties())
+            //    {
+            //        worksheet.Cells[row, column].Value = prop.GetValue(item);
+            //        column++;
+            //    }
+            //    row++;
+            //}
 
-            stream.Position = 0;
+            //var stream = new MemoryStream();
+            //excelPackage.SaveAs(stream);
 
+            //stream.Position = 0;
+
+            //Response.Clear();
+            //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            //Response.Headers.Add("Content-Disposition", new StringValues("attachment; filename=ExportedEMIPaymentData.xlsx"));
+
+            //stream.CopyTo(Response.OutputStream);
+
+            GridView gridView = new GridView();
+            gridView.DataSource = data.ToList();
+            gridView.DataBind();
             Response.Clear();
+            Response.Buffer = true;
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.Headers.Add("Content-Disposition", new StringValues("attachment; filename=ExportedEMIPaymentData.xlsx"));
+            Response.AddHeader("Content-disposition", "attachment;filename=EMIData.xls");
+            Response.Charset = "";
 
-            stream.CopyTo(Response.OutputStream);
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            gridView.RenderControl(htw);
+
+            Response.Output.Write(sw.ToString());
 
             Response.Flush();
 

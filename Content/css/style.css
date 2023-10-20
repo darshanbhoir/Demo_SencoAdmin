@@ -188,6 +188,7 @@ Login Page
 
         .login-page-section .card .log-in-card {
             padding: 2rem !important;
+            width: 370px;
             border: 0;
             border-radius: 0.5rem;
             background-color: #fff;
@@ -210,7 +211,15 @@ Login Page
     font-family: "Poppins", sans-serif;
     margin-bottom: 0.5rem;
 }
-
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+.align-items-center {
+    align-items: center !important;
+}
 .login-page-section .log-in-card .card-body p {
     font-size: 15px;
     margin: 0px 0 32px;
@@ -233,7 +242,7 @@ label {
 .form-control {
     outline: none;
     background: #fff;
-    padding: 8px 16px;
+    padding: 8px 16px !important;
     border: 1px solid #c4cdd5;
     /* border-radius: 0.375rem; */
     /* padding: 0.5rem 1rem; */
@@ -242,6 +251,7 @@ label {
     color: #637381;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     background-clip: padding-box;
+    font-family: "Poppins", sans-serif;
 }
 
 .form-check {
@@ -282,10 +292,11 @@ label {
     font-size: 12px;
     color: #637381;
     font-family: "Poppins", sans-serif;
+    margin-top: 3px;
 }
 
 .btn-submit {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
     padding: 8px 16px;
     background: #009ef7;
@@ -325,13 +336,14 @@ header {
 }
 
     header .navbar {
-        padding: 10px 30px;
+        padding: 10px 30px;       
+        margin-bottom: 0;
     }
 
         header .navbar .navbar-nav {
             display: inline-block;
             vertical-align: middle;
-            margin-top: 22px;
+            margin-top: 13px;
         }
 
             header .navbar .navbar-nav .nav-item {
@@ -373,6 +385,11 @@ header {
         header .navbar .navbar-brand {
             display: block;
             text-decoration: none;
+            padding: 0 !important;
+            margin-left: -6px !important;
+        }
+        header .navbar .navbar-brand img{
+            width: 135px;
         }
 
         header .navbar .right-side-part {
@@ -516,31 +533,35 @@ header .button-part {
 }
 
 .form-section .button-part {
-    text-align: center;
+    /*text-align: center;*/
     /* border-top: 1px solid; */
-    margin-top: 28px;
+    /*margin-top: 54px;*/
     /*padding-top: 19px;*/
 }
+    .form-section .button-part .button{
+        display: inline-block;
+        margin-left: 3px;
+    }
 
     .form-section .button-part.button-top {
         margin-top: 0;
         padding-top: 0;
     }
 
-.button {
+/*.button {
     padding: 5px 18px;
     font-size: 12px;
     font-weight: 600;
     margin-right: 22px;
-}
+}*/
 
 .form-section {
-    margin-top: 136px;
+    margin-top: 45px;
 }
 
-.table-section {
+/*.table-section {
     margin-top: 20px;
-}
+}*/
 
     .table-section .table-container {
         padding-left: 2rem !important;
@@ -567,7 +588,7 @@ header .button-part {
 
         .table-section .table-schemes .schemes {
             /*padding: 5px;*/
-            background: #fff;
+            /*background: #fff;*/
             margin-bottom: 13px;
         }
 
@@ -666,10 +687,10 @@ td {
             margin: 0 auto;
         }
 
-.divider {
+/*.divider {
     background: #fff;
     padding: 12px;
-}
+}*/
 
 .show-dublicate {
     margin-top: 22px;
@@ -785,7 +806,7 @@ footer {
     overflow-x: hidden;
     overflow-y: auto;
     opacity: 1;
-    display: block;
+    display: block!important;
 }
 
 .modal-dialog {
@@ -868,6 +889,10 @@ footer {
     border-bottom: 1px solid #e9ecef;
     border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem;
+    align-items:baseline;
+    font-family:serif;
+    font-weight:bold;
+    font-size:25px;
 }
 
     .modal-header .close {
@@ -886,6 +911,8 @@ footer {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1rem;
+    font-family:sans-serif;
+    font-size:15px;
 }
 
 .modal-footer {
@@ -911,7 +938,7 @@ footer {
     }
 .d-grid
 {
-    text-align:center;
+    display: grid!important;
 }
 
 .modal-scrollbar-measure {
