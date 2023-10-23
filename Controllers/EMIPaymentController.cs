@@ -300,7 +300,11 @@ namespace Demo_Senco_Admin.Controllers
                 }
                 var viewmodel = new EMIPaymentViewModel
                 {
+                    OrderNo= detail.temp_swarna_order_no,
                     SchemeNo= detail.temp_swarna_payment_schemeentryno,
+                    SchemeCode= detail.ttemp_swarna_payment_scheme_code,
+                    StoreType = detail.temp_swarna_tender_type,
+                    CustomerCode= detail.temp_swarna_customer_code,
                     CustomerName = detail.temp_swarna_customer_name ?? "N/A",
                     MobileNo = detail.temp_swarna_mobile_no ?? "N/A",
                     EMIno = detail.temp_swarna_current_emi_no ?? 0,

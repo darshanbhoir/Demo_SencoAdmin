@@ -53,13 +53,13 @@
                     </select>
                 </div>
                 @*<div class="row">
-                    <div class="col-lg-4">
-                        <div class="form-check custom-checkbox show-dublicate">
-                            <input type="checkbox" class="form-check-input show-duplicate-input-left">
-                            <label class="form-check-label">Show Duplicate Orders</label>
+                        <div class="col-lg-4">
+                            <div class="form-check custom-checkbox show-dublicate">
+                                <input type="checkbox" class="form-check-input show-duplicate-input-left">
+                                <label class="form-check-label">Show Duplicate Orders</label>
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
                 <div class="col-lg-2">
                     <div class="button-part button-top">
                         <button class="button btn-submit" type="submit">Search</button>
@@ -93,8 +93,8 @@
                                         <th scope="col">Customer Name</th>
                                         <th scope="col">Transaction Id</th>
                                         <th scope="col">Payment Status</th>
+                                        @*<th scope="col">Payment Receipt</th>*@
                                         <th scope="col">Check Payment Status</th>
-                                        <th scope="col">Payment Receipt</th>
                                         <th scope="col">Create Receipt</th>
                                         <th scope="col">View Receipt</th>
                                         <th scope="col">Modify</th>
@@ -103,49 +103,49 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                    <tr>
-                                        <td>@counter</td>
-                                        <td>@item.OrderNo</td>
-                                        <td>@item.MobileNo | @item.Email</td>
-                                        <td>@item.PaymentDate</td>
-                                        <td>@item.SchemeNo</td>
-                                        <td>@item.Amount</td>
-                                        <td>@item.EMIno</td>
-                                        <td>@item.CustomerName</td>
-                                        <td>@item.TransactionId</td>
-                                        <td>@item.PaymentStatus</td>
-                                        <td>@item.PaymentReciept</td>
-                                        <td>
-                                            <a href="">Check</a>
-                                        </td>
-                                        <td>
-                                            <a href="Javascript:void(0)">Create </a>
-                                        </td>
-                                        <td>
-                                            @if(string.IsNullOrEmpty(item.PaymentReciept)==false)
-                                            {
-                                                <a href="javascript:void(0)" id="@item.OrderNo">View </a>
-                                            }
-                                            else
-                                            {
-                                                <p>N/A</p>
-                                            }
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>@item.OrderNo</td>
+                                            <td>@item.MobileNo | @item.Email</td>
+                                            <td>@item.PaymentDate</td>
+                                            <td>@item.SchemeNo</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.EMIno</td>
+                                            <td>@item.CustomerName</td>
+                                            <td>@item.TransactionId</td>
+                                            <td>@item.PaymentStatus</td>
+                                            @*<td>@item.PaymentReciept</td>*@
+                                            <td>
+                                                <a href="">Check</a>
+                                            </td>
+                                            <td class="createreciept" data-yojnaid="@item.YojnaId">
+                                                <a href="@Url.Action("CreateReciept", "EMI", new {id= item.YojnaId})">Create </a>
+                                            </td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(item.PaymentReciept))
+                                                {
+                                                    <a href="javascript:void(0)" id="@item.OrderNo">View </a>
+                                                }
+                                                else
+                                                {
+                                                    <p>N/A</p>
+                                                }
 
-                                        </td>
-                                        <td>
-                                            <!-- Button trigger modal -->
-                                            <a href="@Url.Action("ViewandModify", "EMI", new { id=item.YojnaId })" class="view-btn modify-bgc viewlink">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-pencil-square"
-                                                     viewBox="0 0 16 16">
-                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                    <path fill-rule="evenodd"
-                                                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                                </svg>
-                                            </a>
-                                            <!-- Modal --><!--Modal-->
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <a href="@Url.Action("ViewandModify", "EMI", new { id=item.YojnaId })" class="view-btn modify-bgc viewlink">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                         fill="currentColor" class="bi bi-pencil-square"
+                                                         viewBox="0 0 16 16">
+                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                        <path fill-rule="evenodd"
+                                                              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                    </svg>
+                                                </a>
+                                                <!-- Modal --><!--Modal-->
+                                            </td>
+                                        </tr>
                                         counter++;
                                     }
                                 </tbody>
@@ -160,6 +160,7 @@
     </div>
 </div>
 
+<!--Export to Excel-->
 <div>
     <a class="export-exel-part" title="Export To Excel" href="@Url.Action("ExporttoExcel", "EMI")">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
@@ -242,6 +243,37 @@
         });
     });
 </script>
+
+
+@*Script for Create Reciept*@
+
+<script>
+    $(document).ready(function () {
+        $('.createreciept').on('click', function (e) {
+            e.preventDefault();
+
+            var yojnaId = $(this).data('yojnaid');
+            console.log('YojnaId:', yojnaId);
+            $.ajax({
+                url: '/EMI/CreateReciept',
+                type: 'POST',
+                data: { id: yojnaId },
+                success: function (response) {
+                    console.log('Response Data:', response);
+                    if (response.success) {
+                        alert('Reciept Created');
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert('An error occurred.');
+                }
+            });
+        });
+    });
+</script>
+
 
 
 <script src="content/js/jquery-3.6.0.min.js"></script>

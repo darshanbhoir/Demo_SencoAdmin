@@ -71,7 +71,7 @@ namespace Demo_Senco_Admin.Controllers
                                     CustomerName = item.CustomerName ?? "N/A",
                                     MobileNo = item.MobileNo ?? "N/A",
                                     Email = item.Email ?? "N/A",
-                                    PaymentReciept = item.PaymentReciept ?? "N/A",
+                                    PaymentReciept = item.PaymentReciept,
                                     SchemeEntryNo= item.SchemeEntryNo ?? "N/A",
                                 }).ToList();
 
@@ -218,19 +218,19 @@ namespace Demo_Senco_Admin.Controllers
                 var viewModel = new EMIPaymentViewModel
                 {
                     YojnaId= emidetail.temp_swarna_yojna_id,
-                    OrderNo = emidetail.temp_swarna_order_no ?? "N/A",
+                    OrderNo = emidetail.temp_swarna_order_no,
                     PaymentDate = (DateTime)emidetail.temp_swarna_paymentdate,
-                    EMIno = emidetail.temp_swarna_current_emi_no ?? 0,
+                    EMIno = emidetail.temp_swarna_current_emi_no,
                     Amount = (decimal)emidetail.temp_swarna_payamount,
-                    PaymentStatus = emidetail.temp_payment_status ?? false,
+                    PaymentStatus = emidetail.temp_payment_status ,
                     SchemeNo = emidetail.temp_swarna_payment_schemeentryno,
-                    TransactionId = emidetail.temp_swarna_transaction_id ?? "N/A",
-                    BankTransactionId = emidetail.temp_swarna_banktransactionid ?? "N/A",
-                    PaymentEntryNo = emidetail.temp_swarna_paymententryno ?? "N/A",
-                    CustomerName = emidetail.temp_swarna_customer_name ?? "N/A",
-                    MobileNo = emidetail.temp_swarna_mobile_no ?? "N/A",
-                    Email = emidetail.temp_swarna_member_email ?? "N/A",
-                    PaymentReciept = emidetail.temp_swarna_payment_reciept ?? "N/A",
+                    TransactionId = emidetail.temp_swarna_transaction_id,
+                    BankTransactionId = emidetail.temp_swarna_banktransactionid,
+                    PaymentEntryNo = emidetail.temp_swarna_paymententryno,
+                    CustomerName = emidetail.temp_swarna_customer_name,
+                    MobileNo = emidetail.temp_swarna_mobile_no,
+                    Email = emidetail.temp_swarna_member_email ,
+                    PaymentReciept = emidetail.temp_swarna_payment_reciept ,
                     PayloadData = mostRecentEMI,
                 };
                 return View(viewModel);
@@ -279,6 +279,54 @@ namespace Demo_Senco_Admin.Controllers
                 }
             }
             return View(viewModel);
+        }
+
+
+
+
+        //CreateReciept
+        [HttpPost]
+        public ActionResult CreateReciept(int? id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return Json(new { success = false, message = "Yojna number is missing." });
+                }
+
+                var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
+
+                if (detail == null)
+                {
+                    //HttpNotFound();
+                    return Json(new { success = false, message = "Record not Found" }, JsonRequestBehavior.AllowGet);
+                }
+                var viewmodel = new EMIPaymentViewModel
+                {
+                    OrderNo = detail.temp_swarna_order_no,
+                    SchemeNo = detail.temp_swarna_payment_schemeentryno,
+                    SchemeCode = detail.ttemp_swarna_payment_scheme_code,
+                    StoreType = detail.temp_swarna_tender_type,
+                    CustomerCode = detail.temp_swarna_customer_code,
+                    CustomerName = detail.temp_swarna_customer_name ?? "N/A",
+                    MobileNo = detail.temp_swarna_mobile_no ?? "N/A",
+                    EMIno = detail.temp_swarna_current_emi_no ?? 0,
+                    Amount = (decimal)detail.temp_swarna_payamount,
+                    TransactionId = detail.temp_swarna_transaction_id ?? "N/A",
+                    BankTransactionId = detail.temp_swarna_banktransactionid ?? "N/A",
+                    PaymentDate = ((DateTime)detail.temp_swarna_paymentdate),
+                    PaymentStatus = detail.temp_payment_status ?? false,
+                };
+
+                //storing vewmodel dataa in session to use in ViewReciept method
+                Session["RecieptView"] = viewmodel;
+
+                return Json(new { success = true, data = viewmodel }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false, message = "Validation Failed" });
+
         }
     }
 }

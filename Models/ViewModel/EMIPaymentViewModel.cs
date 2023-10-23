@@ -15,9 +15,12 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public decimal Amount { get; set; }
         public bool? PaymentStatus { get; set; }
         public string SchemeNo { get; set; }
+        public string SchemeCode { get; set; }
         public string TransactionId { get; set; }
         public string BankTransactionId { get; set; }
         public string PaymentEntryNo { get; set; }
+        public string CustomerCode { get; set; }
+        public string StoreType { get; set; }
         public string CustomerName { get; set; }
         public string MobileNo { get; set; }
         public string Email { get; set; }

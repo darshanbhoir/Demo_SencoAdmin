@@ -363,10 +363,20 @@ header {
                     border-radius: 6px;
                     line-height: 26px;
                 }
+                    header .navbar .navbar-nav .nav-item .nav-link.active {
+                        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+                        background: #fff;
+                        color: #000;
+                    }
+                    header .navbar .navbar-nav .nav-item .nav-link.active-click {
+                        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+                        background: #fff;
+                        color: #000;
+                    }
 
-        header .navbar .wrap-right-side-part {
-            text-align: right;
-        }
+header .navbar .wrap-right-side-part {
+    text-align: right;
+}
 
             header .navbar .wrap-right-side-part .search-part {
                 display: inline-block;
@@ -815,14 +825,20 @@ footer {
     margin: 0.5rem;
     pointer-events: none;
 }
-
-.modal.fade .modal-dialog {
-    transition: -webkit-transform 0.3s ease-out;
-    transition: transform 0.3s ease-out;
-    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
-    -webkit-transform: translate(0, -25%);
-    transform: translate(0, -25%);
-}
+    .modal-dialog.modal-dialog-scrollable {      
+        transform: none;
+        top: 22px;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .modal.fade .modal-dialog {
+        transition: -webkit-transform 0.3s ease-out;
+        transition: transform 0.3s ease-out;
+        transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+        -webkit-transform: translate(0, -25%);
+        transform: translate(0, -25%);
+    }
 
 .modal.show .modal-dialog {
     -webkit-transform: translate(0, 0);
@@ -874,6 +890,12 @@ footer {
     .modal-backdrop.show {
         opacity: 0.5;
     }
+.modal-header.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+}
 
 .modal-header {
     display: -webkit-box;
@@ -889,10 +911,10 @@ footer {
     border-bottom: 1px solid #e9ecef;
     border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem;
-    align-items:baseline;
-    font-family:serif;
-    font-weight:bold;
-    font-size:25px;
+    align-items: baseline;
+    font-family: serif;
+    font-weight: bold;
+    font-size: 25px;
 }
 
     .modal-header .close {

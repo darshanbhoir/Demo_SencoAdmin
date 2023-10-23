@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using Demo_Senco_Admin.Models.Payload;
 using System.Web.UI.WebControls;
 using System.Web.UI;
+using PagedList;
 
 namespace Demo_Senco_Admin.Controllers
 {
@@ -22,7 +23,7 @@ namespace Demo_Senco_Admin.Controllers
     {
         private SENCO_DB_AdminEntities db = new SENCO_DB_AdminEntities();
         // GET: Dashboard
-        public ActionResult Index(DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput)
+        public ActionResult Index(DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput, int? Page_No)
         {
             var query = (from SSCD in db.tbl_swarna_scheme_creation_details
                          join UD in db.tbl_user_details on SSCD.scheme_member_id equals UD.user_no
@@ -83,14 +84,15 @@ namespace Demo_Senco_Admin.Controllers
                 }).ToList();
 
 
-
+            int SizeOfPage = 5;
+            int NoOfPage = (Page_No ?? 1);
 
             ViewBag.StartDateFilter = startdate;
             ViewBag.EndDateFilter = enddate;
             ViewBag.CurrentFilterSearchFilter = searchFilter;
             ViewBag.CurrentFilterInputFilter = searchInput;
 
-            return View("index", PResult);
+            return View("index", PResult.ToPagedList(NoOfPage, SizeOfPage));
         }
 
 
