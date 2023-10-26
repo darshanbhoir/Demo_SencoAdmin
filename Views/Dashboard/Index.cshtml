@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Demo_Senco_Admin.Models.ViewModel.SchemeDashboardViewModel>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Demo_Senco_Admin.Models.ViewModel.SchemeDashboardViewModel>
 @{
     int counter = 1;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -52,7 +55,7 @@
                     </div>
                 </div>
             </div>
-</form>
+        </form>
 
 
     </div>
@@ -125,6 +128,9 @@
     </div>
 </div>
 <!-- Table footer  -->
+<!--Pagination-->
+@Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"] }))
+
 <!--Export to Excel-->
 <div>
     <a class="export-exel-part" title="Export To Excel" href="@Url.Action("ExporttoExcel", "Dashboard")">
@@ -137,19 +143,20 @@
 
 
 
+<!--SCRIPTS-->
 
 
 <script>
     $('.view-btn').click(function () {
-        var url = $(this).attr('href'); // Get the URL from the button's href attribute
-        $('#modalContent').load(url); // Load the content into the modal's div
+        var url = $(this).attr('href'); 
+        $('#modalContent').load(url); 
     });
 </script>
 
 @*script for Dropdown*@
 <script>
     $(document).ready(function () {
-        console.log("Document is ready");
+        //console.log("Document is ready");
         $('#searchFilter').change(function () {
             var selectedValue = $(this).val();
             console.log('Selected value:', selectedValue);
@@ -202,7 +209,7 @@
                     // Open the modal
                     modal.modal('show');
 
-                     //Close the modal when the overlay or close button is clicked
+                    //Close the modal when the overlay or close button is clicked
                     modal.on('click', function (event) {
                         if ($(event.target).hasClass('modal') || $(event.target).hasClass('btn-close')) {
                             modal.modal('hide');
@@ -225,40 +232,7 @@
 
 
 
-@*Modal
-    @foreach (var item in Model)
-    {
-        <div class="modal fade" id="exampleModal-@item.SchemeRegId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">View Detail</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                        <div id="modalContent">
-                            name:@item.SchemeAccountName
 
-                            B: @(item.SchemePayload != null && item.SchemePayload.Keys.Count > 0 ? item.SchemePayload.Keys[0].BirthDate : "N/A")
-                            <p>EMIAmount: @(item.SchemePayload != null && item.SchemePayload.Keys.Count > 0 ? item.SchemePayload.Keys[0].EMIAmount : "N/A")</p>
-
-                        </div>
-
-                        <p>item.SchemePayload is null: @(item.SchemePayload == null)</p>
-                        <p>item.SchemePayload.Keys is null: @(item.SchemePayload != null && item.SchemePayload.Keys == null)</p>
-                        <p>item.SchemePayload.Keys is empty: @(item.SchemePayload != null && item.SchemePayload.Keys != null && item.SchemePayload.Keys.Count == 0)</p>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }*@
 
 
 

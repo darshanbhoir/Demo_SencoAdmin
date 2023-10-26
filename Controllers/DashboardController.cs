@@ -84,15 +84,16 @@ namespace Demo_Senco_Admin.Controllers
                 }).ToList();
 
 
-            int SizeOfPage = 5;
-            int NoOfPage = (Page_No ?? 1);
+            //int SizeOfPage = 10;
+            //int NoOfPage = (Page_No ?? 1);
 
             ViewBag.StartDateFilter = startdate;
             ViewBag.EndDateFilter = enddate;
             ViewBag.CurrentFilterSearchFilter = searchFilter;
             ViewBag.CurrentFilterInputFilter = searchInput;
 
-            return View("index", PResult.ToPagedList(NoOfPage, SizeOfPage));
+            //return View("index", PResult.ToPagedList(NoOfPage, SizeOfPage));
+            return View("index", PResult.ToPagedList(Page_No ?? 1, 10));
         }
 
 

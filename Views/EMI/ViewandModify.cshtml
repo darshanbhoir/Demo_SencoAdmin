@@ -97,23 +97,23 @@
                             foreach (var item in Model.PayloadData.EMI)
                             {
                                 <div>
-                                    <p>EMI id: @item.id ?? "N/A"</p>
-                                    <p>Cancelled By: @item.CANCELLEDBY ?? "N/A"</p>
-                                    <p>Installment Month: @item.INSTALLMENTMONTH ?? "N/A"</p>
-                                    <p>Reciept Id: @item.RECEIPTID ?? "N/A"</p>
-                                    <p>Cancelled Reason: @item.CANCELLEDREASON ?? "N/A"</p>
-                                    <p>Tender Type: @item.TENDERTYPE ?? "N/A"</p>
-                                    <p>Transaction Id: @item.TRANSACTIONID ?? "N/A"</p>
-                                    <p>Scheme Entry No: @item.SCHEMEENTRYNO ?? "N/A"</p>
-                                    <p>Payment Year: @item.PAYMENTYEAR ?? "N/A"</p>
-                                    <p>Payment Type: @item.PAYMENTTYPE ?? "N/A"</p>
-                                    <p>Payment Month: @item.PAYMENTMONTH ?? "N/A"</p>
-                                    <p>Payment Entry No: @item.PAYMENTENTRYNO ?? "N/A"</p>
-                                    <p>Payment Date: @item.PAYMENTDATE ?? "N/A"</p>
-                                    <p>Payment Amount: @item.PAYMENTAMOUNT ?? "N/A"</p>
-                                    <p>Linium: @item.LINENUM ?? "N/A"</p>
-                                    <p>Customer Code: @item.CUSTOMERCODE ?? "N/A"</p>
-                                    <p>Cancelled: @item.CANCELLED ?? "N/A"</p>
+                                    <p>EMI id: @item.id </p>
+                                    <p>Cancelled By: @item.CANCELLEDBY </p>
+                                    <p>Installment Month: @item.INSTALLMENTMONTH </p>
+                                    <p>Reciept Id: @item.RECEIPTID </p>
+                                    <p>Cancelled Reason: @item.CANCELLEDREASON </p>
+                                    <p>Tender Type: @item.TENDERTYPE</p>
+                                    <p>Transaction Id: @item.TRANSACTIONID </p>
+                                    <p>Scheme Entry No: @item.SCHEMEENTRYNO </p>
+                                    <p>Payment Year: @item.PAYMENTYEAR </p>
+                                    <p>Payment Type: @item.PAYMENTTYPE </p>
+                                    <p>Payment Month: @item.PAYMENTMONTH </p>
+                                    <p>Payment Entry No: @item.PAYMENTENTRYNO </p>
+                                    <p>Payment Date: @item.PAYMENTDATE </p>
+                                    <p>Payment Amount: @item.PAYMENTAMOUNT </p>
+                                    <p>Linium: @item.LINENUM </p>
+                                    <p>Customer Code: @item.CUSTOMERCODE </p>
+                                    <p>Cancelled: @item.CANCELLED </p>
                                     <hr />
                                 </div>
                             }
@@ -129,7 +129,7 @@
                 </div>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer sticky-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
             </div>

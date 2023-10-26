@@ -45,26 +45,26 @@ namespace Demo_Senco_Admin.Models.Payload
         public string CANCELLED { get; set; }
 
 
-        public EMI()
-        {
-            CANCELLEDBY = "-";
-            INSTALLMENTMONTH = "-";
-            RECEIPTID = "-";
-            CANCELLEDREASON = "-";
-            TENDERTYPE = "-";
-            TRANSACTIONID = "-";
-            SCHEMEENTRYNO = "-";
-            PAYMENTYEAR = "-";
-            PAYMENTTYPE = "-";
-            PAYMENTMONTH = "-";
-            PAYMENTENTRYNO = "-";
-            PAYMENTDATE = "-";
-            PAYMENTAMOUNT = "-";
-            LINENUM = "-";
-            CUSTOMERCODE = "-";
-            CANCELLED = "-";
+        //public EMI()
+        //{
+        //    CANCELLEDBY = "-";
+        //    INSTALLMENTMONTH = "-";
+        //    RECEIPTID = "-";
+        //    CANCELLEDREASON = "-";
+        //    TENDERTYPE = "-";
+        //    TRANSACTIONID = "-";
+        //    SCHEMEENTRYNO = "-";
+        //    PAYMENTYEAR = "-";
+        //    PAYMENTTYPE = "-";
+        //    PAYMENTMONTH = "-";
+        //    PAYMENTENTRYNO = "-";
+        //    PAYMENTDATE = "-";
+        //    PAYMENTAMOUNT = "-";
+        //    LINENUM = "-";
+        //    CUSTOMERCODE = "-";
+        //    CANCELLED = "-";
             
 
-        }
+        //}
     }
 }

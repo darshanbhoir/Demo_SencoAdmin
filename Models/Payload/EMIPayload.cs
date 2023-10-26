@@ -25,14 +25,7 @@ namespace Demo_Senco_Admin.Models.Payload
         //}
 
 
-       public EMIPayload()
-        {
-            
-            
-            Message = "-";
-            Status = "-";
-
-        }
+       
 
         public static implicit operator EMIPayload(List<EMIPayload> v)
         {

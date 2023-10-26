@@ -22,6 +22,7 @@ namespace Demo_Senco_Admin.Models.ViewModel
         public string CustomerCode { get; set; }
         public string StoreType { get; set; }
         public string CustomerName { get; set; }
+        public string CustomerAddress { get; set; }
         public string MobileNo { get; set; }
         public string Email { get; set; }
         public string PaymentReciept { get; set; }

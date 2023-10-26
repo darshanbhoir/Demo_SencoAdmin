@@ -937,6 +937,13 @@ footer {
     font-size:15px;
 }
 
+.modal-footer.sticky-footer {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+}
+
 .modal-footer {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -950,6 +957,8 @@ footer {
     padding: 1rem;
     border-top: 1px solid #e9ecef;
 }
+
+
 
     .modal-footer > :not(:first-child) {
         margin-left: 0.25rem;
