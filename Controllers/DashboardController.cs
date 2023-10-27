@@ -87,8 +87,8 @@ namespace Demo_Senco_Admin.Controllers
             //int SizeOfPage = 10;
             //int NoOfPage = (Page_No ?? 1);
 
-            ViewBag.StartDateFilter = startdate;
-            ViewBag.EndDateFilter = enddate;
+            ViewBag.StartDateFilter = startdate?.ToString("MM/dd/yyyy");
+            ViewBag.EndDateFilter = enddate?.ToString("MM/dd/yyyy");
             ViewBag.CurrentFilterSearchFilter = searchFilter;
             ViewBag.CurrentFilterInputFilter = searchInput;
 

@@ -84,8 +84,9 @@ namespace Demo_Senco_Admin.Controllers
             ViewBag.StartDateFilter = startdate;
             ViewBag.EndDateFilter = enddate;
             ViewBag.CurrentFilterSearchFilter = searchFilter;
+            ViewBag.CurrentFilterInputFilter = searchInput;
 
-            
+
             return View("Index", NewResult.ToPagedList(Page_No ?? 1, 100));
         }
 
@@ -288,85 +289,85 @@ namespace Demo_Senco_Admin.Controllers
 
 
         //CreateReciept
-        [HttpPost]
-        public async Task<ActionResult> CreateReciept(int? id)
-        {
-            if (ModelState.IsValid)
-            {
-                if (id == null)
-                {                    
-                    return Json(new { success = false, message = "Yojna number is missing." });
-                }
+        //[HttpPost]
+        //public async Task<ActionResult> CreateReciept(int? id)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (id == null)
+        //        {                    
+        //            return Json(new { success = false, message = "Yojna number is missing." });
+        //        }
 
-                var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
+        //        var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
 
-                if (detail == null)
-                {                    
-                    return Json(new { success = false, message = "Record not Found" }, JsonRequestBehavior.AllowGet);
-                }
-                var viewmodel = new RecieptViewModel
-                {
-                    //OrderNo = detail.temp_swarna_order_no,
-                    //SchemeNo = detail.temp_swarna_payment_schemeentryno,
-                    //SchemeCode = detail.ttemp_swarna_payment_scheme_code,
-                    //StoreType = detail.temp_swarna_tender_type,
-                    //CustomerCode = detail.temp_swarna_customer_code,
-                    //CustomerName = detail.temp_swarna_customer_name ,                    
-                    //MobileNo = detail.temp_swarna_mobile_no ,
-                    //EMIno = detail.temp_swarna_current_emi_no ,
-                    //Amount = (decimal)detail.temp_swarna_payamount,
-                    //TransactionId = detail.temp_swarna_transaction_id ,
-                    //BankTransactionId = detail.temp_swarna_banktransactionid ,
-                    //PaymentDate = ((DateTime)detail.temp_swarna_paymentdate),
-                    //PaymentStatus = detail.temp_payment_status ?? false,
-                    RecieptId= detail.temp_swarna_order_no,
-                    CustomerId= detail.temp_swarna_customer_code,
-                    CustomerName= detail.temp_swarna_customer_name,
-                    CustomerEmail= detail.temp_swarna_member_email,
-                    CustomerMobile= detail.temp_swarna_mobile_no,
-                    Store= detail.temp_swarna_tender_type,
-                    SchemeNo= detail.temp_swarna_payment_schemeentryno,
-                    SchemeCode= detail.ttemp_swarna_payment_scheme_code,
-                    EmiAmount= (decimal)detail.temp_swarna_payamount,
-                    EmiNo= (int)detail.temp_swarna_current_emi_no,
-                };
+        //        if (detail == null)
+        //        {                    
+        //            return Json(new { success = false, message = "Record not Found" }, JsonRequestBehavior.AllowGet);
+        //        }
+        //        var viewmodel = new RecieptViewModel
+        //        {
+        //            //OrderNo = detail.temp_swarna_order_no,
+        //            //SchemeNo = detail.temp_swarna_payment_schemeentryno,
+        //            //SchemeCode = detail.ttemp_swarna_payment_scheme_code,
+        //            //StoreType = detail.temp_swarna_tender_type,
+        //            //CustomerCode = detail.temp_swarna_customer_code,
+        //            //CustomerName = detail.temp_swarna_customer_name ,                    
+        //            //MobileNo = detail.temp_swarna_mobile_no ,
+        //            //EMIno = detail.temp_swarna_current_emi_no ,
+        //            //Amount = (decimal)detail.temp_swarna_payamount,
+        //            //TransactionId = detail.temp_swarna_transaction_id ,
+        //            //BankTransactionId = detail.temp_swarna_banktransactionid ,
+        //            //PaymentDate = ((DateTime)detail.temp_swarna_paymentdate),
+        //            //PaymentStatus = detail.temp_payment_status ?? false,
+        //            RecieptId= detail.temp_swarna_order_no,
+        //            CustomerId= detail.temp_swarna_customer_code,
+        //            CustomerName= detail.temp_swarna_customer_name,
+        //            CustomerEmail= detail.temp_swarna_member_email,
+        //            CustomerMobile= detail.temp_swarna_mobile_no,
+        //            Store= detail.temp_swarna_tender_type,
+        //            SchemeNo= detail.temp_swarna_payment_schemeentryno,
+        //            SchemeCode= detail.ttemp_swarna_payment_scheme_code,
+        //            EmiAmount= (decimal)detail.temp_swarna_payamount,
+        //            EmiNo= (int)detail.temp_swarna_current_emi_no,
+        //        };
 
-                var PdfTempUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/SY_EMI_Payment_Receipt_41220229323647.pdf";
+        //        var PdfTempUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/SY_EMI_Payment_Receipt_41220229323647.pdf";
 
-                var PdfByte = await EMIController.GeneratePdf(viewmodel, PdfTempUrl);
-                //var PdfNumber = Guid.NewGuid().ToString();
-                var PdfNameFormat = $"SY_EMI_Payment_Receipt_{DateTime.Now:ddMMyyyyHHmmss}.pdf";
-                //var PdfPath = $"~/PdfStorage/{PdfNumber}.pdf";
-                var Pdfpath = Path.Combine(Server.MapPath("~/PdfStorage"), PdfNameFormat);
+        //        var PdfByte = await EMIController.GeneratePdf(viewmodel, PdfTempUrl);
+        //        //var PdfNumber = Guid.NewGuid().ToString();
+        //        var PdfNameFormat = $"SY_EMI_Payment_Receipt_{DateTime.Now:ddMMyyyyHHmmss}.pdf";
+        //        //var PdfPath = $"~/PdfStorage/{PdfNumber}.pdf";
+        //        var Pdfpath = Path.Combine(Server.MapPath("~/PdfStorage"), PdfNameFormat);
 
-                //System.IO.File.WriteAllBytes(Server.MapPath(PdfPath), PdfByte);
-                System.IO.File.WriteAllBytes(Pdfpath, PdfByte);
-                var PdfName= Path.GetFileName(Pdfpath);
+        //        //System.IO.File.WriteAllBytes(Server.MapPath(PdfPath), PdfByte);
+        //        System.IO.File.WriteAllBytes(Pdfpath, PdfByte);
+        //        var PdfName= Path.GetFileName(Pdfpath);
 
-                //Storing in Payment Reciept Column
-                detail.temp_swarna_payment_reciept = PdfName;
-                db.SaveChanges();
+        //        //Storing in Payment Reciept Column
+        //        detail.temp_swarna_payment_reciept = PdfName;
+        //        db.SaveChanges();
 
-                //storing vewmodel dataa in session to use in ViewReciept method
-                Session["RecieptView"] = viewmodel;
+        //        //storing vewmodel dataa in session to use in ViewReciept method
+        //        Session["RecieptView"] = viewmodel;
 
-                return Json(new { success = true, data = viewmodel }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(new { success = false, message = "An error occurred while creating the receipt." });
+        //        return Json(new { success = true, data = viewmodel }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(new { success = false, message = "An error occurred while creating the receipt." });
 
-        }
+        //}
 
 
         //View Reciept
-        public ActionResult ViewReciept()
+        public ActionResult ViewReciept(int? id)
         {
 
-                var recieptDetail = Session["RecieptView"] as EMIPaymentViewModel;
+                //var recieptDetail = Session["RecieptView"] as EMIPaymentViewModel;
 
-                if (recieptDetail == null)
-                {
-                    return Json(new { success = false, message = "Reciept not Found" });
-                }
+                //if (recieptDetail == null)
+                //{
+                //    return Json(new { success = false, message = "Reciept not Found" });
+                //}
 
                 //string apiURL = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna";
 
@@ -384,65 +385,103 @@ namespace Demo_Senco_Admin.Controllers
                 //};
                 //var pdf = EMI.GeneratePdf(recieptData);
 
-                var Pdf = recieptDetail.PaymentReciept;
 
-                var PdfUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/SY_EMI_Payment_Receipt_";
-                var PdfView = $"{PdfUrl}{Pdf}.pdf";
+            //var Pdf = recieptDetail.PaymentReciept;
 
-                return Json(new { success = true, viewUrl = PdfView });            
-            
+            //if(Pdf != null)
+            //{
+            //    var PdfUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/SY_EMI_Payment_Receipt_";
+            //    var PdfView = $"{PdfUrl}{Pdf}";
+
+            //    return Json(new { success = true, viewUrl = PdfView }, JsonRequestBehavior.AllowGet);
+            //}
+            //else
+            //{
+            //    return Json(new { success = false, message = "Reciept not Found" }, JsonRequestBehavior.AllowGet);
+            //}
+
+            if(ModelState.IsValid)
+            {
+                if(id==null)
+                {
+                    return Json(new { success = false, message = "Yojna number is missing." });
+                }
+                var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
+                if(detail != null)
+                    {
+                        var Pdf = detail.temp_swarna_payment_reciept;
+                        if (Pdf != null)
+                        {
+                            var PdfUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/";
+                            var PdfView = $"{PdfUrl}{Pdf}";
+                        //return Json(new { success = true, viewUrl = PdfView }, JsonRequestBehavior.AllowGet);
+                        return File(PdfView, "application/pdf");
+
+                        }
+                        else
+                        {
+                        //return Json(new { success = false, message = "Reciept not Found" }, JsonRequestBehavior.AllowGet);
+                        return HttpNotFound();
+                        }
+                    }
+                
+            }
+            return Json(new { success = false, message = "An error occurred while Viewing the receipt." });
+
+
+
         }
 
 
         //PDF Helper Class
-        public static async Task<byte[]> GeneratePdf(RecieptViewModel viewmodel, string PdfTempUrl)
-        {
-            using(var httpClient = new HttpClient())
-            {
-                var PdfTemplate = await httpClient.GetByteArrayAsync(PdfTempUrl);
+        //public static async Task<byte[]> GeneratePdf(RecieptViewModel viewmodel, string PdfTempUrl)
+        //{
+        //    using(var httpClient = new HttpClient())
+        //    {
+        //        var PdfTemplate = await httpClient.GetByteArrayAsync(PdfTempUrl);
 
-                using (var tempstream = new MemoryStream(PdfTemplate))
-                {
-                    try
-                    {
-                        //stream.Seek(0, SeekOrigin.Begin);
-                        var reader = new PdfReader(tempstream);
-                        var stream = new MemoryStream();
+        //        using (var tempstream = new MemoryStream(PdfTemplate))
+        //        {
+        //            try
+        //            {
+        //                //stream.Seek(0, SeekOrigin.Begin);
+        //                var reader = new PdfReader(tempstream);
+        //                var stream = new MemoryStream();
 
-                        //if(stream.Length==0)
-                        //{
-                        //    return new byte[0];
-                        //}
+        //                //if(stream.Length==0)
+        //                //{
+        //                //    return new byte[0];
+        //                //}
 
-                        var writer = new PdfWriter(stream);
-                        var pdf = new PdfDocument(reader, writer);
+        //                var writer = new PdfWriter(stream);
+        //                var pdf = new PdfDocument(reader, writer);
 
-                        var form = PdfAcroForm.GetAcroForm(pdf, true);
+        //                var form = PdfAcroForm.GetAcroForm(pdf, true);
 
-                        form.GetField("RecieptId").SetValue(viewmodel.RecieptId);
-                        form.GetField("CustomerId").SetValue(viewmodel.CustomerId);
-                        form.GetField("CustomerName").SetValue(viewmodel.CustomerName);
-                        form.GetField("CustomerMobile").SetValue(viewmodel.CustomerMobile);
-                        form.GetField("CustomerEmail").SetValue(viewmodel.CustomerEmail);
-                        form.GetField("SchemeNo").SetValue(viewmodel.SchemeNo);
-                        form.GetField("SchemeCode").SetValue(viewmodel.SchemeCode);
-                        form.GetField("EmiAmount").SetValue(viewmodel.EmiAmount.ToString());
-                        form.GetField("EmiNo").SetValue(viewmodel.EmiNo.ToString());
+        //                form.GetField("RecieptID").SetValue(viewmodel.RecieptId);
+        //                form.GetField("CustomerId").SetValue(viewmodel.CustomerId);
+        //                form.GetField("CustomerName").SetValue(viewmodel.CustomerName);
+        //                form.GetField("CustomerMobile").SetValue(viewmodel.CustomerMobile);
+        //                form.GetField("CustomerEmail").SetValue(viewmodel.CustomerEmail);
+        //                form.GetField("SchemeNo").SetValue(viewmodel.SchemeNo);
+        //                form.GetField("SchemeCode").SetValue(viewmodel.SchemeCode);
+        //                form.GetField("EmiAmount").SetValue(viewmodel.EmiAmount.ToString());
+        //                form.GetField("EmiNo").SetValue(viewmodel.EmiNo.ToString());
 
-                        pdf.Close();
+        //                pdf.Close();
 
-                        return stream.ToArray();
-                    }
-                    catch (PdfException ex)
-                    {
-                        string exmsg = ex.Message;
-                        Console.WriteLine(exmsg);
-                        return new byte[0];
-                    }
+        //                return stream.ToArray();
+        //            }
+        //            catch (PdfException ex)
+        //            {
+        //                string exmsg = ex.Message;
+        //                Console.WriteLine(exmsg);
+        //                return new byte[0];
+        //            }
 
-                }
-            }
+        //        }
+        //    }
             
-        }
+        //}
     }
 }

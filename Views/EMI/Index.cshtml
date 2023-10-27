@@ -8,13 +8,13 @@
 }
 
 
-<div class="form-section">
+<div class="form-section">  
     <div class="container">
         <form>
             <div class="row">
                 <div class="col-lg-2">
                     <div class="date-box-part">
-                        <input class="form-control datepicker" type="text" placeholder="From Date" id="startdate " name="startdate ">
+                        <input class="form-control datepicker" type="text" placeholder="From Date" id="startdate" name="startdate" value="@ViewBag.StartDateFilter" autocomplete="off">                       
                         <div class="svg-part">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-calendar-week" viewBox="0 0 16 16">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="date-box-part">
-                        <input class="form-control datepicker" type="text" placeholder="To Date" id="enddate" name="enddate">
+                        <input class="form-control datepicker" type="text" placeholder="To Date" id="enddate" name="enddate" value="@ViewBag.EndDateFilter" autocomplete="off">
                         <div class="svg-part">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-calendar-week" viewBox="0 0 16 16">
@@ -38,21 +38,21 @@
                 </div>
                 <div class="col-lg-2">
                     <select class="form-control select-input" id="searchFilter" name="searchFilter">
-                        <option value="" selected>Search Param</option>
-                        <option value="schemeNo">Scheme No</option>
-                        <option value="customerName">Customer Name</option>
-                        <option value="email">Email id</option>
-                        <option value="mobile">Mobile No.</option>
+                        <option value="" @(ViewBag.CurrentFilterSearchFilter == "" ? "Selected" : "")>Search Param</option>
+                        <option value="schemeNo" @(ViewBag.CurrentFilterSearchFilter == "schemeNo" ? "Selected" : "")>Scheme No</option>
+                        <option value="customerName" @(ViewBag.CurrentFilterSearchFilter == "customerName" ? "Selected" : "")>Customer Name</option>
+                        <option value="email" @(ViewBag.CurrentFilterSearchFilter == "email" ? "Selected" : "")>Email id</option>
+                        <option value="mobile" @(ViewBag.CurrentFilterSearchFilter == "mobile" ? "Selected" : "")>Mobile No.</option>
                     </select>
                 </div>
                 <div class="col-lg-2" id="searchInputContainer">
-                    <input class="form-control" placeholder="Search Value" id="searchInput" name="searchInput">
+                    <input class="form-control" placeholder="Search Value" id="searchInput" name="searchInput" value="@ViewBag.CurrentFilterInputFilter">
                 </div>
                 <div class="col-lg-2">
                     <select class="form-control select-input" id="paymentStatus" name="paymentStatus">
-                        <option value="" selected>Status</option>
-                        <option value="true">Paid</option>
-                        <option value="false">UnPaid</option>
+                        <option value="" @(ViewBag.CurrentFilterPaymentStatus == "" ? "Selected" : "") >Status</option>
+                        <option value="true" @(ViewBag.CurrentFilterPaymentStatus == "true" ? "Selected" : "")>Paid</option>
+                        <option value="false" @(ViewBag.CurrentFilterPaymentStatus == "false" ? "Selected" : "")>UnPaid</option>
                     </select>
                 </div>
                 @*<div class="row">
@@ -124,10 +124,10 @@
                                             <td class="createreciept" data-yojnaid="@item.YojnaId">
                                                 <a href="@Url.Action("CreateReciept", "EMI", new {id= item.YojnaId})">Create </a>
                                             </td>
-                                            <td>
+                                            <td class="viewreciept">
                                                 @if (!string.IsNullOrEmpty(item.PaymentReciept))
                                                 {
-                                                    <a href="@Url.Action("ViewReciept", "EMI", new { id = "viewlink" })">View </a>
+                                                    <a href="@Url.Action("ViewReciept", "EMI", new { id = item.YojnaId })">View </a>
                                                 }
                                                 else
                                                 {
@@ -164,7 +164,14 @@
 
 
 <!--Pagination-->
-@Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"], paymentStatus = Request.QueryString["paymentStatus"] }))
+<div class="container">
+    <div class="row">
+        <div class="pagination">
+            @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"], paymentStatus = Request.QueryString["paymentStatus"] }))
+        </div>
+    </div>
+</div>
+
 
 <!--Export to Excel-->
 <div>
@@ -286,7 +293,7 @@
 @*Script to View Recipt in new tab*@
 <script>
     $(document).ready(function () {
-        $('#viewlink').attr('target', '_blank');
+        $('.viewreciept').attr(target, '_blank');
     });
 
     //$.ajax({

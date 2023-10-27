@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Services.Description;
@@ -12,7 +13,8 @@ namespace Demo_Senco_Admin.Models.Payload
         [JsonProperty("$id")]
         public string id { get; set; }
 
-        public string CANCELLEDBY { get; set; }
+        [DisplayFormat(NullDisplayText = "")]
+        public string CANCELLEDBY { get; set; } 
 
         public string INSTALLMENTMONTH { get; set; }
 
@@ -45,26 +47,25 @@ namespace Demo_Senco_Admin.Models.Payload
         public string CANCELLED { get; set; }
 
 
-        //public EMI()
-        //{
-        //    CANCELLEDBY = "-";
-        //    INSTALLMENTMONTH = "-";
-        //    RECEIPTID = "-";
-        //    CANCELLEDREASON = "-";
-        //    TENDERTYPE = "-";
-        //    TRANSACTIONID = "-";
-        //    SCHEMEENTRYNO = "-";
-        //    PAYMENTYEAR = "-";
-        //    PAYMENTTYPE = "-";
-        //    PAYMENTMONTH = "-";
-        //    PAYMENTENTRYNO = "-";
-        //    PAYMENTDATE = "-";
-        //    PAYMENTAMOUNT = "-";
-        //    LINENUM = "-";
-        //    CUSTOMERCODE = "-";
-        //    CANCELLED = "-";
-            
+        public EMI()
+        {
+            CANCELLEDBY = "-";
+            INSTALLMENTMONTH = "-";
+            RECEIPTID = "-";
+            CANCELLEDREASON = "-";
+            TENDERTYPE = "-";
+            TRANSACTIONID = "-";
+            SCHEMEENTRYNO = "-";
+            PAYMENTYEAR = "-";
+            PAYMENTTYPE = "-";
+            PAYMENTMONTH = "-";
+            PAYMENTENTRYNO = "-";
+            PAYMENTDATE = "-";
+            PAYMENTAMOUNT = "-";
+            LINENUM = "-";
+            CUSTOMERCODE = "-";
+            CANCELLED = "-";
+        }
 
-        //}
     }
 }

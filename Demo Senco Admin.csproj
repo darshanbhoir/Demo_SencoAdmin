@@ -439,6 +439,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap-datepicker.min.css" />
     <Content Include="Content\css\pikaday.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\style.css" />
@@ -446,6 +447,7 @@
     <Content Include="Content\images\search.png" />
     <Content Include="Content\images\synco-logo.jpg" />
     <Content Include="Content\images\user-thumb.png" />
+    <Content Include="Content\js\bootstrap-datepicker.min.js" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\pikaday.js" />
     <Content Include="Content\js\popper.min.js" />

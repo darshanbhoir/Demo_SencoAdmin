@@ -296,7 +296,7 @@ label {
 }
 
 .btn-submit {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
     padding: 8px 16px;
     background: #009ef7;
@@ -305,7 +305,7 @@ label {
     border: none;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
-    line-height: 1.5rem;
+    line-height: 18px;
     border-radius: 0.375rem;
     /* opacity: 0.65; */
     /* border-padding-y: 0.5rem; */
@@ -591,15 +591,15 @@ header .button-part {
             box-shadow: 0 8px 6px -6px #eeeeee;
         }
 
-    .table-section .table-schemes {
-        /* padding: 0 20px; */
-        /* box-shadow: 0px 0px 4px 0px grey; */
-    }
+.table-section .table-schemes {
+    /* padding: 0 20px; */ pagination-container /* box-shadow: 0px 0px 4px 0px grey; */
+}
 
         .table-section .table-schemes .schemes {
             /*padding: 5px;*/
             /*background: #fff;*/
             margin-bottom: 13px;
+            margin-top: 14px
         }
 
             .table-section .table-schemes .schemes h4 {
@@ -714,7 +714,12 @@ header .button-top {
     margin-left: -0.5em;
     margin-right: 10px;
 }
-
+.pagination-container {
+    text-align: center;
+}
+..pagination {
+    margin: 0 !important;
+}
 /* Footer */
 footer {
     position: fixed;

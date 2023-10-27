@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-3 ">
                     <div class="date-box-part">
-                        <input class="form-control datepicker" type="text" placeholder="From Date" id="startdate" name="startdate">
+                        <input class="form-control datepicker" type="text" placeholder="From Date" name="startdate" value="@ViewBag.StartDateFilter" autocomplete="off">
                         <div class="svg-part">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-calendar-week" viewBox="0 0 16 16">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="date-box-part">
-                        <input class="form-control datepicker" type="text" placeholder="To Date" id="enddate" name="enddate">
+                        <input class="form-control datepicker" type="text" placeholder="To Date" name="enddate" value="@ViewBag.EndDateFilter" autocomplete="off">
                         <div class="svg-part">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-calendar-week" viewBox="0 0 16 16">
@@ -38,15 +38,15 @@
                 </div>
                 <div class="col-lg-2">
                     <select class="form-control select-input" id="searchFilter" name="searchFilter">
-                        <option value="" selected>Search Param</option>
-                        <option value="userNo">Member Id</option>
-                        <option value="customerName">User Name</option>
-                        <option value="email">Email id</option>
-                        <option value="mobile">Mobile No.</option>
+                        <option value="" @(ViewBag.CurrentFilterSearchFilter == "" ? "Selected" : "")>Search Param</option>
+                        <option value="userNo" @(ViewBag.CurrentFilterSearchFilter == "userNo" ? "Selected" : "")>Member Id</option>
+                        <option value="customerName" @(ViewBag.CurrentFilterSearchFilter == "customerName" ? "Selected" : "")>User Name</option>
+                        <option value="email" @(ViewBag.CurrentFilterSearchFilter == "email" ? "Selected" : "")>Email id</option>
+                        <option value="mobile" @(ViewBag.CurrentFilterSearchFilter == "mobile" ? "Selected" : "")>Mobile No.</option>
                     </select>
                 </div>
                 <div class="col-lg-2" id="searchInputContainer">
-                    <input class="form-control" placeholder="Search Value" id="searchInput" name="searchInput">
+                    <input class="form-control" placeholder="Search Value" id="searchInput" name="searchInput" value="@ViewBag.CurrentFilterInputFilter">
                 </div>
                 <div class="col-lg-2">
                     <div class="button-part">
@@ -128,8 +128,16 @@
     </div>
 </div>
 <!-- Table footer  -->
+
 <!--Pagination-->
-@Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"] }))
+<div class="container">
+    <div class="row">
+        <div class="pagination">
+            @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"] }))
+        </div>
+    </div>
+</div>
+
 
 <!--Export to Excel-->
 <div>
