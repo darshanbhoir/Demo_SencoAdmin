@@ -3,18 +3,20 @@
 
 @model PagedList<Demo_Senco_Admin.Models.ViewModel.EMIPaymentViewModel>
 @{
-    int counter = 1;
+    int pageSize = Model.PageSize;
+    int counter = (Model.PageNumber - 1) * pageSize + 1;
+    //int counter = 1;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<div class="form-section">  
+<div class="form-section">
     <div class="container">
         <form>
             <div class="row">
                 <div class="col-lg-2">
                     <div class="date-box-part">
-                        <input class="form-control datepicker" type="text" placeholder="From Date" id="startdate" name="startdate" value="@ViewBag.StartDateFilter" autocomplete="off">                       
+                        <input class="form-control datepicker" type="text" placeholder="From Date" id="startdate" name="startdate" value="@ViewBag.StartDateFilter" autocomplete="off">
                         <div class="svg-part">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-calendar-week" viewBox="0 0 16 16">
@@ -50,9 +52,9 @@
                 </div>
                 <div class="col-lg-2">
                     <select class="form-control select-input" id="paymentStatus" name="paymentStatus">
-                        <option value="" @(ViewBag.CurrentFilterPaymentStatus == "" ? "Selected" : "") >Status</option>
+                        <option value="" @(ViewBag.CurrentFilterPaymentStatus == "" ? "Selected" : "")>Status</option>
                         <option value="true" @(ViewBag.CurrentFilterPaymentStatus == "true" ? "Selected" : "")>Paid</option>
-                        <option value="false" @(ViewBag.CurrentFilterPaymentStatus == "false" ? "Selected" : "")>UnPaid</option>
+                        <option value="false" @(ViewBag.CurrentFilterPaymentStatus == "false" ? "Selected" : "")>Unpaid</option>
                     </select>
                 </div>
                 @*<div class="row">
@@ -104,6 +106,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach (var item in Model)
                                     {
                                         <tr>
@@ -121,13 +124,13 @@
                                             <td>
                                                 <a href="">Check</a>
                                             </td>
-                                            <td class="createreciept" data-yojnaid="@item.YojnaId">
-                                                <a href="@Url.Action("CreateReciept", "EMI", new {id= item.YojnaId})">Create </a>
+                                            <td>
+                                                <a href="">Create </a>
                                             </td>
-                                            <td class="viewreciept">
+                                            <td>
                                                 @if (!string.IsNullOrEmpty(item.PaymentReciept))
                                                 {
-                                                    <a href="@Url.Action("ViewReciept", "EMI", new { id = item.YojnaId })">View </a>
+                                                    <a href="https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/@item.PaymentReciept" target="_blank">View</a>
                                                 }
                                                 else
                                                 {
@@ -136,7 +139,7 @@
                                             </td>
                                             <td>
                                                 <!-- Button trigger modal -->
-                                                <a href="@Url.Action("ViewandModify", "EMI", new { id=item.YojnaId })" class="view-btn modify-bgc viewlink">
+                                                <a href="@Url.Action("View", "EMI", new { id=item.YojnaId })" class="view-btn modify-bgc viewlink">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-pencil-square"
                                                          viewBox="0 0 16 16">
@@ -162,15 +165,18 @@
     </div>
 </div>
 
-
 <!--Pagination-->
-<div class="container">
-    <div class="row">
-        <div class="pagination">
-            @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"], paymentStatus = Request.QueryString["paymentStatus"] }))
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="pagination">
+                @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"], paymentStatus = Request.QueryString["paymentStatus"] }))
+            </div>
         </div>
     </div>
-</div>
+</footer>
+
 
 
 <!--Export to Excel-->
@@ -185,7 +191,6 @@
 
 
 <!--SCRIPTS-->
-
 @*script for dropdown*@
 <script>
     $(document).ready(function () {
@@ -262,54 +267,54 @@
 
 @*Script for Create Reciept*@
 
-<script>
-    $(document).ready(function () {
-        $('.createreciept').on('click', function (e) {
-            e.preventDefault();
+@*<script>
+        $(document).ready(function () {
+            $('.createreciept').on('click', function (e) {
+                e.preventDefault();
 
-            var yojnaId = $(this).data('yojnaid');
-            console.log('YojnaId:', yojnaId);
-            $.ajax({
-                url: '/EMI/CreateReciept',
-                type: 'POST',
-                data: { id: yojnaId },
-                success: function (response) {
-                    console.log('Response Data:', response);
-                    if (response.success) {
-                        alert('Reciept Created');
-                    } else {
-                        alert(response.message);
+                var yojnaId = $(this).data('yojnaid');
+                console.log('YojnaId:', yojnaId);
+                $.ajax({
+                    url: '/EMI/CreateReciept',
+                    type: 'POST',
+                    data: { id: yojnaId },
+                    success: function (response) {
+                        console.log('Response Data:', response);
+                        if (response.success) {
+                            alert('Reciept Created');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred.');
                     }
-                },
-                error: function () {
-                    alert('An error occurred.');
-                }
+                });
             });
         });
-    });
-</script>
+    </script>*@
 
 
 @*Script to View Recipt in new tab*@
-<script>
-    $(document).ready(function () {
-        $('.viewreciept').attr(target, '_blank');
-    });
+@*<script>
+        $(document).ready(function () {
+            $('.viewreciept').attr(target, '_blank');
+        });
 
-    //$.ajax({
-    //    success: function (response) {
-    //        if (response.success) {
-    //            window.open(response.viewUrl, '_blank');
-    //        }
-    //        else {
-    //            alert("Error while Viewing Reciept");
-    //        }
-    //    },
-    //    error: function () {
-    //        alert("Error while Ajax Request");
-    //    }
-    //});
-</script>
+        //$.ajax({
+        //    success: function (response) {
+        //        if (response.success) {
+        //            window.open(response.viewUrl, '_blank');
+        //        }
+        //        else {
+        //            alert("Error while Viewing Reciept");
+        //        }
+        //    },
+        //    error: function () {
+        //        alert("Error while Ajax Request");
+        //    }
+        //});
+    </script>*@
 
 
 

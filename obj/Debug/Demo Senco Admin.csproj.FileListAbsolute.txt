@@ -1,0 +1,171 @@
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\Demo Senco Admin.dll.config
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\Demo Senco Admin.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\Demo Senco Admin.pdb
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\csc.exe
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\csc.exe.config
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\csc.rsp
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\csi.exe
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\csi.exe.config
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\csi.rsp
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.Managed.Core.targets
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\Microsoft.Win32.Primitives.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.AppContext.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Collections.Immutable.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Console.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Globalization.Calendars.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.IO.Compression.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.IO.Compression.ZipFile.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.IO.FileSystem.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Net.Sockets.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Reflection.Metadata.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Security.Cryptography.Encoding.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Security.Cryptography.Primitives.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Threading.Tasks.Extensions.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.ValueTuple.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Xml.ReaderWriter.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Xml.XmlDocument.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Xml.XPath.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\System.Xml.XPath.XDocument.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\vbc.exe
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\vbc.exe.config
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\vbc.rsp
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\VBCSCompiler.exe
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\roslyn\VBCSCompiler.exe.config
+F:\Senco\Senco-BitBucket\senco-dashboard\bin\Microsoft.CSharp.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\obj\Debug\Demo Senco Admin.csproj.AssemblyReference.cache
+F:\Senco\Senco-BitBucket\senco-dashboard\obj\Debug\Demo Senco Admin.csproj.CoreCompileInputs.cache
+F:\Senco\Senco-BitBucket\senco-dashboard\obj\Debug\Demo Senco Admin.csproj.CopyComplete
+F:\Senco\Senco-BitBucket\senco-dashboard\obj\Debug\Demo Senco Admin.dll
+F:\Senco\Senco-BitBucket\senco-dashboard\obj\Debug\Demo Senco Admin.pdb
+F:\Senco\New Senco admin\senco-dashboard\bin\Demo Senco Admin.dll.config
+F:\Senco\New Senco admin\senco-dashboard\bin\Demo Senco Admin.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\Demo Senco Admin.pdb
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\csc.exe
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\csc.exe.config
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\csc.rsp
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\csi.exe
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\csi.exe.config
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\csi.rsp
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.Managed.Core.targets
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\Microsoft.Win32.Primitives.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.AppContext.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Collections.Immutable.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Console.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Globalization.Calendars.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.IO.Compression.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.IO.Compression.ZipFile.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.IO.FileSystem.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Net.Sockets.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Reflection.Metadata.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Security.Cryptography.Encoding.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Security.Cryptography.Primitives.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Threading.Tasks.Extensions.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.ValueTuple.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Xml.ReaderWriter.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Xml.XmlDocument.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Xml.XPath.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\System.Xml.XPath.XDocument.dll
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\vbc.exe
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\vbc.exe.config
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\vbc.rsp
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\VBCSCompiler.exe
+F:\Senco\New Senco admin\senco-dashboard\bin\roslyn\VBCSCompiler.exe.config
+F:\Senco\New Senco admin\senco-dashboard\bin\Microsoft.CSharp.dll
+F:\Senco\New Senco admin\senco-dashboard\obj\Debug\Demo Senco Admin.csproj.AssemblyReference.cache
+F:\Senco\New Senco admin\senco-dashboard\obj\Debug\Demo Senco Admin.csproj.CoreCompileInputs.cache
+F:\Senco\New Senco admin\senco-dashboard\obj\Debug\Demo Senco Admin.csproj.CopyComplete
+F:\Senco\New Senco admin\senco-dashboard\obj\Debug\Demo Senco Admin.dll
+F:\Senco\New Senco admin\senco-dashboard\obj\Debug\Demo Senco Admin.pdb
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\Demo Senco Admin.dll.config
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\Demo Senco Admin.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\Demo Senco Admin.pdb
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\csc.exe
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\csc.exe.config
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\csc.rsp
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\csi.exe
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\csi.exe.config
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\csi.rsp
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.Managed.Core.targets
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\Microsoft.Win32.Primitives.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.AppContext.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Collections.Immutable.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Console.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Globalization.Calendars.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.IO.Compression.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.IO.Compression.ZipFile.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.IO.FileSystem.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Net.Sockets.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Reflection.Metadata.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Security.Cryptography.Encoding.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Security.Cryptography.Primitives.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Threading.Tasks.Extensions.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.ValueTuple.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Xml.ReaderWriter.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Xml.XmlDocument.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Xml.XPath.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\System.Xml.XPath.XDocument.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\vbc.exe
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\vbc.exe.config
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\vbc.rsp
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\VBCSCompiler.exe
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\roslyn\VBCSCompiler.exe.config
+F:\Senco\New Senco admin\Demo_SencoAdmin\bin\Microsoft.CSharp.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.csproj.AssemblyReference.cache
+F:\Senco\New Senco admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.csproj.CoreCompileInputs.cache
+F:\Senco\New Senco admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.csproj.CopyComplete
+F:\Senco\New Senco admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.dll
+F:\Senco\New Senco admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.pdb

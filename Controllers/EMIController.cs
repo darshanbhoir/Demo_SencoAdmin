@@ -22,6 +22,7 @@ namespace Demo_Senco_Admin.Controllers
     public class EMIController : Controller
     {
         private SENCO_DB_AdminEntities db = new SENCO_DB_AdminEntities();
+
         // GET: EMI
         public ActionResult Index(string paymentStatus, DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput, int? Page_No)
         {
@@ -55,10 +56,12 @@ namespace Demo_Senco_Admin.Controllers
                                     (s.SchemeNo.Contains(searchInput) && searchFilter == "schemeNo") ||
                                     (s.CustomerName.Contains(searchInput) && searchFilter == "customerName") ||
                                     (s.Email.Contains(searchInput) && searchFilter == "email") ||
-                                    (s.MobileNo.Contains(searchInput) && searchFilter == "mobile"))                                
-                                .Where(s => string.IsNullOrEmpty(paymentStatus) || s.PaymentStatus == (paymentStatus.ToLower() == "true" || paymentStatus.ToLower() == "false"))                                
+                                    (s.MobileNo.Contains(searchInput) && searchFilter == "mobile"))
+                                .Where(s => string.IsNullOrEmpty(paymentStatus) || 
+                                    s.PaymentStatus == (paymentStatus.ToLower() == "true") || 
+                                    !s.PaymentStatus == (paymentStatus.ToLower() == "false")) 
                                 .Where(s => !startdate.HasValue || s.PaymentDate >= startdate)
-                                .Where(s => !enddate.HasValue || s.PaymentDate <= enddate)
+                                .Where(s => !enddate.HasValue || s.PaymentDate <= enddate.Value.Date.Add(new TimeSpan(23, 59, 59)))
                                 .Select(item => new EMIPaymentViewModel
                                 {
                                     YojnaId= item.YojnaId,
@@ -66,7 +69,7 @@ namespace Demo_Senco_Admin.Controllers
                                     PaymentDate = (DateTime)item.PaymentDate,
                                     EMIno = item.EMIno ?? 0,
                                     Amount = (decimal)item.Amount,
-                                    PaymentStatus = item.PaymentStatus ?? false,
+                                    PaymentStatus = (bool)item.PaymentStatus ? "Paid" : "Unpaid",
                                     SchemeNo = item.SchemeNo,
                                     TransactionId = item.TransactionId ?? "N/A",
                                     BankTransactionId = item.BankTransactionId ?? "N/A",
@@ -102,7 +105,7 @@ namespace Demo_Senco_Admin.Controllers
                              PaymentDate = (DateTime)TSP.temp_swarna_paymentdate,
                              EMIno = TSP.temp_swarna_current_emi_no ?? 0,
                              Amount = (decimal)TSP.temp_swarna_payamount,
-                             PaymentStatus = TSP.temp_payment_status ?? false,
+                             PaymentStatus = (bool)TSP.temp_payment_status ? "Paid" : "Unpaid",
                              SchemeNo = TSP.temp_swarna_payment_schemeentryno,
                              TransactionId = TSP.temp_swarna_transaction_id ?? "N/A",
                              BankTransactionId = TSP.temp_swarna_banktransactionid ?? "N/A",
@@ -114,57 +117,7 @@ namespace Demo_Senco_Admin.Controllers
                          });
 
             var data = query.ToList();
-
-            //ExcelPackage excelPackage = new ExcelPackage();
-            //var worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
-
-            ////for headers
-            //var headers = new string[]
-            //{
-            //    "OrderNo",
-            //    "PaymentDate",
-            //    "EMIno",
-            //    "Amount",
-            //    "PaymentStatus",
-            //    "SchemeNo",
-            //    "TransactionId",
-            //    "BankTransactionId",
-            //    "PaymentEntryNo",
-            //    "CustomerName",
-            //    "MobileNo",
-            //    "Email",
-
-            //};
-
-            //for (int i = 0; i < headers.Length; i++)
-            //{
-            //    worksheet.Cells[1, i + 1].Value = headers[i];
-            //}
-
-            ////for data
-            //int row = 2;
-            //foreach (var item in data)
-            //{
-            //    int column = 1;
-
-            //    foreach (var prop in typeof(EMIPaymentViewModel).GetProperties())
-            //    {
-            //        worksheet.Cells[row, column].Value = prop.GetValue(item);
-            //        column++;
-            //    }
-            //    row++;
-            //}
-
-            //var stream = new MemoryStream();
-            //excelPackage.SaveAs(stream);
-
-            //stream.Position = 0;
-
-            //Response.Clear();
-            //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            //Response.Headers.Add("Content-Disposition", new StringValues("attachment; filename=ExportedEMIPaymentData.xlsx"));
-
-            //stream.CopyTo(Response.OutputStream);
+            
 
             GridView gridView = new GridView();
             gridView.DataSource = data.ToList();
@@ -193,7 +146,8 @@ namespace Demo_Senco_Admin.Controllers
 
 
         //View&Modify EMI Details
-        public ActionResult ViewandModify(int? id)
+       
+        public ActionResult View(int? id)
         {
             if (id == null)
             {
@@ -224,65 +178,68 @@ namespace Demo_Senco_Admin.Controllers
                     YojnaId= emidetail.temp_swarna_yojna_id,
                     OrderNo = emidetail.temp_swarna_order_no,
                     PaymentDate = (DateTime)emidetail.temp_swarna_paymentdate,
-                    EMIno = emidetail.temp_swarna_current_emi_no,
+                    EMIno = emidetail.temp_swarna_current_emi_no ?? 0,
                     Amount = (decimal)emidetail.temp_swarna_payamount,
-                    PaymentStatus = emidetail.temp_payment_status ,
+                    PaymentStatus = (bool)emidetail.temp_payment_status ? "Paid" : "Unpaid" ,
                     SchemeNo = emidetail.temp_swarna_payment_schemeentryno,
-                    TransactionId = emidetail.temp_swarna_transaction_id,
-                    BankTransactionId = emidetail.temp_swarna_banktransactionid,
-                    PaymentEntryNo = emidetail.temp_swarna_paymententryno,
-                    CustomerName = emidetail.temp_swarna_customer_name,
-                    MobileNo = emidetail.temp_swarna_mobile_no,
-                    Email = emidetail.temp_swarna_member_email ,
+                    TransactionId = emidetail.temp_swarna_transaction_id ?? "N/A",
+                    BankTransactionId = emidetail.temp_swarna_banktransactionid ?? "N/A",
+                    PaymentEntryNo = emidetail.temp_swarna_paymententryno ?? "N/A" ,
+                    CustomerName = emidetail.temp_swarna_customer_name ?? "N/A",
+                    MobileNo = emidetail.temp_swarna_mobile_no ?? "N/A",
+                    Email = emidetail.temp_swarna_member_email ?? "N/A"  ,
                     PaymentReciept = emidetail.temp_swarna_payment_reciept ,
                     PayloadData = mostRecentEMI,
                 };
-                return View(viewModel);
+                return View("View", viewModel);
             }
             else
             {
                 ViewBag.ErrorMessage = "Data is Missing";
-                return View("Error");
-                
+                return View("Error");                
             }
 
         }
 
         [HttpPost]
-        public ActionResult ViewandModify(EMIPaymentViewModel viewModel)
+        public ActionResult View(EMIPaymentViewModel viewModel)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var emidetail = db.tbl_temp_swarna_paymentgateway.Find(viewModel.SchemeNo);
-                    if (emidetail == null)
+            
+                if (ModelState.IsValid)
+                {     
+                    try
+                    {
+                        var emidetail = db.tbl_temp_swarna_paymentgateway.Find(viewModel.YojnaId);
+                        if (emidetail == null)
+                        {
+                            return HttpNotFound();
+                        }
+
+                        emidetail.temp_swarna_order_no = viewModel.OrderNo;
+                        emidetail.temp_swarna_paymentdate = viewModel.PaymentDate;
+                        emidetail.temp_swarna_current_emi_no = viewModel.EMIno;
+                        emidetail.temp_swarna_payamount = viewModel.Amount;
+                        emidetail.temp_payment_status = bool.TryParse(viewModel.PaymentStatus, out bool paymentStatus) ? paymentStatus: false;
+                        emidetail.temp_swarna_payment_schemeentryno = viewModel.SchemeNo;
+                        emidetail.temp_swarna_transaction_id = viewModel.TransactionId;
+                        emidetail.temp_swarna_banktransactionid = viewModel.BankTransactionId;
+                        emidetail.temp_swarna_paymententryno = viewModel.PaymentEntryNo;
+                        emidetail.temp_swarna_customer_name = viewModel.CustomerName;
+                        emidetail.temp_swarna_mobile_no = viewModel.MobileNo;
+                        //emidetail.temp_swarna_payload_json = viewModel.PayloadData;
+
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    catch(Exception ex)
                     {
                         return HttpNotFound();
                     }
-
-                    emidetail.temp_swarna_order_no = viewModel.OrderNo;
-                    emidetail.temp_swarna_paymentdate = viewModel.PaymentDate;
-                    emidetail.temp_swarna_current_emi_no = viewModel.EMIno;
-                    emidetail.temp_swarna_payamount = viewModel.Amount;
-                    emidetail.temp_payment_status = viewModel.PaymentStatus;
-                    emidetail.temp_swarna_payment_schemeentryno = viewModel.SchemeNo;
-                    emidetail.temp_swarna_transaction_id = viewModel.TransactionId;
-                    emidetail.temp_swarna_banktransactionid = viewModel.BankTransactionId;
-                    emidetail.temp_swarna_paymententryno = viewModel.PaymentEntryNo;
-                    emidetail.temp_swarna_customer_name = viewModel.CustomerName;
-                    emidetail.temp_swarna_mobile_no = viewModel.MobileNo;
-                    //emidetail.temp_swarna_payload_json = viewModel.PayloadData;
-
-                    db.SaveChanges();
-                    return RedirectToAction("ViewandModifyDetail");
+                    
                 }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", "An error occurred while updating the detail.");
-                }
-            }
-            return View(viewModel);
+                return View(viewModel);
+
+            
         }
 
 
@@ -359,78 +316,86 @@ namespace Demo_Senco_Admin.Controllers
 
 
         //View Reciept
-        public ActionResult ViewReciept(int? id)
-        {
+        //public async Task<ActionResult> ViewReciept(int? id)
+        //{
 
-                //var recieptDetail = Session["RecieptView"] as EMIPaymentViewModel;
+        //        //var recieptDetail = Session["RecieptView"] as EMIPaymentViewModel;
 
-                //if (recieptDetail == null)
-                //{
-                //    return Json(new { success = false, message = "Reciept not Found" });
-                //}
+        //        //if (recieptDetail == null)
+        //        //{
+        //        //    return Json(new { success = false, message = "Reciept not Found" });
+        //        //}
 
-                //string apiURL = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna";
+        //        //string apiURL = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna";
 
-                //var recieptData = new RecieptViewModel
-                //{
-                //    RecieptId = recieptDetail.OrderNo,
-                //    CustomerId = recieptDetail.CustomerCode,
-                //    CustomerName = recieptDetail.CustomerName,
-                //    CustomerMobile = recieptDetail.MobileNo,
-                //    CustomerEmail = recieptDetail.Email,
-                //    SchemeNo = recieptDetail.SchemeNo,
-                //    SchemeCode = recieptDetail.SchemeCode,
-                //    EmiAmount = (decimal)recieptDetail.Amount,
-                //    EmiNo = (int)recieptDetail.EMIno
-                //};
-                //var pdf = EMI.GeneratePdf(recieptData);
+        //        //var recieptData = new RecieptViewModel
+        //        //{
+        //        //    RecieptId = recieptDetail.OrderNo,
+        //        //    CustomerId = recieptDetail.CustomerCode,
+        //        //    CustomerName = recieptDetail.CustomerName,
+        //        //    CustomerMobile = recieptDetail.MobileNo,
+        //        //    CustomerEmail = recieptDetail.Email,
+        //        //    SchemeNo = recieptDetail.SchemeNo,
+        //        //    SchemeCode = recieptDetail.SchemeCode,
+        //        //    EmiAmount = (decimal)recieptDetail.Amount,
+        //        //    EmiNo = (int)recieptDetail.EMIno
+        //        //};
+        //        //var pdf = EMI.GeneratePdf(recieptData);
 
 
-            //var Pdf = recieptDetail.PaymentReciept;
+        //    //var Pdf = recieptDetail.PaymentReciept;
 
-            //if(Pdf != null)
-            //{
-            //    var PdfUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/SY_EMI_Payment_Receipt_";
-            //    var PdfView = $"{PdfUrl}{Pdf}";
+        //    //if(Pdf != null)
+        //    //{
+        //    //    var PdfUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/SY_EMI_Payment_Receipt_";
+        //    //    var PdfView = $"{PdfUrl}{Pdf}";
 
-            //    return Json(new { success = true, viewUrl = PdfView }, JsonRequestBehavior.AllowGet);
-            //}
-            //else
-            //{
-            //    return Json(new { success = false, message = "Reciept not Found" }, JsonRequestBehavior.AllowGet);
-            //}
+        //    //    return Json(new { success = true, viewUrl = PdfView }, JsonRequestBehavior.AllowGet);
+        //    //}
+        //    //else
+        //    //{
+        //    //    return Json(new { success = false, message = "Reciept not Found" }, JsonRequestBehavior.AllowGet);
+        //    //}
 
-            if(ModelState.IsValid)
-            {
-                if(id==null)
-                {
-                    return Json(new { success = false, message = "Yojna number is missing." });
-                }
-                var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
-                if(detail != null)
-                    {
-                        var Pdf = detail.temp_swarna_payment_reciept;
-                        if (Pdf != null)
-                        {
-                            var PdfUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/";
-                            var PdfView = $"{PdfUrl}{Pdf}";
-                        //return Json(new { success = true, viewUrl = PdfView }, JsonRequestBehavior.AllowGet);
-                        return File(PdfView, "application/pdf");
+        //    if(ModelState.IsValid)
+        //    {
+        //        if(id==null)
+        //        {
+        //            return Json(new { success = false, message = "Yojna number is missing." });
+        //        }
+        //        var detail = db.tbl_temp_swarna_paymentgateway.Find(id);
+        //        if(detail != null)
+        //            {
+        //                var Pdf = detail.temp_swarna_payment_reciept;
+        //                if (Pdf != null)
+        //                {
+        //                    var PdfUrl = "https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/" + Pdf;
+        //                    ViewBag.pdfUrl = PdfUrl;
 
-                        }
-                        else
-                        {
-                        //return Json(new { success = false, message = "Reciept not Found" }, JsonRequestBehavior.AllowGet);
-                        return HttpNotFound();
-                        }
-                    }
+        //                //    using (var httpclient = new HttpClient())
+        //                //{
+        //                //    var pdfbyte= await httpclient.GetByteArrayAsync(PdfUrl);
+        //                //    return File(PdfUrl, "application/pdf");
+                                
+        //                //}
+        //                    //var PdfView = $"{PdfUrl}{Pdf}";
+        //                //return Json(new { success = true, viewUrl = PdfView }, JsonRequestBehavior.AllowGet);
+                        
+
+        //                }
+        //                else
+        //                {
+        //                //return Json(new { success = false, message = "Reciept not Found" }, JsonRequestBehavior.AllowGet);
+        //                return HttpNotFound();
+        //                }
+        //            }
                 
-            }
-            return Json(new { success = false, message = "An error occurred while Viewing the receipt." });
+        //    }
+        //    return Json(new { success = false, message = "An error occurred while Viewing the receipt." });
 
 
 
-        }
+        //}
 
 
         //PDF Helper Class

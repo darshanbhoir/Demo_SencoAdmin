@@ -336,3 +336,60 @@ $(document).ready(function () {
    return return_state;
 
 }
+
+
+
+//Remember Me
+$(document).ready(function () {
+	// Check if remember me cookie exists
+	var rememberMe = getCookie("rememberMe");
+	if (rememberMe === "true") {
+		// Fill in the form with stored credentials
+		var username = getCookie("username");
+		var password = getCookie("password");
+
+		if (username && password) {
+			$("#email").val(username);
+			$("#password").val(password);
+			$("#rememberme").prop("checked", true);
+		}
+	}
+
+	// Handle form submission
+	$("#send_user_register").submit(function () {
+		if ($("#rememberme").is(":checked")) {
+			// Set cookies to remember credentials
+			setCookie("username", $("#email").val(), 30);
+			setCookie("password", $("#password").val(), 30);
+			setCookie("rememberMe", "true", 30);
+		} else {
+			// Clear cookies if "Remember Me" is unchecked
+			setCookie("username", "", -1);
+			setCookie("password", "", -1);
+			setCookie("rememberMe", "false", -1);
+		}
+	});
+
+	// Helper function to set cookies
+	function setCookie(name, value, days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie = name + "=" + (value || "") + expires + "; path=/";
+	}
+
+	// Helper function to get cookies
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+		}
+		return null;
+	}
+});

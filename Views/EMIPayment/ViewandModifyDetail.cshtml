@@ -1,29 +1,10 @@
 ﻿@model Demo_Senco_Admin.Models.ViewModel.EMIPaymentViewModel
 @{
     ViewBag.Title = "ViewandModifyDetail";
+    Layout = null;
 }
 
 <h3>View and Modify Detail</h3>
-@*<div>
-    @Html.ActionLink("Back to List", "EMIPaymentDashboard")
-</div>*@
-
-@*<h5>Order No: @Model.OrderNo</h5>
-    <h5>Payment Date: @Model.PaymentDate</h5>
-    <h5>EMI No: @Model.EMIno</h5>
-    <h5>Amount: @Model.Amount</h5>
-    <h5>Payment Status: @Model.PaymentStatus</h5>
-    <h5>Scheme No: @Model.SchemeNo</h5>
-    <h5>Transaction Id: @Model.TransactionId</h5>
-    <h5>Bank Transaction Id: @Model.BankTransactionId</h5>
-    <h5>Payment Entry No: @Model.PaymentEntryNo</h5>
-    <h5>Customer Name: @Model.CustomerName</h5>
-    <h5>Mobile No: @Model.MobileNo</h5>
-    <h5>Email: @Model.Email</h5>
-    <h5>Payment reciept: @Model.PaymentReciept</h5>
-    <h5>EMI Id: @Model.PayloadData.id</h5>
-    <h5>EMI Status: @Model.PayloadData.Status</h5>
-    <h5>EMI Message: @Model.PayloadData.Message</h5>*@
 
 @using (Html.BeginForm("ViewandModifyDetail", "EMIPayment", FormMethod.Post))
 {
@@ -101,29 +82,37 @@
 
 <div>
     <h5>EMI Details:</h5>
-    @foreach (var item in Model.PayloadData.EMI)
+    @if (Model.PayloadData.EMI != null)
     {
-        <div>
-            <p>EMI id: @item.id</p>
-            <p>Cancelled By: @item.CANCELLEDBY</p>
-            <p>Installment Month: @item.INSTALLMENTMONTH</p>
-            <p>Reciept Id: @item.RECEIPTID</p>
-            <p>Cancelled Reason: @item.CANCELLEDREASON</p>
-            <p>Tender Type: @item.TENDERTYPE</p>
-            <p>Transaction Id: @item.TRANSACTIONID</p>
-            <p>Scheme Entry No: @item.SCHEMEENTRYNO</p>
-            <p>Payment Year: @item.PAYMENTYEAR</p>
-            <p>Payment Type: @item.PAYMENTTYPE</p>
-            <p>Payment Month: @item.PAYMENTMONTH</p>
-            <p>Payment Entry No: @item.PAYMENTENTRYNO</p>
-            <p>Payment Date: @item.PAYMENTDATE</p>
-            <p>Payment Amount: @item.PAYMENTAMOUNT</p>
-            <p>Linium: @item.LINENUM</p>
-            <p>Customer Code: @item.CUSTOMERCODE</p>
-            <p>Cancelled: @item.CANCELLED</p>
-            <hr />
-        </div>
+        foreach (var item in Model.PayloadData.EMI)
+        {
+            <div>
+                <p>EMI id: @item.id</p>
+                <p>Cancelled By: @item.CANCELLEDBY</p>
+                <p>Installment Month: @item.INSTALLMENTMONTH</p>
+                <p>Reciept Id: @item.RECEIPTID</p>
+                <p>Cancelled Reason: @item.CANCELLEDREASON</p>
+                <p>Tender Type: @item.TENDERTYPE</p>
+                <p>Transaction Id: @item.TRANSACTIONID</p>
+                <p>Scheme Entry No: @item.SCHEMEENTRYNO</p>
+                <p>Payment Year: @item.PAYMENTYEAR</p>
+                <p>Payment Type: @item.PAYMENTTYPE</p>
+                <p>Payment Month: @item.PAYMENTMONTH</p>
+                <p>Payment Entry No: @item.PAYMENTENTRYNO</p>
+                <p>Payment Date: @item.PAYMENTDATE</p>
+                <p>Payment Amount: @item.PAYMENTAMOUNT</p>
+                <p>Linium: @item.LINENUM</p>
+                <p>Customer Code: @item.CUSTOMERCODE</p>
+                <p>Cancelled: @item.CANCELLED</p>
+                <hr />
+            </div>
+        }
     }
+    else
+    {
+        <p>No Data Available</p>
+    }
+
 </div>
 
 

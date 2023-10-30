@@ -717,7 +717,7 @@ header .button-top {
 .pagination-container {
     text-align: center;
 }
-..pagination {
+.pagination {
     margin: 0 !important;
 }
 /* Footer */
@@ -731,13 +731,18 @@ footer {
 
     footer .pagination {
         display: block;
-        padding: 22px;
+        /*padding: 22px;*/
     }
 
         footer .pagination .pagination-list {
             display: inline-block;
             width: 100%;
             text-align: center;
+        }
+        footer .pagination .pagination-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
         }
 
             footer .pagination .pagination-list .page-item {
@@ -899,7 +904,7 @@ footer {
     position: sticky;
     top: 0;
     z-index: 1;
-    background: #fff;
+    background: #ddd;
 }
 
 .modal-header {
@@ -930,6 +935,7 @@ footer {
 .modal-title {
     margin-bottom: 0;
     line-height: 1.5;
+    margin: auto;
 }
 
 .modal-body {

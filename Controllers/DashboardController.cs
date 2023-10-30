@@ -54,7 +54,7 @@ namespace Demo_Senco_Admin.Controllers
                     (s.UserEmail.Contains(searchInput) && searchFilter == "email") ||
                     (s.UserMobileNumber.Contains(searchInput) && searchFilter == "mobile"))                
                 .Where(s => !startdate.HasValue || s.CreatedOn >= startdate)
-                .Where(s => !enddate.HasValue || s.CreatedOn <= enddate)
+                .Where(s => !enddate.HasValue || s.CreatedOn <= enddate.Value.Date.Add(new TimeSpan(23,59,59)))
                 .Select(item => new SchemeDashboardViewModel
                 {
                     UserNumber = item.UserNumber,
@@ -93,7 +93,7 @@ namespace Demo_Senco_Admin.Controllers
             ViewBag.CurrentFilterInputFilter = searchInput;
 
             //return View("index", PResult.ToPagedList(NoOfPage, SizeOfPage));
-            return View("index", PResult.ToPagedList(Page_No ?? 1, 10));
+            return View("index", PResult.ToPagedList(Page_No ?? 1, 15));
         }
 
 
@@ -151,66 +151,7 @@ namespace Demo_Senco_Admin.Controllers
                                 SchemeTenure = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].SchemeTenure")?.Value<string>() : null ?? "N/A",
                                 SchemeEntryNo = item.SchemePayload != null ? JObject.Parse(item.SchemePayload).SelectToken("_keys[0].SchemeEntryNo")?.Value<string>() : null ?? "N/A",
                             }).ToList();
-
-            //ExcelPackage excelPackage = new ExcelPackage();
-            //var worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
-
-            ////headers
-            //var headers = new string[]
-            //{
-            //    "AppUserNumber",
-            //    "UserName",
-            //    "UserMobileNumber",                
-            //    "UserEmail",
-            //    "CreatedOn",
-            //    "UserAccountName",
-            //    "UserAccountMobile",
-            //    "UserAccountEmail",
-            //    "CustomerName",
-            //    "CustomerCode",
-            //    "SchemeRegId",
-            //    "EMIAmount",
-            //    "Location",
-            //    "Street",
-            //    "StreetNumber",
-            //    "Country",
-            //    "State",
-            //    "City",
-            //    "UserCountry",
-            //    "UserCity",
-            //    "SchemeName",
-            //    "SchemeTenure",
-            //    "SchemeEntryNo"
-            //};
-
-            //for (int i = 0; i < headers.Length; i++)
-            //{
-            //    worksheet.Cells[1, i + 1].Value = headers[i];
-            //}
-
-            ////for data
-            //int row = 2;
-            //foreach (var item in data)
-            //{
-            //    int column = 1;
-
-            //    foreach (var prop in typeof(SchemeDashboardViewModel).GetProperties())
-            //    {
-            //        worksheet.Cells[row, column].Value = prop.GetValue(item);
-            //        column++;
-            //    }
-            //    row++;
-            //}
-
-            //var stream = new MemoryStream();
-            //excelPackage.SaveAs(stream);
-
-            //stream.Position = 0;
-            //Response.Clear();
-            //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            //Response.Headers.Add("Content-Disposition", new StringValues("attachment; filename=ExportedSchemeData.xlsx"));
-
-            //stream.CopyTo(Response.OutputStream);
+                       
 
             GridView gridView = new GridView();
             gridView.DataSource = data.ToList();

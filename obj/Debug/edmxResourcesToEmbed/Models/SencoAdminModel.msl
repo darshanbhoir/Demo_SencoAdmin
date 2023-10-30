@@ -1,0 +1,832 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SENCO_DB_LIVEModelStoreContainer" CdmEntityContainer="SENCO_DB_AdminEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_admin_login">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_admin_login">
+        <MappingFragment StoreEntitySet="tbl_admin_login">
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_astrologer_appointment">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_astrologer_appointment">
+        <MappingFragment StoreEntitySet="tbl_astrologer_appointment">
+          <ScalarProperty Name="aa_id" ColumnName="aa_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+          <ScalarProperty Name="customer_phoneno" ColumnName="customer_phoneno" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="astrologer_id" ColumnName="astrologer_id" />
+          <ScalarProperty Name="appointment_date" ColumnName="appointment_date" />
+          <ScalarProperty Name="appointment_time" ColumnName="appointment_time" />
+          <ScalarProperty Name="appointment_comments" ColumnName="appointment_comments" />
+          <ScalarProperty Name="appointment_no" ColumnName="appointment_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_astrologer_master">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_astrologer_master">
+        <MappingFragment StoreEntitySet="tbl_astrologer_master">
+          <ScalarProperty Name="astrolger_id" ColumnName="astrolger_id" />
+          <ScalarProperty Name="astrologer_name" ColumnName="astrologer_name" />
+          <ScalarProperty Name="astrologer_mobile_no" ColumnName="astrologer_mobile_no" />
+          <ScalarProperty Name="astrologer_email_address" ColumnName="astrologer_email_address" />
+          <ScalarProperty Name="astrologer_photo" ColumnName="astrologer_photo" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="astrologer_profile" ColumnName="astrologer_profile" />
+          <ScalarProperty Name="astrologer_price" ColumnName="astrologer_price" />
+          <ScalarProperty Name="available_online" ColumnName="available_online" />
+          <ScalarProperty Name="astrologer_sequence" ColumnName="astrologer_sequence" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_astrologer_schedule">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_astrologer_schedule">
+        <MappingFragment StoreEntitySet="tbl_astrologer_schedule">
+          <ScalarProperty Name="as_id" ColumnName="as_id" />
+          <ScalarProperty Name="astrologer_id" ColumnName="astrologer_id" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="sunday" ColumnName="sunday" />
+          <ScalarProperty Name="monday" ColumnName="monday" />
+          <ScalarProperty Name="tuesday" ColumnName="tuesday" />
+          <ScalarProperty Name="wednesday" ColumnName="wednesday" />
+          <ScalarProperty Name="thursday" ColumnName="thursday" />
+          <ScalarProperty Name="friday" ColumnName="friday" />
+          <ScalarProperty Name="saturday" ColumnName="saturday" />
+          <ScalarProperty Name="sun" ColumnName="sun" />
+          <ScalarProperty Name="mon" ColumnName="mon" />
+          <ScalarProperty Name="tue" ColumnName="tue" />
+          <ScalarProperty Name="wed" ColumnName="wed" />
+          <ScalarProperty Name="thu" ColumnName="thu" />
+          <ScalarProperty Name="fri" ColumnName="fri" />
+          <ScalarProperty Name="sat" ColumnName="sat" />
+          <ScalarProperty Name="sunday_from" ColumnName="sunday_from" />
+          <ScalarProperty Name="monday_from" ColumnName="monday_from" />
+          <ScalarProperty Name="tuesday_from" ColumnName="tuesday_from" />
+          <ScalarProperty Name="wednesday_from" ColumnName="wednesday_from" />
+          <ScalarProperty Name="thursday_from" ColumnName="thursday_from" />
+          <ScalarProperty Name="friday_from" ColumnName="friday_from" />
+          <ScalarProperty Name="saturday_from" ColumnName="saturday_from" />
+          <ScalarProperty Name="sunday_to" ColumnName="sunday_to" />
+          <ScalarProperty Name="monday_to" ColumnName="monday_to" />
+          <ScalarProperty Name="tuesday_to" ColumnName="tuesday_to" />
+          <ScalarProperty Name="wednesday_to" ColumnName="wednesday_to" />
+          <ScalarProperty Name="thursday_to" ColumnName="thursday_to" />
+          <ScalarProperty Name="friday_to" ColumnName="friday_to" />
+          <ScalarProperty Name="saturday_to" ColumnName="saturday_to" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_astrologer_store_link">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_astrologer_store_link">
+        <MappingFragment StoreEntitySet="tbl_astrologer_store_link">
+          <ScalarProperty Name="as_id" ColumnName="as_id" />
+          <ScalarProperty Name="astrologer_id" ColumnName="astrologer_id" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="astrologer_store_timing" ColumnName="astrologer_store_timing" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="sunday" ColumnName="sunday" />
+          <ScalarProperty Name="monday" ColumnName="monday" />
+          <ScalarProperty Name="tuesday" ColumnName="tuesday" />
+          <ScalarProperty Name="wednesday" ColumnName="wednesday" />
+          <ScalarProperty Name="thursday" ColumnName="thursday" />
+          <ScalarProperty Name="friday" ColumnName="friday" />
+          <ScalarProperty Name="saturday" ColumnName="saturday" />
+          <ScalarProperty Name="sun" ColumnName="sun" />
+          <ScalarProperty Name="mon" ColumnName="mon" />
+          <ScalarProperty Name="tue" ColumnName="tue" />
+          <ScalarProperty Name="wed" ColumnName="wed" />
+          <ScalarProperty Name="thu" ColumnName="thu" />
+          <ScalarProperty Name="fri" ColumnName="fri" />
+          <ScalarProperty Name="sat" ColumnName="sat" />
+          <ScalarProperty Name="sunday_from" ColumnName="sunday_from" />
+          <ScalarProperty Name="monday_from" ColumnName="monday_from" />
+          <ScalarProperty Name="tuesday_from" ColumnName="tuesday_from" />
+          <ScalarProperty Name="wednesday_from" ColumnName="wednesday_from" />
+          <ScalarProperty Name="thursday_from" ColumnName="thursday_from" />
+          <ScalarProperty Name="friday_from" ColumnName="friday_from" />
+          <ScalarProperty Name="saturday_from" ColumnName="saturday_from" />
+          <ScalarProperty Name="sunday_to" ColumnName="sunday_to" />
+          <ScalarProperty Name="monday_to" ColumnName="monday_to" />
+          <ScalarProperty Name="tuesday_to" ColumnName="tuesday_to" />
+          <ScalarProperty Name="wednesday_to" ColumnName="wednesday_to" />
+          <ScalarProperty Name="thursday_to" ColumnName="thursday_to" />
+          <ScalarProperty Name="friday_to" ColumnName="friday_to" />
+          <ScalarProperty Name="saturday_to" ColumnName="saturday_to" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_city_master">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_city_master">
+        <MappingFragment StoreEntitySet="tbl_city_master">
+          <ScalarProperty Name="city_no" ColumnName="city_no" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+          <ScalarProperty Name="country_no" ColumnName="country_no" />
+          <ScalarProperty Name="city_geo_coordinates" ColumnName="city_geo_coordinates" />
+          <ScalarProperty Name="city_geo_radius" ColumnName="city_geo_radius" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="state_no" ColumnName="state_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Collections">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_Collections">
+        <MappingFragment StoreEntitySet="tbl_Collections">
+          <ScalarProperty Name="Collection_id" ColumnName="Collection_id" />
+          <ScalarProperty Name="Collection_Title" ColumnName="Collection_Title" />
+          <ScalarProperty Name="Collection_Image" ColumnName="Collection_Image" />
+          <ScalarProperty Name="Collection_url" ColumnName="Collection_url" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="updated_on" ColumnName="updated_on" />
+          <ScalarProperty Name="clicks" ColumnName="clicks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_country_master">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_country_master">
+        <MappingFragment StoreEntitySet="tbl_country_master">
+          <ScalarProperty Name="country_no" ColumnName="country_no" />
+          <ScalarProperty Name="country_name" ColumnName="country_name" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_dashboard_analytics">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_dashboard_analytics">
+        <MappingFragment StoreEntitySet="tbl_dashboard_analytics">
+          <ScalarProperty Name="DashBoardAnalytics_id" ColumnName="DashBoardAnalytics_id" />
+          <ScalarProperty Name="video_click" ColumnName="video_click" />
+          <ScalarProperty Name="offer_click" ColumnName="offer_click" />
+          <ScalarProperty Name="spotlight_click" ColumnName="spotlight_click" />
+          <ScalarProperty Name="collection_click" ColumnName="collection_click" />
+          <ScalarProperty Name="event_click" ColumnName="event_click" />
+          <ScalarProperty Name="registration_data" ColumnName="registration_data" />
+          <ScalarProperty Name="appoitment_category_data" ColumnName="appoitment_category_data" />
+          <ScalarProperty Name="active_uninstall_data" ColumnName="active_uninstall_data" />
+          <ScalarProperty Name="purchase_app_data" ColumnName="purchase_app_data" />
+          <ScalarProperty Name="designer_app_data" ColumnName="designer_app_data" />
+          <ScalarProperty Name="astrologer_app_data" ColumnName="astrologer_app_data" />
+          <ScalarProperty Name="sales_list_data" ColumnName="sales_list_data" />
+          <ScalarProperty Name="emi_sales_data" ColumnName="emi_sales_data" />
+          <ScalarProperty Name="astro_sales_data" ColumnName="astro_sales_data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_designer_appointment">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_designer_appointment">
+        <MappingFragment StoreEntitySet="tbl_designer_appointment">
+          <ScalarProperty Name="pa_id" ColumnName="pa_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+          <ScalarProperty Name="customer_phoneno" ColumnName="customer_phoneno" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="appointment_date" ColumnName="appointment_date" />
+          <ScalarProperty Name="appointment_time" ColumnName="appointment_time" />
+          <ScalarProperty Name="appointment_comments" ColumnName="appointment_comments" />
+          <ScalarProperty Name="appointment_no" ColumnName="appointment_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ecommerce_transaction">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_ecommerce_transaction">
+        <MappingFragment StoreEntitySet="tbl_ecommerce_transaction">
+          <ScalarProperty Name="ecommerce_id" ColumnName="ecommerce_id" />
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="payload" ColumnName="payload" />
+          <ScalarProperty Name="date_time" ColumnName="date_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_events">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_events">
+        <MappingFragment StoreEntitySet="tbl_events">
+          <ScalarProperty Name="event_no" ColumnName="event_no" />
+          <ScalarProperty Name="event_name" ColumnName="event_name" />
+          <ScalarProperty Name="event_desc" ColumnName="event_desc" />
+          <ScalarProperty Name="event_banner" ColumnName="event_banner" />
+          <ScalarProperty Name="event_banner_thumbnail" ColumnName="event_banner_thumbnail" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="event_url" ColumnName="event_url" />
+          <ScalarProperty Name="clicks" ColumnName="clicks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_gold_price">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_gold_price">
+        <MappingFragment StoreEntitySet="tbl_gold_price">
+          <ScalarProperty Name="gold_price_no" ColumnName="gold_price_no" />
+          <ScalarProperty Name="city_no" ColumnName="city_no" />
+          <ScalarProperty Name="validity_start_date" ColumnName="validity_start_date" />
+          <ScalarProperty Name="validity_end_date" ColumnName="validity_end_date" />
+          <ScalarProperty Name="gold_price_value" ColumnName="gold_price_value" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="price_description" ColumnName="price_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_horoscope_banner">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_horoscope_banner">
+        <MappingFragment StoreEntitySet="tbl_horoscope_banner">
+          <ScalarProperty Name="horoscope_banner_id" ColumnName="horoscope_banner_id" />
+          <ScalarProperty Name="horoscope_banner_Title" ColumnName="horoscope_banner_Title" />
+          <ScalarProperty Name="horoscope_banner_Image" ColumnName="horoscope_banner_Image" />
+          <ScalarProperty Name="horoscope_banner_url" ColumnName="horoscope_banner_url" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="updated_on" ColumnName="updated_on" />
+          <ScalarProperty Name="clicks" ColumnName="clicks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_horoscope_master">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_horoscope_master">
+        <MappingFragment StoreEntitySet="tbl_horoscope_master">
+          <ScalarProperty Name="horoscope_no" ColumnName="horoscope_no" />
+          <ScalarProperty Name="horoscope_name" ColumnName="horoscope_name" />
+          <ScalarProperty Name="horoscope_logo" ColumnName="horoscope_logo" />
+          <ScalarProperty Name="horoscope_birthdate_from" ColumnName="horoscope_birthdate_from" />
+          <ScalarProperty Name="horoscope_birthdate_to" ColumnName="horoscope_birthdate_to" />
+          <ScalarProperty Name="horoscope_description" ColumnName="horoscope_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_horoscope_pricing">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_horoscope_pricing">
+        <MappingFragment StoreEntitySet="tbl_horoscope_pricing">
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="product_title" ColumnName="product_title" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="without_gst_amount" ColumnName="without_gst_amount" />
+          <ScalarProperty Name="gst_amount" ColumnName="gst_amount" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_horoscope_purchases">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_horoscope_purchases">
+        <MappingFragment StoreEntitySet="tbl_horoscope_purchases">
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="email_address" ColumnName="email_address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="purchase_details" ColumnName="purchase_details" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="payment_ref_no" ColumnName="payment_ref_no" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="pdf_file" ColumnName="pdf_file" />
+          <ScalarProperty Name="appointment_day" ColumnName="appointment_day" />
+          <ScalarProperty Name="appointment_date" ColumnName="appointment_date" />
+          <ScalarProperty Name="appointment_time" ColumnName="appointment_time" />
+          <ScalarProperty Name="astrologer_id" ColumnName="astrologer_id" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="consultation_type" ColumnName="consultation_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_horoscope_purchases_attempts">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_horoscope_purchases_attempts">
+        <MappingFragment StoreEntitySet="tbl_horoscope_purchases_attempts">
+          <ScalarProperty Name="attempt_no" ColumnName="attempt_no" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_mobile_no" ColumnName="user_mobile_no" />
+          <ScalarProperty Name="user_city_name" ColumnName="user_city_name" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="horoscope_name" ColumnName="horoscope_name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="on_attempted_date" ColumnName="on_attempted_date" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_horoscope_schedule">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_horoscope_schedule">
+        <MappingFragment StoreEntitySet="tbl_horoscope_schedule">
+          <ScalarProperty Name="hs_no" ColumnName="hs_no" />
+          <ScalarProperty Name="horoscope_no" ColumnName="horoscope_no" />
+          <ScalarProperty Name="schedule_from_date" ColumnName="schedule_from_date" />
+          <ScalarProperty Name="schedule_to_date" ColumnName="schedule_to_date" />
+          <ScalarProperty Name="horoscope_schedule_description" ColumnName="horoscope_schedule_description" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="Today_Prediction" ColumnName="Today_Prediction" />
+          <ScalarProperty Name="Today_Lucky_Color" ColumnName="Today_Lucky_Color" />
+          <ScalarProperty Name="Today_Lucky_Number" ColumnName="Today_Lucky_Number" />
+          <ScalarProperty Name="Today_Lucky_Time" ColumnName="Today_Lucky_Time" />
+          <ScalarProperty Name="health_per" ColumnName="health_per" />
+          <ScalarProperty Name="health_desc" ColumnName="health_desc" />
+          <ScalarProperty Name="love_per" ColumnName="love_per" />
+          <ScalarProperty Name="love_desc" ColumnName="love_desc" />
+          <ScalarProperty Name="career_per" ColumnName="career_per" />
+          <ScalarProperty Name="career_desc" ColumnName="career_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_horoscope_testimonials">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_horoscope_testimonials">
+        <MappingFragment StoreEntitySet="tbl_horoscope_testimonials">
+          <ScalarProperty Name="horoscope_testimonial_id" ColumnName="horoscope_testimonial_id" />
+          <ScalarProperty Name="horoscope_testimonial_name" ColumnName="horoscope_testimonial_name" />
+          <ScalarProperty Name="horoscope_testimonial_description" ColumnName="horoscope_testimonial_description" />
+          <ScalarProperty Name="horoscope_testimonial_place" ColumnName="horoscope_testimonial_place" />
+          <ScalarProperty Name="horoscope_testimonial_photo" ColumnName="horoscope_testimonial_photo" />
+          <ScalarProperty Name="updated_on" ColumnName="updated_on" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_manage_video_audiance_location">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_manage_video_audiance_location">
+        <MappingFragment StoreEntitySet="tbl_manage_video_audiance_location">
+          <ScalarProperty Name="managevideo_al_no" ColumnName="managevideo_al_no" />
+          <ScalarProperty Name="managevideo_id" ColumnName="managevideo_id" />
+          <ScalarProperty Name="city_no" ColumnName="city_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_manage_videos">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_manage_videos">
+        <MappingFragment StoreEntitySet="tbl_manage_videos">
+          <ScalarProperty Name="managevideo_id" ColumnName="managevideo_id" />
+          <ScalarProperty Name="managevideo_name" ColumnName="managevideo_name" />
+          <ScalarProperty Name="managevideo_image" ColumnName="managevideo_image" />
+          <ScalarProperty Name="managevideo_video_url" ColumnName="managevideo_video_url" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="updated_on" ColumnName="updated_on" />
+          <ScalarProperty Name="clicks" ColumnName="clicks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mobile_verification_status">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_mobile_verification_status">
+        <MappingFragment StoreEntitySet="tbl_mobile_verification_status">
+          <ScalarProperty Name="mobile_ver_id" ColumnName="mobile_ver_id" />
+          <ScalarProperty Name="mobile_ver_user_id" ColumnName="mobile_ver_user_id" />
+          <ScalarProperty Name="mobile_ver_datetime" ColumnName="mobile_ver_datetime" />
+          <ScalarProperty Name="mobile_ver_status" ColumnName="mobile_ver_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_offer_notification_schedule">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_offer_notification_schedule">
+        <MappingFragment StoreEntitySet="tbl_offer_notification_schedule">
+          <ScalarProperty Name="offer_ns_no" ColumnName="offer_ns_no" />
+          <ScalarProperty Name="offer_no" ColumnName="offer_no" />
+          <ScalarProperty Name="notification_start_date" ColumnName="notification_start_date" />
+          <ScalarProperty Name="notification_end_date" ColumnName="notification_end_date" />
+          <ScalarProperty Name="days_of_week" ColumnName="days_of_week" />
+          <ScalarProperty Name="times_of_day" ColumnName="times_of_day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_offers">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_offers">
+        <MappingFragment StoreEntitySet="tbl_offers">
+          <ScalarProperty Name="offer_no" ColumnName="offer_no" />
+          <ScalarProperty Name="offer_name" ColumnName="offer_name" />
+          <ScalarProperty Name="offer_banner_thumbnail" ColumnName="offer_banner_thumbnail" />
+          <ScalarProperty Name="offer_full_banner" ColumnName="offer_full_banner" />
+          <ScalarProperty Name="offer_redirect_to_shop_or_web" ColumnName="offer_redirect_to_shop_or_web" />
+          <ScalarProperty Name="web_url" ColumnName="web_url" />
+          <ScalarProperty Name="offer_created_on" ColumnName="offer_created_on" />
+          <ScalarProperty Name="offer_expires_on" ColumnName="offer_expires_on" />
+          <ScalarProperty Name="offer_totalclick_count" ColumnName="offer_totalclick_count" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="offer_desc" ColumnName="offer_desc" />
+          <ScalarProperty Name="is_new_arrival" ColumnName="is_new_arrival" />
+          <ScalarProperty Name="is_event" ColumnName="is_event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_offers_audiance_location">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_offers_audiance_location">
+        <MappingFragment StoreEntitySet="tbl_offers_audiance_location">
+          <ScalarProperty Name="offer_al_no" ColumnName="offer_al_no" />
+          <ScalarProperty Name="offer_no" ColumnName="offer_no" />
+          <ScalarProperty Name="city_no" ColumnName="city_no" />
+          <ScalarProperty Name="offer_cityclick_count" ColumnName="offer_cityclick_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_purchase_appointment">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_purchase_appointment">
+        <MappingFragment StoreEntitySet="tbl_purchase_appointment">
+          <ScalarProperty Name="pa_id" ColumnName="pa_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+          <ScalarProperty Name="customer_phoneno" ColumnName="customer_phoneno" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="appointment_date" ColumnName="appointment_date" />
+          <ScalarProperty Name="appointment_time" ColumnName="appointment_time" />
+          <ScalarProperty Name="appointment_comments" ColumnName="appointment_comments" />
+          <ScalarProperty Name="appointment_no" ColumnName="appointment_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_push_notification">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_push_notification">
+        <MappingFragment StoreEntitySet="tbl_push_notification">
+          <ScalarProperty Name="notification_id" ColumnName="notification_id" />
+          <ScalarProperty Name="notification_image" ColumnName="notification_image" />
+          <ScalarProperty Name="notification_title" ColumnName="notification_title" />
+          <ScalarProperty Name="notification_message" ColumnName="notification_message" />
+          <ScalarProperty Name="notification_broadcast" ColumnName="notification_broadcast" />
+          <ScalarProperty Name="notification_category" ColumnName="notification_category" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_scan_instruction">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_scan_instruction">
+        <MappingFragment StoreEntitySet="tbl_scan_instruction">
+          <ScalarProperty Name="scan_no" ColumnName="scan_no" />
+          <ScalarProperty Name="scan_desc" ColumnName="scan_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_scan_queries">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_scan_queries">
+        <MappingFragment StoreEntitySet="tbl_scan_queries">
+          <ScalarProperty Name="query_id" ColumnName="query_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+          <ScalarProperty Name="longitute" ColumnName="longitute" />
+          <ScalarProperty Name="scan_logo" ColumnName="scan_logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_scan_url">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_scan_url">
+        <MappingFragment StoreEntitySet="tbl_scan_url">
+          <ScalarProperty Name="scan_id" ColumnName="scan_id" />
+          <ScalarProperty Name="is_url" ColumnName="is_url" />
+          <ScalarProperty Name="is_store" ColumnName="is_store" />
+          <ScalarProperty Name="is_offer" ColumnName="is_offer" />
+          <ScalarProperty Name="scan_description" ColumnName="scan_description" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="store_offer_id" ColumnName="store_offer_id" />
+          <ScalarProperty Name="from_age" ColumnName="from_age" />
+          <ScalarProperty Name="to_age" ColumnName="to_age" />
+          <ScalarProperty Name="city_no" ColumnName="city_no" />
+          <ScalarProperty Name="scan_logo" ColumnName="scan_logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_senco_synchronization">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_senco_synchronization">
+        <MappingFragment StoreEntitySet="tbl_senco_synchronization">
+          <ScalarProperty Name="senco_sync_id" ColumnName="senco_sync_id" />
+          <ScalarProperty Name="senco_sync_name" ColumnName="senco_sync_name" />
+          <ScalarProperty Name="senco_sync_email" ColumnName="senco_sync_email" />
+          <ScalarProperty Name="senco_sync_mobile_no" ColumnName="senco_sync_mobile_no" />
+          <ScalarProperty Name="senco_sync_user_id" ColumnName="senco_sync_user_id" />
+          <ScalarProperty Name="sync_date_time" ColumnName="sync_date_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_spotlight">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_spotlight">
+        <MappingFragment StoreEntitySet="tbl_spotlight">
+          <ScalarProperty Name="spotlight_id" ColumnName="spotlight_id" />
+          <ScalarProperty Name="spotlight_name" ColumnName="spotlight_name" />
+          <ScalarProperty Name="spotlight_model_no" ColumnName="spotlight_model_no" />
+          <ScalarProperty Name="spotlight_price" ColumnName="spotlight_price" />
+          <ScalarProperty Name="spotlight_image" ColumnName="spotlight_image" />
+          <ScalarProperty Name="spotlight_url" ColumnName="spotlight_url" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="updated_on" ColumnName="updated_on" />
+          <ScalarProperty Name="clicks" ColumnName="clicks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_state_master">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_state_master">
+        <MappingFragment StoreEntitySet="tbl_state_master">
+          <ScalarProperty Name="state_no" ColumnName="state_no" />
+          <ScalarProperty Name="state_name" ColumnName="state_name" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="country_no" ColumnName="country_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_store_call_log">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_store_call_log">
+        <MappingFragment StoreEntitySet="tbl_store_call_log">
+          <ScalarProperty Name="call_log_no" ColumnName="call_log_no" />
+          <ScalarProperty Name="store_no" ColumnName="store_no" />
+          <ScalarProperty Name="store_phone_no" ColumnName="store_phone_no" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="called_on_datetime" ColumnName="called_on_datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_store_master">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_store_master">
+        <MappingFragment StoreEntitySet="tbl_store_master">
+          <ScalarProperty Name="store_no" ColumnName="store_no" />
+          <ScalarProperty Name="store_name" ColumnName="store_name" />
+          <ScalarProperty Name="store_city_no" ColumnName="store_city_no" />
+          <ScalarProperty Name="store_address" ColumnName="store_address" />
+          <ScalarProperty Name="store_pincode" ColumnName="store_pincode" />
+          <ScalarProperty Name="store_geo_coordinates" ColumnName="store_geo_coordinates" />
+          <ScalarProperty Name="store_contact_person" ColumnName="store_contact_person" />
+          <ScalarProperty Name="store_contact_person_mobile_no" ColumnName="store_contact_person_mobile_no" />
+          <ScalarProperty Name="store_contact_nos" ColumnName="store_contact_nos" />
+          <ScalarProperty Name="working_timing" ColumnName="working_timing" />
+          <ScalarProperty Name="branch_code" ColumnName="branch_code" />
+          <ScalarProperty Name="gold_price" ColumnName="gold_price" />
+          <ScalarProperty Name="store_emai_id" ColumnName="store_emai_id" />
+          <ScalarProperty Name="store_email_id" ColumnName="store_email_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_store_offer_views">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_store_offer_views">
+        <MappingFragment StoreEntitySet="tbl_store_offer_views">
+          <ScalarProperty Name="stv_no" ColumnName="stv_no" />
+          <ScalarProperty Name="store_offer_no" ColumnName="store_offer_no" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="viewed_on_datetime" ColumnName="viewed_on_datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_store_offers">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_store_offers">
+        <MappingFragment StoreEntitySet="tbl_store_offers">
+          <ScalarProperty Name="store_offer_no" ColumnName="store_offer_no" />
+          <ScalarProperty Name="store_no" ColumnName="store_no" />
+          <ScalarProperty Name="offer_no" ColumnName="offer_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_store_photos">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_store_photos">
+        <MappingFragment StoreEntitySet="tbl_store_photos">
+          <ScalarProperty Name="store_photo_no" ColumnName="store_photo_no" />
+          <ScalarProperty Name="store_no" ColumnName="store_no" />
+          <ScalarProperty Name="store_photo_thumbnail" ColumnName="store_photo_thumbnail" />
+          <ScalarProperty Name="store_photo_full_image" ColumnName="store_photo_full_image" />
+          <ScalarProperty Name="store_photo_sequence" ColumnName="store_photo_sequence" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_store_reviews">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_store_reviews">
+        <MappingFragment StoreEntitySet="tbl_store_reviews">
+          <ScalarProperty Name="store_review_no" ColumnName="store_review_no" />
+          <ScalarProperty Name="store_no" ColumnName="store_no" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="store_rating" ColumnName="store_rating" />
+          <ScalarProperty Name="user_review" ColumnName="user_review" />
+          <ScalarProperty Name="post_date" ColumnName="post_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_swarna_scheme_creation_details">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_swarna_scheme_creation_details">
+        <MappingFragment StoreEntitySet="tbl_swarna_scheme_creation_details">
+          <ScalarProperty Name="scheme_reg_id" ColumnName="scheme_reg_id" />
+          <ScalarProperty Name="scheme_member_id" ColumnName="scheme_member_id" />
+          <ScalarProperty Name="scheme_payload" ColumnName="scheme_payload" />
+          <ScalarProperty Name="created_on" ColumnName="created_on" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_swarna_user_registration">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_swarna_user_registration">
+        <MappingFragment StoreEntitySet="tbl_swarna_user_registration">
+          <ScalarProperty Name="user_reg_id" ColumnName="user_reg_id" />
+          <ScalarProperty Name="user_member_id" ColumnName="user_member_id" />
+          <ScalarProperty Name="user_reg_payload" ColumnName="user_reg_payload" />
+          <ScalarProperty Name="created_on" ColumnName="created_on" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_swarna_yojna">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_swarna_yojna">
+        <MappingFragment StoreEntitySet="tbl_swarna_yojna">
+          <ScalarProperty Name="sy_no" ColumnName="sy_no" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="current_plan_no" ColumnName="current_plan_no" />
+          <ScalarProperty Name="current_plan_title" ColumnName="current_plan_title" />
+          <ScalarProperty Name="current_plan_details" ColumnName="current_plan_details" />
+          <ScalarProperty Name="plan_start_date" ColumnName="plan_start_date" />
+          <ScalarProperty Name="plan_end_date" ColumnName="plan_end_date" />
+          <ScalarProperty Name="next_payment_date" ColumnName="next_payment_date" />
+          <ScalarProperty Name="next_payment_amount" ColumnName="next_payment_amount" />
+          <ScalarProperty Name="last_payment_date" ColumnName="last_payment_date" />
+          <ScalarProperty Name="last_payment_amount" ColumnName="last_payment_amount" />
+          <ScalarProperty Name="image_path" ColumnName="image_path" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="monthly_emi" ColumnName="monthly_emi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_swarna_yojna_payment_history">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_swarna_yojna_payment_history">
+        <MappingFragment StoreEntitySet="tbl_swarna_yojna_payment_history">
+          <ScalarProperty Name="syph_no" ColumnName="syph_no" />
+          <ScalarProperty Name="sy_no" ColumnName="sy_no" />
+          <ScalarProperty Name="syph_date" ColumnName="syph_date" />
+          <ScalarProperty Name="syph_amount" ColumnName="syph_amount" />
+          <ScalarProperty Name="payment_reference_id" ColumnName="payment_reference_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_tax_percentage">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_tax_percentage">
+        <MappingFragment StoreEntitySet="tbl_tax_percentage">
+          <ScalarProperty Name="tax_id" ColumnName="tax_id" />
+          <ScalarProperty Name="cgst_per" ColumnName="cgst_per" />
+          <ScalarProperty Name="sgst_per" ColumnName="sgst_per" />
+          <ScalarProperty Name="igst_per" ColumnName="igst_per" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_temp_ecommerce_payment_gateway">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_temp_ecommerce_payment_gateway">
+        <MappingFragment StoreEntitySet="tbl_temp_ecommerce_payment_gateway">
+          <ScalarProperty Name="temp_ecommerce_id" ColumnName="temp_ecommerce_id" />
+          <ScalarProperty Name="temp_ecommerce_user_id" ColumnName="temp_ecommerce_user_id" />
+          <ScalarProperty Name="temp_ecommerce_user_name" ColumnName="temp_ecommerce_user_name" />
+          <ScalarProperty Name="temp_ecommerce_user_email" ColumnName="temp_ecommerce_user_email" />
+          <ScalarProperty Name="temp_ecommerce_user_mobile_no" ColumnName="temp_ecommerce_user_mobile_no" />
+          <ScalarProperty Name="temp_ecommerce_pay_amount" ColumnName="temp_ecommerce_pay_amount" />
+          <ScalarProperty Name="temp_ecommerce_product_details" ColumnName="temp_ecommerce_product_details" />
+          <ScalarProperty Name="temp_ecommerce_order_no" ColumnName="temp_ecommerce_order_no" />
+          <ScalarProperty Name="temp_ecommerce_payment_status" ColumnName="temp_ecommerce_payment_status" />
+          <ScalarProperty Name="temp_ecommerce_payment_date" ColumnName="temp_ecommerce_payment_date" />
+          <ScalarProperty Name="temp_ecommerce_order_date" ColumnName="temp_ecommerce_order_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_temp_paymentgateway">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_temp_paymentgateway">
+        <MappingFragment StoreEntitySet="tbl_temp_paymentgateway">
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="service_option" ColumnName="service_option" />
+          <ScalarProperty Name="unique_code" ColumnName="unique_code" />
+          <ScalarProperty Name="starsign" ColumnName="starsign" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="time_of_birth" ColumnName="time_of_birth" />
+          <ScalarProperty Name="place_of_birth" ColumnName="place_of_birth" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="appointment_day" ColumnName="appointment_day" />
+          <ScalarProperty Name="appointment_date" ColumnName="appointment_date" />
+          <ScalarProperty Name="appointment_time" ColumnName="appointment_time" />
+          <ScalarProperty Name="astrologer_id" ColumnName="astrologer_id" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="consultation_type" ColumnName="consultation_type" />
+          <ScalarProperty Name="temp_payment_status" ColumnName="temp_payment_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_temp_swarna_paymentgateway">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_temp_swarna_paymentgateway">
+        <MappingFragment StoreEntitySet="tbl_temp_swarna_paymentgateway">
+          <ScalarProperty Name="temp_swarna_yojna_id" ColumnName="temp_swarna_yojna_id" />
+          <ScalarProperty Name="temp_swarna_bankauthorizationid" ColumnName="temp_swarna_bankauthorizationid" />
+          <ScalarProperty Name="temp_swarna_banktransactionid" ColumnName="temp_swarna_banktransactionid" />
+          <ScalarProperty Name="temp_swarna_customer_code" ColumnName="temp_swarna_customer_code" />
+          <ScalarProperty Name="temp_swarna_customer_name" ColumnName="temp_swarna_customer_name" />
+          <ScalarProperty Name="temp_swarna_inventlocation_id" ColumnName="temp_swarna_inventlocation_id" />
+          <ScalarProperty Name="temp_swarna_linenum" ColumnName="temp_swarna_linenum" />
+          <ScalarProperty Name="temp_swarna_payamount" ColumnName="temp_swarna_payamount" />
+          <ScalarProperty Name="temp_swarna_paymentdate" ColumnName="temp_swarna_paymentdate" />
+          <ScalarProperty Name="temp_swarna_paymententryno" ColumnName="temp_swarna_paymententryno" />
+          <ScalarProperty Name="temp_swarna_paymentmonth" ColumnName="temp_swarna_paymentmonth" />
+          <ScalarProperty Name="temp_swarna_payment_type" ColumnName="temp_swarna_payment_type" />
+          <ScalarProperty Name="temp_swarna_payment_year" ColumnName="temp_swarna_payment_year" />
+          <ScalarProperty Name="temp_swarna_payment_schemeentryno" ColumnName="temp_swarna_payment_schemeentryno" />
+          <ScalarProperty Name="temp_swarna_store" ColumnName="temp_swarna_store" />
+          <ScalarProperty Name="temp_swarna_tender_type" ColumnName="temp_swarna_tender_type" />
+          <ScalarProperty Name="temp_swarna_transaction_id" ColumnName="temp_swarna_transaction_id" />
+          <ScalarProperty Name="temp_swarna_member_id" ColumnName="temp_swarna_member_id" />
+          <ScalarProperty Name="temp_swarna_mobile_no" ColumnName="temp_swarna_mobile_no" />
+          <ScalarProperty Name="temp_swarna_order_no" ColumnName="temp_swarna_order_no" />
+          <ScalarProperty Name="temp_swarna_member_email" ColumnName="temp_swarna_member_email" />
+          <ScalarProperty Name="ttemp_swarna_payment_scheme_code" ColumnName="ttemp_swarna_payment_scheme_code" />
+          <ScalarProperty Name="temp_swarna_payment_reciept" ColumnName="temp_swarna_payment_reciept" />
+          <ScalarProperty Name="temp_payment_status" ColumnName="temp_payment_status" />
+          <ScalarProperty Name="temp_swarna_tenure" ColumnName="temp_swarna_tenure" />
+          <ScalarProperty Name="temp_swarna_payload_json" ColumnName="temp_swarna_payload_json" />
+          <ScalarProperty Name="temp_swarna_current_emi_no" ColumnName="temp_swarna_current_emi_no" />
+          <ScalarProperty Name="response_message" ColumnName="response_message" />
+          <ScalarProperty Name="response_code" ColumnName="response_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_user_details">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_user_details">
+        <MappingFragment StoreEntitySet="tbl_user_details">
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="user_uid" ColumnName="user_uid" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_mobile_no" ColumnName="user_mobile_no" />
+          <ScalarProperty Name="is_mobile_verified" ColumnName="is_mobile_verified" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="user_current_country" ColumnName="user_current_country" />
+          <ScalarProperty Name="user_current_city" ColumnName="user_current_city" />
+          <ScalarProperty Name="user_last_geocoordinates" ColumnName="user_last_geocoordinates" />
+          <ScalarProperty Name="user_birth_date" ColumnName="user_birth_date" />
+          <ScalarProperty Name="user_birth_time" ColumnName="user_birth_time" />
+          <ScalarProperty Name="user_birth_location" ColumnName="user_birth_location" />
+          <ScalarProperty Name="horoscope_no" ColumnName="horoscope_no" />
+          <ScalarProperty Name="current_reward_points" ColumnName="current_reward_points" />
+          <ScalarProperty Name="user_gender" ColumnName="user_gender" />
+          <ScalarProperty Name="device_token" ColumnName="device_token" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="app_version" ColumnName="app_version" />
+          <ScalarProperty Name="user_photo" ColumnName="user_photo" />
+          <ScalarProperty Name="last_use_app_datetime" ColumnName="last_use_app_datetime" />
+          <ScalarProperty Name="user_registred_on" ColumnName="user_registred_on" />
+          <ScalarProperty Name="uninstall_status_flag" ColumnName="uninstall_status_flag" />
+          <ScalarProperty Name="IMEI_number" ColumnName="IMEI_number" />
+          <ScalarProperty Name="uninstall_datetime" ColumnName="uninstall_datetime" />
+          <ScalarProperty Name="sms_count" ColumnName="sms_count" />
+          <ScalarProperty Name="mobile_verification_count" ColumnName="mobile_verification_count" />
+          <ScalarProperty Name="mobile_verification_completed" ColumnName="mobile_verification_completed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_version_master">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_version_master">
+        <MappingFragment StoreEntitySet="tbl_version_master">
+          <ScalarProperty Name="version_id" ColumnName="version_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="store" ColumnName="store" />
+          <ScalarProperty Name="InventLocationId" ColumnName="InventLocationId" />
+          <ScalarProperty Name="swarnyojna_view" ColumnName="swarnyojna_view" />
+          <ScalarProperty Name="time_spent" ColumnName="time_spent" />
+          <ScalarProperty Name="swarnyojna_schemecreation" ColumnName="swarnyojna_schemecreation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_zonal_manager">
+      <EntityTypeMapping TypeName="SENCO_DB_LIVEModel.tbl_zonal_manager">
+        <MappingFragment StoreEntitySet="tbl_zonal_manager">
+          <ScalarProperty Name="zmid" ColumnName="zmid" />
+          <ScalarProperty Name="zmstore_name" ColumnName="zmstore_name" />
+          <ScalarProperty Name="zmperson_name" ColumnName="zmperson_name" />
+          <ScalarProperty Name="zmemail_id" ColumnName="zmemail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SENCO_DB_LIVEModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SENCO_DB_LIVEModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SENCO_DB_LIVEModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SENCO_DB_LIVEModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SENCO_DB_LIVEModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SENCO_DB_LIVEModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SENCO_DB_LIVEModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SENCO_DB_LIVEModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SENCO_DB_LIVEModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

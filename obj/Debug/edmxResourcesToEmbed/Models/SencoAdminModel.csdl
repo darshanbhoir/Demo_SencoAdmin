@@ -1,0 +1,1605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SENCO_DB_LIVEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_admin_login">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_astrologer_appointment">
+    <Key>
+      <PropertyRef Name="aa_id" />
+    </Key>
+    <Property Name="aa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_id" Type="Int32" />
+    <Property Name="customer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="customer_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="customer_phoneno" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="astrologer_id" Type="Int32" Nullable="false" />
+    <Property Name="appointment_date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_astrologer_master" Relationship="Self.FK_tbl_astrologer_appointment_tbl_astrologer_master" FromRole="tbl_astrologer_appointment" ToRole="tbl_astrologer_master" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_astrologer_appointment_tbl_store_master" FromRole="tbl_astrologer_appointment" ToRole="tbl_store_master" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_astrologer_appointment_tbl_user_details" FromRole="tbl_astrologer_appointment" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_astrologer_master">
+    <Key>
+      <PropertyRef Name="astrolger_id" />
+    </Key>
+    <Property Name="astrolger_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="astrologer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="astrologer_mobile_no" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="astrologer_email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="astrologer_photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="astrologer_profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="astrologer_price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="available_online" Type="Boolean" />
+    <Property Name="astrologer_sequence" Type="Int32" />
+    <NavigationProperty Name="tbl_astrologer_appointment" Relationship="Self.FK_tbl_astrologer_appointment_tbl_astrologer_master" FromRole="tbl_astrologer_master" ToRole="tbl_astrologer_appointment" />
+    <NavigationProperty Name="tbl_astrologer_schedule" Relationship="Self.FK_tbl_astrologer_schedule_tbl_astrologer_master" FromRole="tbl_astrologer_master" ToRole="tbl_astrologer_schedule" />
+    <NavigationProperty Name="tbl_astrologer_store_link" Relationship="Self.FK_tbl_astrologer_store_link_tbl_astrologer_master" FromRole="tbl_astrologer_master" ToRole="tbl_astrologer_store_link" />
+  </EntityType>
+  <EntityType Name="tbl_astrologer_schedule">
+    <Key>
+      <PropertyRef Name="as_id" />
+    </Key>
+    <Property Name="as_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="astrologer_id" Type="Int32" />
+    <Property Name="duration" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sunday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="monday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tuesday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="wednesday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="thursday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="friday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="saturday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sun" Type="Boolean" Nullable="false" />
+    <Property Name="mon" Type="Boolean" Nullable="false" />
+    <Property Name="tue" Type="Boolean" Nullable="false" />
+    <Property Name="wed" Type="Boolean" Nullable="false" />
+    <Property Name="thu" Type="Boolean" Nullable="false" />
+    <Property Name="fri" Type="Boolean" Nullable="false" />
+    <Property Name="sat" Type="Boolean" Nullable="false" />
+    <Property Name="sunday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="monday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tuesday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="wednesday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="thursday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="friday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="saturday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sunday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="monday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tuesday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="wednesday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="thursday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="friday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="saturday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_astrologer_master" Relationship="Self.FK_tbl_astrologer_schedule_tbl_astrologer_master" FromRole="tbl_astrologer_schedule" ToRole="tbl_astrologer_master" />
+  </EntityType>
+  <EntityType Name="tbl_astrologer_store_link">
+    <Key>
+      <PropertyRef Name="as_id" />
+    </Key>
+    <Property Name="as_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="astrologer_id" Type="Int32" />
+    <Property Name="store_id" Type="Int32" Nullable="false" />
+    <Property Name="astrologer_store_timing" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="state_id" Type="Int32" />
+    <Property Name="duration" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sunday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="monday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tuesday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="wednesday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="thursday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="friday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="saturday" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sun" Type="Boolean" Nullable="false" />
+    <Property Name="mon" Type="Boolean" Nullable="false" />
+    <Property Name="tue" Type="Boolean" Nullable="false" />
+    <Property Name="wed" Type="Boolean" Nullable="false" />
+    <Property Name="thu" Type="Boolean" Nullable="false" />
+    <Property Name="fri" Type="Boolean" Nullable="false" />
+    <Property Name="sat" Type="Boolean" Nullable="false" />
+    <Property Name="sunday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="monday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tuesday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="wednesday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="thursday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="friday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="saturday_from" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sunday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="monday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tuesday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="wednesday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="thursday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="friday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="saturday_to" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_astrologer_master" Relationship="Self.FK_tbl_astrologer_store_link_tbl_astrologer_master" FromRole="tbl_astrologer_store_link" ToRole="tbl_astrologer_master" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_astrologer_store_link_tbl_store_master" FromRole="tbl_astrologer_store_link" ToRole="tbl_store_master" />
+  </EntityType>
+  <EntityType Name="tbl_city_master">
+    <Key>
+      <PropertyRef Name="city_no" />
+    </Key>
+    <Property Name="city_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="city_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="country_no" Type="Int32" Nullable="false" />
+    <Property Name="city_geo_coordinates" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city_geo_radius" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="state_no" Type="Int32" />
+    <NavigationProperty Name="tbl_country_master" Relationship="Self.FK_tbl_city_master_tbl_country_master_country_no" FromRole="tbl_city_master" ToRole="tbl_country_master" />
+    <NavigationProperty Name="tbl_state_master" Relationship="Self.FK_tbl_city_master_tbl_state_master" FromRole="tbl_city_master" ToRole="tbl_state_master" />
+    <NavigationProperty Name="tbl_gold_price" Relationship="Self.FK_tbl_gold_price_tbl_city_master_city_no" FromRole="tbl_city_master" ToRole="tbl_gold_price" />
+    <NavigationProperty Name="tbl_horoscope_purchases" Relationship="Self.FK_tbl_horoscope_purchases_tbl_city_master" FromRole="tbl_city_master" ToRole="tbl_horoscope_purchases" />
+    <NavigationProperty Name="tbl_manage_video_audiance_location" Relationship="Self.FK_tbl_manage_video_audiance_location_tbl_city_master" FromRole="tbl_city_master" ToRole="tbl_manage_video_audiance_location" />
+    <NavigationProperty Name="tbl_offers_audiance_location" Relationship="Self.FK_tbl_offers_audiance_location_tbl_city_master2" FromRole="tbl_city_master" ToRole="tbl_offers_audiance_location" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_store_master_tbl_city_master_city_no" FromRole="tbl_city_master" ToRole="tbl_store_master" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_user_details_tbl_city_master" FromRole="tbl_city_master" ToRole="tbl_user_details" />
+    <NavigationProperty Name="tbl_scan_url" Relationship="Self.tbl_scan_url_city_no_FK" FromRole="tbl_city_master" ToRole="tbl_scan_url" />
+  </EntityType>
+  <EntityType Name="tbl_Collections">
+    <Key>
+      <PropertyRef Name="Collection_id" />
+    </Key>
+    <Property Name="Collection_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Collection_Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Collection_Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Collection_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="updated_on" Type="DateTime" Precision="3" />
+    <Property Name="clicks" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_country_master">
+    <Key>
+      <PropertyRef Name="country_no" />
+    </Key>
+    <Property Name="country_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="country_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="is_active" Type="Boolean" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.FK_tbl_city_master_tbl_country_master_country_no" FromRole="tbl_country_master" ToRole="tbl_city_master" />
+    <NavigationProperty Name="tbl_horoscope_purchases" Relationship="Self.FK_tbl_horoscope_purchases_tbl_country_master" FromRole="tbl_country_master" ToRole="tbl_horoscope_purchases" />
+    <NavigationProperty Name="tbl_state_master" Relationship="Self.FK_tbl_state_master_tbl_country_master" FromRole="tbl_country_master" ToRole="tbl_state_master" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_user_details_tbl_country_master" FromRole="tbl_country_master" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_dashboard_analytics">
+    <Key>
+      <PropertyRef Name="DashBoardAnalytics_id" />
+    </Key>
+    <Property Name="DashBoardAnalytics_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="video_click" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="offer_click" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="spotlight_click" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="collection_click" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="event_click" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="registration_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="appoitment_category_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="active_uninstall_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="purchase_app_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="designer_app_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="astrologer_app_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="sales_list_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="emi_sales_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="astro_sales_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_designer_appointment">
+    <Key>
+      <PropertyRef Name="pa_id" />
+    </Key>
+    <Property Name="pa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_id" Type="Int32" />
+    <Property Name="customer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="customer_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="customer_phoneno" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="state_id" Type="Int32" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="appointment_date" Type="DateTime" Precision="0" />
+    <Property Name="appointment_time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_state_master" Relationship="Self.FK_tbl_designer_appointment_tbl_state_master" FromRole="tbl_designer_appointment" ToRole="tbl_state_master" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_designer_appointment_tbl_store_master" FromRole="tbl_designer_appointment" ToRole="tbl_store_master" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_designer_appointment_tbl_user_details" FromRole="tbl_designer_appointment" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_ecommerce_transaction">
+    <Key>
+      <PropertyRef Name="ecommerce_id" />
+    </Key>
+    <Property Name="ecommerce_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="member_id" Type="Int32" />
+    <Property Name="payload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="date_time" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_events">
+    <Key>
+      <PropertyRef Name="event_no" />
+    </Key>
+    <Property Name="event_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="event_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="event_desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="event_banner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="event_banner_thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="event_url" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="clicks" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_gold_price">
+    <Key>
+      <PropertyRef Name="gold_price_no" />
+    </Key>
+    <Property Name="gold_price_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="city_no" Type="Int32" Nullable="false" />
+    <Property Name="validity_start_date" Type="DateTime" Precision="3" />
+    <Property Name="validity_end_date" Type="DateTime" Precision="3" />
+    <Property Name="gold_price_value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="price_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.FK_tbl_gold_price_tbl_city_master_city_no" FromRole="tbl_gold_price" ToRole="tbl_city_master" />
+  </EntityType>
+  <EntityType Name="tbl_horoscope_banner">
+    <Key>
+      <PropertyRef Name="horoscope_banner_id" />
+    </Key>
+    <Property Name="horoscope_banner_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="horoscope_banner_Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="horoscope_banner_Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="horoscope_banner_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="updated_on" Type="DateTime" Precision="3" />
+    <Property Name="clicks" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_horoscope_master">
+    <Key>
+      <PropertyRef Name="horoscope_no" />
+    </Key>
+    <Property Name="horoscope_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="horoscope_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="horoscope_logo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="horoscope_birthdate_from" Type="DateTime" Precision="3" />
+    <Property Name="horoscope_birthdate_to" Type="DateTime" Precision="3" />
+    <Property Name="horoscope_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_horoscope_schedule" Relationship="Self.FK_tbl_horoscope_schedule_tbl_horoscope_master_horoscope_no" FromRole="tbl_horoscope_master" ToRole="tbl_horoscope_schedule" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_user_details_tbl_horoscope_master" FromRole="tbl_horoscope_master" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_horoscope_pricing">
+    <Key>
+      <PropertyRef Name="product_code" />
+    </Key>
+    <Property Name="product_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_title" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="discount" Type="Int32" />
+    <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="without_gst_amount" Type="Int32" />
+    <Property Name="gst_amount" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <NavigationProperty Name="tbl_horoscope_purchases" Relationship="Self.FK_tbl_horoscope_purchases_tbl_horoscope_pricing" FromRole="tbl_horoscope_pricing" ToRole="tbl_horoscope_purchases" />
+  </EntityType>
+  <EntityType Name="tbl_horoscope_purchases">
+    <Key>
+      <PropertyRef Name="order_no" />
+    </Key>
+    <Property Name="order_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_date" Type="DateTime" Precision="3" />
+    <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="mobile_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="Int32" Nullable="false" />
+    <Property Name="country" Type="Int32" Nullable="false" />
+    <Property Name="purchase_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Byte" />
+    <Property Name="order_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="product_code" Type="Int32" Nullable="false" />
+    <Property Name="payment_ref_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="user_no" Type="Int32" />
+    <Property Name="pdf_file" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_day" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_date" Type="DateTime" Precision="3" />
+    <Property Name="appointment_time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="astrologer_id" Type="Int32" />
+    <Property Name="gender" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="consultation_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.FK_tbl_horoscope_purchases_tbl_city_master" FromRole="tbl_horoscope_purchases" ToRole="tbl_city_master" />
+    <NavigationProperty Name="tbl_country_master" Relationship="Self.FK_tbl_horoscope_purchases_tbl_country_master" FromRole="tbl_horoscope_purchases" ToRole="tbl_country_master" />
+    <NavigationProperty Name="tbl_horoscope_pricing" Relationship="Self.FK_tbl_horoscope_purchases_tbl_horoscope_pricing" FromRole="tbl_horoscope_purchases" ToRole="tbl_horoscope_pricing" />
+  </EntityType>
+  <EntityType Name="tbl_horoscope_purchases_attempts">
+    <Key>
+      <PropertyRef Name="attempt_no" />
+    </Key>
+    <Property Name="attempt_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="user_mobile_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="user_city_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="birth_date" Type="DateTime" Precision="3" />
+    <Property Name="horoscope_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="on_attempted_date" Type="DateTime" Precision="3" />
+    <Property Name="code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_horoscope_schedule">
+    <Key>
+      <PropertyRef Name="hs_no" />
+    </Key>
+    <Property Name="hs_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="horoscope_no" Type="Int32" Nullable="false" />
+    <Property Name="schedule_from_date" Type="DateTime" Precision="3" />
+    <Property Name="schedule_to_date" Type="DateTime" Precision="3" />
+    <Property Name="horoscope_schedule_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="Today_Prediction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Today_Lucky_Color" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Today_Lucky_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Today_Lucky_Time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="health_per" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="health_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="love_per" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="love_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="career_per" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="career_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_horoscope_master" Relationship="Self.FK_tbl_horoscope_schedule_tbl_horoscope_master_horoscope_no" FromRole="tbl_horoscope_schedule" ToRole="tbl_horoscope_master" />
+  </EntityType>
+  <EntityType Name="tbl_horoscope_testimonials">
+    <Key>
+      <PropertyRef Name="horoscope_testimonial_id" />
+    </Key>
+    <Property Name="horoscope_testimonial_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="horoscope_testimonial_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="horoscope_testimonial_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="horoscope_testimonial_place" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="horoscope_testimonial_photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="updated_on" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_manage_video_audiance_location">
+    <Key>
+      <PropertyRef Name="managevideo_al_no" />
+    </Key>
+    <Property Name="managevideo_al_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="managevideo_id" Type="Int32" Nullable="false" />
+    <Property Name="city_no" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.FK_tbl_manage_video_audiance_location_tbl_city_master" FromRole="tbl_manage_video_audiance_location" ToRole="tbl_city_master" />
+    <NavigationProperty Name="tbl_manage_videos" Relationship="Self.FK_tbl_manage_video_audiance_location_tbl_manage_videos" FromRole="tbl_manage_video_audiance_location" ToRole="tbl_manage_videos" />
+  </EntityType>
+  <EntityType Name="tbl_manage_videos">
+    <Key>
+      <PropertyRef Name="managevideo_id" />
+    </Key>
+    <Property Name="managevideo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="managevideo_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="managevideo_image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="managevideo_video_url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="updated_on" Type="DateTime" Precision="3" />
+    <Property Name="clicks" Type="Int32" />
+    <NavigationProperty Name="tbl_manage_video_audiance_location" Relationship="Self.FK_tbl_manage_video_audiance_location_tbl_manage_videos" FromRole="tbl_manage_videos" ToRole="tbl_manage_video_audiance_location" />
+  </EntityType>
+  <EntityType Name="tbl_mobile_verification_status">
+    <Key>
+      <PropertyRef Name="mobile_ver_id" />
+    </Key>
+    <Property Name="mobile_ver_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mobile_ver_user_id" Type="Int32" />
+    <Property Name="mobile_ver_datetime" Type="DateTime" Precision="3" />
+    <Property Name="mobile_ver_status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_offer_notification_schedule">
+    <Key>
+      <PropertyRef Name="offer_ns_no" />
+    </Key>
+    <Property Name="offer_ns_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="offer_no" Type="Int32" Nullable="false" />
+    <Property Name="notification_start_date" Type="DateTime" Precision="3" />
+    <Property Name="notification_end_date" Type="DateTime" Precision="3" />
+    <Property Name="days_of_week" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="times_of_day" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_offers" Relationship="Self.FK_tbl_offer_notification_schedule_tbl_offers" FromRole="tbl_offer_notification_schedule" ToRole="tbl_offers" />
+  </EntityType>
+  <EntityType Name="tbl_offers">
+    <Key>
+      <PropertyRef Name="offer_no" />
+    </Key>
+    <Property Name="offer_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="offer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="offer_banner_thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="offer_full_banner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="offer_redirect_to_shop_or_web" Type="Int32" />
+    <Property Name="web_url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="offer_created_on" Type="DateTime" Precision="3" />
+    <Property Name="offer_expires_on" Type="DateTime" Precision="3" />
+    <Property Name="offer_totalclick_count" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="offer_desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="is_new_arrival" Type="Boolean" />
+    <Property Name="is_event" Type="Boolean" />
+    <NavigationProperty Name="tbl_offer_notification_schedule" Relationship="Self.FK_tbl_offer_notification_schedule_tbl_offers" FromRole="tbl_offers" ToRole="tbl_offer_notification_schedule" />
+    <NavigationProperty Name="tbl_offers_audiance_location" Relationship="Self.FK_tbl_offers_audiance_location_tbl_city_master1" FromRole="tbl_offers" ToRole="tbl_offers_audiance_location" />
+    <NavigationProperty Name="tbl_store_offers" Relationship="Self.FK_tbl_store_offers_tbl_offers_offer_no" FromRole="tbl_offers" ToRole="tbl_store_offers" />
+  </EntityType>
+  <EntityType Name="tbl_offers_audiance_location">
+    <Key>
+      <PropertyRef Name="offer_al_no" />
+    </Key>
+    <Property Name="offer_al_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="offer_no" Type="Int32" Nullable="false" />
+    <Property Name="city_no" Type="Int32" Nullable="false" />
+    <Property Name="offer_cityclick_count" Type="Int32" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.FK_tbl_offers_audiance_location_tbl_city_master2" FromRole="tbl_offers_audiance_location" ToRole="tbl_city_master" />
+    <NavigationProperty Name="tbl_offers" Relationship="Self.FK_tbl_offers_audiance_location_tbl_city_master1" FromRole="tbl_offers_audiance_location" ToRole="tbl_offers" />
+  </EntityType>
+  <EntityType Name="tbl_purchase_appointment">
+    <Key>
+      <PropertyRef Name="pa_id" />
+    </Key>
+    <Property Name="pa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_id" Type="Int32" />
+    <Property Name="customer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="customer_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="customer_phoneno" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="appointment_date" Type="DateTime" Precision="0" />
+    <Property Name="appointment_time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_purchase_appointment_tbl_store_master" FromRole="tbl_purchase_appointment" ToRole="tbl_store_master" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_purchase_appointment_tbl_user_details" FromRole="tbl_purchase_appointment" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_push_notification">
+    <Key>
+      <PropertyRef Name="notification_id" />
+    </Key>
+    <Property Name="notification_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="notification_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="notification_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="notification_message" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="notification_broadcast" Type="DateTime" Precision="3" />
+    <Property Name="notification_category" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="is_active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_scan_instruction">
+    <Key>
+      <PropertyRef Name="scan_no" />
+    </Key>
+    <Property Name="scan_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="scan_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_scan_queries">
+    <Key>
+      <PropertyRef Name="query_id" />
+    </Key>
+    <Property Name="query_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="lat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="datetime" Type="DateTime" Precision="3" />
+    <Property Name="city_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="longitute" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="scan_logo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.tbl_scan_queries_user_id_FK" FromRole="tbl_scan_queries" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_scan_url">
+    <Key>
+      <PropertyRef Name="scan_id" />
+    </Key>
+    <Property Name="scan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="is_url" Type="Boolean" Nullable="false" />
+    <Property Name="is_store" Type="Boolean" Nullable="false" />
+    <Property Name="is_offer" Type="Boolean" Nullable="false" />
+    <Property Name="scan_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="website" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="store_offer_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="from_age" Type="Byte" Nullable="false" />
+    <Property Name="to_age" Type="Byte" Nullable="false" />
+    <Property Name="city_no" Type="Int32" Nullable="false" />
+    <Property Name="scan_logo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.tbl_scan_url_city_no_FK" FromRole="tbl_scan_url" ToRole="tbl_city_master" />
+  </EntityType>
+  <EntityType Name="tbl_senco_synchronization">
+    <Key>
+      <PropertyRef Name="senco_sync_id" />
+    </Key>
+    <Property Name="senco_sync_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="senco_sync_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="senco_sync_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="senco_sync_mobile_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="senco_sync_user_id" Type="Int32" />
+    <Property Name="sync_date_time" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_spotlight">
+    <Key>
+      <PropertyRef Name="spotlight_id" />
+    </Key>
+    <Property Name="spotlight_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="spotlight_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="spotlight_model_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="spotlight_price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="spotlight_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="spotlight_url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="updated_on" Type="DateTime" Precision="3" />
+    <Property Name="clicks" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_state_master">
+    <Key>
+      <PropertyRef Name="state_no" />
+    </Key>
+    <Property Name="state_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="state_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="country_no" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.FK_tbl_city_master_tbl_state_master" FromRole="tbl_state_master" ToRole="tbl_city_master" />
+    <NavigationProperty Name="tbl_country_master" Relationship="Self.FK_tbl_state_master_tbl_country_master" FromRole="tbl_state_master" ToRole="tbl_country_master" />
+    <NavigationProperty Name="tbl_designer_appointment" Relationship="Self.FK_tbl_designer_appointment_tbl_state_master" FromRole="tbl_state_master" ToRole="tbl_designer_appointment" />
+  </EntityType>
+  <EntityType Name="tbl_store_call_log">
+    <Key>
+      <PropertyRef Name="call_log_no" />
+    </Key>
+    <Property Name="call_log_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_no" Type="Int32" Nullable="false" />
+    <Property Name="store_phone_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="user_no" Type="Int32" Nullable="false" />
+    <Property Name="called_on_datetime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_store_call_log_tbl_store_master_store_no" FromRole="tbl_store_call_log" ToRole="tbl_store_master" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_store_call_log_tbl_user_details" FromRole="tbl_store_call_log" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_store_master">
+    <Key>
+      <PropertyRef Name="store_no" />
+    </Key>
+    <Property Name="store_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="store_city_no" Type="Int32" />
+    <Property Name="store_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="store_pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_geo_coordinates" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="store_contact_person" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="store_contact_person_mobile_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_contact_nos" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="working_timing" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="branch_code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="gold_price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="store_emai_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="store_email_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_astrologer_appointment" Relationship="Self.FK_tbl_astrologer_appointment_tbl_store_master" FromRole="tbl_store_master" ToRole="tbl_astrologer_appointment" />
+    <NavigationProperty Name="tbl_astrologer_store_link" Relationship="Self.FK_tbl_astrologer_store_link_tbl_store_master" FromRole="tbl_store_master" ToRole="tbl_astrologer_store_link" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.FK_tbl_store_master_tbl_city_master_city_no" FromRole="tbl_store_master" ToRole="tbl_city_master" />
+    <NavigationProperty Name="tbl_designer_appointment" Relationship="Self.FK_tbl_designer_appointment_tbl_store_master" FromRole="tbl_store_master" ToRole="tbl_designer_appointment" />
+    <NavigationProperty Name="tbl_purchase_appointment" Relationship="Self.FK_tbl_purchase_appointment_tbl_store_master" FromRole="tbl_store_master" ToRole="tbl_purchase_appointment" />
+    <NavigationProperty Name="tbl_store_call_log" Relationship="Self.FK_tbl_store_call_log_tbl_store_master_store_no" FromRole="tbl_store_master" ToRole="tbl_store_call_log" />
+    <NavigationProperty Name="tbl_store_offers" Relationship="Self.FK_tbl_store_offers_tbl_store_master_store_no" FromRole="tbl_store_master" ToRole="tbl_store_offers" />
+    <NavigationProperty Name="tbl_store_photos" Relationship="Self.FK_tbl_store_photos_tbl_store_master_store_no" FromRole="tbl_store_master" ToRole="tbl_store_photos" />
+    <NavigationProperty Name="tbl_store_reviews" Relationship="Self.FK_tbl_store_reviews_tbl_store_master_store_no" FromRole="tbl_store_master" ToRole="tbl_store_reviews" />
+  </EntityType>
+  <EntityType Name="tbl_store_offer_views">
+    <Key>
+      <PropertyRef Name="stv_no" />
+    </Key>
+    <Property Name="stv_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_offer_no" Type="Int32" Nullable="false" />
+    <Property Name="user_no" Type="Int32" Nullable="false" />
+    <Property Name="viewed_on_datetime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_store_offers" Relationship="Self.FK_tbl_store_offer_views_tbl_store_offers_store_offer_no" FromRole="tbl_store_offer_views" ToRole="tbl_store_offers" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_store_offer_views_tbl_user_details" FromRole="tbl_store_offer_views" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_store_offers">
+    <Key>
+      <PropertyRef Name="store_offer_no" />
+    </Key>
+    <Property Name="store_offer_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_no" Type="Int32" Nullable="false" />
+    <Property Name="offer_no" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_offers" Relationship="Self.FK_tbl_store_offers_tbl_offers_offer_no" FromRole="tbl_store_offers" ToRole="tbl_offers" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_store_offers_tbl_store_master_store_no" FromRole="tbl_store_offers" ToRole="tbl_store_master" />
+    <NavigationProperty Name="tbl_store_offer_views" Relationship="Self.FK_tbl_store_offer_views_tbl_store_offers_store_offer_no" FromRole="tbl_store_offers" ToRole="tbl_store_offer_views" />
+  </EntityType>
+  <EntityType Name="tbl_store_photos">
+    <Key>
+      <PropertyRef Name="store_photo_no" />
+    </Key>
+    <Property Name="store_photo_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_no" Type="Int32" Nullable="false" />
+    <Property Name="store_photo_thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="store_photo_full_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="store_photo_sequence" Type="Int32" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_store_photos_tbl_store_master_store_no" FromRole="tbl_store_photos" ToRole="tbl_store_master" />
+  </EntityType>
+  <EntityType Name="tbl_store_reviews">
+    <Key>
+      <PropertyRef Name="store_review_no" />
+    </Key>
+    <Property Name="store_review_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_no" Type="Int32" Nullable="false" />
+    <Property Name="user_no" Type="Int32" Nullable="false" />
+    <Property Name="store_rating" Type="Int32" />
+    <Property Name="user_review" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="post_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_store_master" Relationship="Self.FK_tbl_store_reviews_tbl_store_master_store_no" FromRole="tbl_store_reviews" ToRole="tbl_store_master" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_store_reviews_tbl_user_details" FromRole="tbl_store_reviews" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_swarna_scheme_creation_details">
+    <Key>
+      <PropertyRef Name="scheme_reg_id" />
+    </Key>
+    <Property Name="scheme_reg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="scheme_member_id" Type="Int32" />
+    <Property Name="scheme_payload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="created_on" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_swarna_user_registration">
+    <Key>
+      <PropertyRef Name="user_reg_id" />
+    </Key>
+    <Property Name="user_reg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_member_id" Type="Int32" />
+    <Property Name="user_reg_payload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="created_on" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_swarna_yojna">
+    <Key>
+      <PropertyRef Name="sy_no" />
+    </Key>
+    <Property Name="sy_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_no" Type="Int32" Nullable="false" />
+    <Property Name="current_plan_no" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="current_plan_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="current_plan_details" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="plan_start_date" Type="DateTime" Precision="3" />
+    <Property Name="plan_end_date" Type="DateTime" Precision="3" />
+    <Property Name="next_payment_date" Type="DateTime" Precision="3" />
+    <Property Name="next_payment_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="last_payment_date" Type="DateTime" Precision="3" />
+    <Property Name="last_payment_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="image_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <Property Name="monthly_emi" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="tbl_swarna_yojna_payment_history" Relationship="Self.FK_tbl_swarna_yojna_payment_history_tbl_swarna_yojna_sy_no" FromRole="tbl_swarna_yojna" ToRole="tbl_swarna_yojna_payment_history" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_swarna_yojna_tbl_user_details" FromRole="tbl_swarna_yojna" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_swarna_yojna_payment_history">
+    <Key>
+      <PropertyRef Name="syph_no" />
+    </Key>
+    <Property Name="syph_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sy_no" Type="Int32" Nullable="false" />
+    <Property Name="syph_date" Type="DateTime" Precision="3" />
+    <Property Name="syph_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="payment_reference_id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_swarna_yojna" Relationship="Self.FK_tbl_swarna_yojna_payment_history_tbl_swarna_yojna_sy_no" FromRole="tbl_swarna_yojna_payment_history" ToRole="tbl_swarna_yojna" />
+  </EntityType>
+  <EntityType Name="tbl_tax_percentage">
+    <Key>
+      <PropertyRef Name="tax_id" />
+    </Key>
+    <Property Name="tax_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cgst_per" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sgst_per" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="igst_per" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_temp_ecommerce_payment_gateway">
+    <Key>
+      <PropertyRef Name="temp_ecommerce_id" />
+    </Key>
+    <Property Name="temp_ecommerce_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="temp_ecommerce_user_id" Type="Int32" />
+    <Property Name="temp_ecommerce_user_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="temp_ecommerce_user_email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="temp_ecommerce_user_mobile_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="temp_ecommerce_pay_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="temp_ecommerce_product_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="temp_ecommerce_order_no" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="temp_ecommerce_payment_status" Type="Boolean" />
+    <Property Name="temp_ecommerce_payment_date" Type="DateTime" Precision="3" />
+    <Property Name="temp_ecommerce_order_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_user_details" Relationship="Self.FK_tbl_temp_ecommerce_payment_gateway_tbl_user_details" FromRole="tbl_temp_ecommerce_payment_gateway" ToRole="tbl_user_details" />
+  </EntityType>
+  <EntityType Name="tbl_temp_paymentgateway">
+    <Key>
+      <PropertyRef Name="payment_id" />
+    </Key>
+    <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="member_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="order_date" Type="DateTime" Precision="3" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="service_option" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="unique_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="starsign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="3" />
+    <Property Name="time_of_birth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="place_of_birth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_day" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="appointment_date" Type="DateTime" Precision="3" />
+    <Property Name="appointment_time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="astrologer_id" Type="Int32" />
+    <Property Name="gender" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="consultation_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="temp_payment_status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_temp_swarna_paymentgateway">
+    <Key>
+      <PropertyRef Name="temp_swarna_yojna_id" />
+    </Key>
+    <Property Name="temp_swarna_yojna_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="temp_swarna_bankauthorizationid" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_banktransactionid" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_customer_code" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_customer_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_inventlocation_id" Type="Int32" />
+    <Property Name="temp_swarna_linenum" Type="Int32" />
+    <Property Name="temp_swarna_payamount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="temp_swarna_paymentdate" Type="DateTime" Precision="3" />
+    <Property Name="temp_swarna_paymententryno" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_paymentmonth" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_payment_year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_payment_schemeentryno" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_store" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_tender_type" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_transaction_id" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_member_id" Type="Int32" />
+    <Property Name="temp_swarna_mobile_no" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_order_no" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_member_email" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+    <Property Name="ttemp_swarna_payment_scheme_code" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_payment_reciept" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="temp_payment_status" Type="Boolean" />
+    <Property Name="temp_swarna_tenure" Type="Int32" />
+    <Property Name="temp_swarna_payload_json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="temp_swarna_current_emi_no" Type="Int32" />
+    <Property Name="response_message" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+    <Property Name="response_code" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_user_details">
+    <Key>
+      <PropertyRef Name="user_no" />
+    </Key>
+    <Property Name="user_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_uid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="user_mobile_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="is_mobile_verified" Type="Boolean" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="user_current_country" Type="Int32" />
+    <Property Name="user_current_city" Type="Int32" />
+    <Property Name="user_last_geocoordinates" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="user_birth_date" Type="DateTime" Precision="3" />
+    <Property Name="user_birth_time" Type="DateTime" Precision="3" />
+    <Property Name="user_birth_location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="horoscope_no" Type="Int32" />
+    <Property Name="current_reward_points" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="user_gender" Type="Byte" />
+    <Property Name="device_token" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="user_email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="app_version" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="user_photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="last_use_app_datetime" Type="DateTime" Precision="3" />
+    <Property Name="user_registred_on" Type="DateTime" Precision="3" />
+    <Property Name="uninstall_status_flag" Type="Boolean" />
+    <Property Name="IMEI_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="uninstall_datetime" Type="DateTime" Precision="3" />
+    <Property Name="sms_count" Type="Int32" />
+    <Property Name="mobile_verification_count" Type="Int32" />
+    <Property Name="mobile_verification_completed" Type="Boolean" />
+    <NavigationProperty Name="tbl_astrologer_appointment" Relationship="Self.FK_tbl_astrologer_appointment_tbl_user_details" FromRole="tbl_user_details" ToRole="tbl_astrologer_appointment" />
+    <NavigationProperty Name="tbl_city_master" Relationship="Self.FK_tbl_user_details_tbl_city_master" FromRole="tbl_user_details" ToRole="tbl_city_master" />
+    <NavigationProperty Name="tbl_country_master" Relationship="Self.FK_tbl_user_details_tbl_country_master" FromRole="tbl_user_details" ToRole="tbl_country_master" />
+    <NavigationProperty Name="tbl_designer_appointment" Relationship="Self.FK_tbl_designer_appointment_tbl_user_details" FromRole="tbl_user_details" ToRole="tbl_designer_appointment" />
+    <NavigationProperty Name="tbl_horoscope_master" Relationship="Self.FK_tbl_user_details_tbl_horoscope_master" FromRole="tbl_user_details" ToRole="tbl_horoscope_master" />
+    <NavigationProperty Name="tbl_purchase_appointment" Relationship="Self.FK_tbl_purchase_appointment_tbl_user_details" FromRole="tbl_user_details" ToRole="tbl_purchase_appointment" />
+    <NavigationProperty Name="tbl_scan_queries" Relationship="Self.tbl_scan_queries_user_id_FK" FromRole="tbl_user_details" ToRole="tbl_scan_queries" />
+    <NavigationProperty Name="tbl_store_call_log" Relationship="Self.FK_tbl_store_call_log_tbl_user_details" FromRole="tbl_user_details" ToRole="tbl_store_call_log" />
+    <NavigationProperty Name="tbl_store_offer_views" Relationship="Self.FK_tbl_store_offer_views_tbl_user_details" FromRole="tbl_user_details" ToRole="tbl_store_offer_views" />
+    <NavigationProperty Name="tbl_store_reviews" Relationship="Self.FK_tbl_store_reviews_tbl_user_details" FromRole="tbl_user_details" ToRole="tbl_store_reviews" />
+    <NavigationProperty Name="tbl_swarna_yojna" Relationship="Self.FK_tbl_swarna_yojna_tbl_user_details" FromRole="tbl_user_details" ToRole="tbl_swarna_yojna" />
+    <NavigationProperty Name="tbl_temp_ecommerce_payment_gateway" Relationship="Self.FK_tbl_temp_ecommerce_payment_gateway_tbl_user_details" FromRole="tbl_user_details" ToRole="tbl_temp_ecommerce_payment_gateway" />
+  </EntityType>
+  <EntityType Name="tbl_version_master">
+    <Key>
+      <PropertyRef Name="version_id" />
+    </Key>
+    <Property Name="version_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="store" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="InventLocationId" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="swarnyojna_view" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="time_spent" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="swarnyojna_schemecreation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_zonal_manager">
+    <Key>
+      <PropertyRef Name="zmid" />
+    </Key>
+    <Property Name="zmid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="zmstore_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="zmperson_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="zmemail_id" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_tbl_astrologer_appointment_tbl_astrologer_master">
+    <End Role="tbl_astrologer_master" Type="Self.tbl_astrologer_master" Multiplicity="1" />
+    <End Role="tbl_astrologer_appointment" Type="Self.tbl_astrologer_appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_astrologer_master">
+        <PropertyRef Name="astrolger_id" />
+      </Principal>
+      <Dependent Role="tbl_astrologer_appointment">
+        <PropertyRef Name="astrologer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_astrologer_appointment_tbl_store_master">
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="0..1" />
+    <End Role="tbl_astrologer_appointment" Type="Self.tbl_astrologer_appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_master">
+        <PropertyRef Name="store_no" />
+      </Principal>
+      <Dependent Role="tbl_astrologer_appointment">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_astrologer_appointment_tbl_user_details">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="0..1" />
+    <End Role="tbl_astrologer_appointment" Type="Self.tbl_astrologer_appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_astrologer_appointment">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_astrologer_schedule_tbl_astrologer_master">
+    <End Role="tbl_astrologer_master" Type="Self.tbl_astrologer_master" Multiplicity="0..1" />
+    <End Role="tbl_astrologer_schedule" Type="Self.tbl_astrologer_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_astrologer_master">
+        <PropertyRef Name="astrolger_id" />
+      </Principal>
+      <Dependent Role="tbl_astrologer_schedule">
+        <PropertyRef Name="astrologer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_astrologer_store_link_tbl_astrologer_master">
+    <End Role="tbl_astrologer_master" Type="Self.tbl_astrologer_master" Multiplicity="0..1" />
+    <End Role="tbl_astrologer_store_link" Type="Self.tbl_astrologer_store_link" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_astrologer_master">
+        <PropertyRef Name="astrolger_id" />
+      </Principal>
+      <Dependent Role="tbl_astrologer_store_link">
+        <PropertyRef Name="astrologer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_astrologer_store_link_tbl_store_master">
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="1" />
+    <End Role="tbl_astrologer_store_link" Type="Self.tbl_astrologer_store_link" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_master">
+        <PropertyRef Name="store_no" />
+      </Principal>
+      <Dependent Role="tbl_astrologer_store_link">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_city_master_tbl_country_master_country_no">
+    <End Role="tbl_country_master" Type="Self.tbl_country_master" Multiplicity="1" />
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_country_master">
+        <PropertyRef Name="country_no" />
+      </Principal>
+      <Dependent Role="tbl_city_master">
+        <PropertyRef Name="country_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_city_master_tbl_state_master">
+    <End Role="tbl_state_master" Type="Self.tbl_state_master" Multiplicity="0..1" />
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_state_master">
+        <PropertyRef Name="state_no" />
+      </Principal>
+      <Dependent Role="tbl_city_master">
+        <PropertyRef Name="state_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_gold_price_tbl_city_master_city_no">
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="1" />
+    <End Role="tbl_gold_price" Type="Self.tbl_gold_price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_city_master">
+        <PropertyRef Name="city_no" />
+      </Principal>
+      <Dependent Role="tbl_gold_price">
+        <PropertyRef Name="city_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_horoscope_purchases_tbl_city_master">
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="1" />
+    <End Role="tbl_horoscope_purchases" Type="Self.tbl_horoscope_purchases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_city_master">
+        <PropertyRef Name="city_no" />
+      </Principal>
+      <Dependent Role="tbl_horoscope_purchases">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_manage_video_audiance_location_tbl_city_master">
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="1" />
+    <End Role="tbl_manage_video_audiance_location" Type="Self.tbl_manage_video_audiance_location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_city_master">
+        <PropertyRef Name="city_no" />
+      </Principal>
+      <Dependent Role="tbl_manage_video_audiance_location">
+        <PropertyRef Name="city_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_offers_audiance_location_tbl_city_master2">
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="1" />
+    <End Role="tbl_offers_audiance_location" Type="Self.tbl_offers_audiance_location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_city_master">
+        <PropertyRef Name="city_no" />
+      </Principal>
+      <Dependent Role="tbl_offers_audiance_location">
+        <PropertyRef Name="city_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_master_tbl_city_master_city_no">
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="0..1" />
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_city_master">
+        <PropertyRef Name="city_no" />
+      </Principal>
+      <Dependent Role="tbl_store_master">
+        <PropertyRef Name="store_city_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_user_details_tbl_city_master">
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="0..1" />
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_city_master">
+        <PropertyRef Name="city_no" />
+      </Principal>
+      <Dependent Role="tbl_user_details">
+        <PropertyRef Name="user_current_city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_scan_url_city_no_FK">
+    <End Role="tbl_city_master" Type="Self.tbl_city_master" Multiplicity="1" />
+    <End Role="tbl_scan_url" Type="Self.tbl_scan_url" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_city_master">
+        <PropertyRef Name="city_no" />
+      </Principal>
+      <Dependent Role="tbl_scan_url">
+        <PropertyRef Name="city_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_horoscope_purchases_tbl_country_master">
+    <End Role="tbl_country_master" Type="Self.tbl_country_master" Multiplicity="1" />
+    <End Role="tbl_horoscope_purchases" Type="Self.tbl_horoscope_purchases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_country_master">
+        <PropertyRef Name="country_no" />
+      </Principal>
+      <Dependent Role="tbl_horoscope_purchases">
+        <PropertyRef Name="country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_state_master_tbl_country_master">
+    <End Role="tbl_country_master" Type="Self.tbl_country_master" Multiplicity="1" />
+    <End Role="tbl_state_master" Type="Self.tbl_state_master" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_country_master">
+        <PropertyRef Name="country_no" />
+      </Principal>
+      <Dependent Role="tbl_state_master">
+        <PropertyRef Name="country_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_user_details_tbl_country_master">
+    <End Role="tbl_country_master" Type="Self.tbl_country_master" Multiplicity="0..1" />
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_country_master">
+        <PropertyRef Name="country_no" />
+      </Principal>
+      <Dependent Role="tbl_user_details">
+        <PropertyRef Name="user_current_country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_designer_appointment_tbl_state_master">
+    <End Role="tbl_state_master" Type="Self.tbl_state_master" Multiplicity="0..1" />
+    <End Role="tbl_designer_appointment" Type="Self.tbl_designer_appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_state_master">
+        <PropertyRef Name="state_no" />
+      </Principal>
+      <Dependent Role="tbl_designer_appointment">
+        <PropertyRef Name="state_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_designer_appointment_tbl_store_master">
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="0..1" />
+    <End Role="tbl_designer_appointment" Type="Self.tbl_designer_appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_master">
+        <PropertyRef Name="store_no" />
+      </Principal>
+      <Dependent Role="tbl_designer_appointment">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_designer_appointment_tbl_user_details">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="0..1" />
+    <End Role="tbl_designer_appointment" Type="Self.tbl_designer_appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_designer_appointment">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_horoscope_schedule_tbl_horoscope_master_horoscope_no">
+    <End Role="tbl_horoscope_master" Type="Self.tbl_horoscope_master" Multiplicity="1" />
+    <End Role="tbl_horoscope_schedule" Type="Self.tbl_horoscope_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_horoscope_master">
+        <PropertyRef Name="horoscope_no" />
+      </Principal>
+      <Dependent Role="tbl_horoscope_schedule">
+        <PropertyRef Name="horoscope_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_user_details_tbl_horoscope_master">
+    <End Role="tbl_horoscope_master" Type="Self.tbl_horoscope_master" Multiplicity="0..1" />
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_horoscope_master">
+        <PropertyRef Name="horoscope_no" />
+      </Principal>
+      <Dependent Role="tbl_user_details">
+        <PropertyRef Name="horoscope_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_horoscope_purchases_tbl_horoscope_pricing">
+    <End Role="tbl_horoscope_pricing" Type="Self.tbl_horoscope_pricing" Multiplicity="1" />
+    <End Role="tbl_horoscope_purchases" Type="Self.tbl_horoscope_purchases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_horoscope_pricing">
+        <PropertyRef Name="product_code" />
+      </Principal>
+      <Dependent Role="tbl_horoscope_purchases">
+        <PropertyRef Name="product_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_manage_video_audiance_location_tbl_manage_videos">
+    <End Role="tbl_manage_videos" Type="Self.tbl_manage_videos" Multiplicity="1" />
+    <End Role="tbl_manage_video_audiance_location" Type="Self.tbl_manage_video_audiance_location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_manage_videos">
+        <PropertyRef Name="managevideo_id" />
+      </Principal>
+      <Dependent Role="tbl_manage_video_audiance_location">
+        <PropertyRef Name="managevideo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_offer_notification_schedule_tbl_offers">
+    <End Role="tbl_offers" Type="Self.tbl_offers" Multiplicity="1" />
+    <End Role="tbl_offer_notification_schedule" Type="Self.tbl_offer_notification_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_offers">
+        <PropertyRef Name="offer_no" />
+      </Principal>
+      <Dependent Role="tbl_offer_notification_schedule">
+        <PropertyRef Name="offer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_offers_audiance_location_tbl_city_master1">
+    <End Role="tbl_offers" Type="Self.tbl_offers" Multiplicity="1" />
+    <End Role="tbl_offers_audiance_location" Type="Self.tbl_offers_audiance_location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_offers">
+        <PropertyRef Name="offer_no" />
+      </Principal>
+      <Dependent Role="tbl_offers_audiance_location">
+        <PropertyRef Name="offer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_offers_tbl_offers_offer_no">
+    <End Role="tbl_offers" Type="Self.tbl_offers" Multiplicity="1" />
+    <End Role="tbl_store_offers" Type="Self.tbl_store_offers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_offers">
+        <PropertyRef Name="offer_no" />
+      </Principal>
+      <Dependent Role="tbl_store_offers">
+        <PropertyRef Name="offer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_purchase_appointment_tbl_store_master">
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="0..1" />
+    <End Role="tbl_purchase_appointment" Type="Self.tbl_purchase_appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_master">
+        <PropertyRef Name="store_no" />
+      </Principal>
+      <Dependent Role="tbl_purchase_appointment">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_purchase_appointment_tbl_user_details">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="0..1" />
+    <End Role="tbl_purchase_appointment" Type="Self.tbl_purchase_appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_purchase_appointment">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_scan_queries_user_id_FK">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="1" />
+    <End Role="tbl_scan_queries" Type="Self.tbl_scan_queries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_scan_queries">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_call_log_tbl_store_master_store_no">
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="1" />
+    <End Role="tbl_store_call_log" Type="Self.tbl_store_call_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_master">
+        <PropertyRef Name="store_no" />
+      </Principal>
+      <Dependent Role="tbl_store_call_log">
+        <PropertyRef Name="store_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_call_log_tbl_user_details">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="1" />
+    <End Role="tbl_store_call_log" Type="Self.tbl_store_call_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_store_call_log">
+        <PropertyRef Name="user_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_offers_tbl_store_master_store_no">
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="1" />
+    <End Role="tbl_store_offers" Type="Self.tbl_store_offers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_master">
+        <PropertyRef Name="store_no" />
+      </Principal>
+      <Dependent Role="tbl_store_offers">
+        <PropertyRef Name="store_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_photos_tbl_store_master_store_no">
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="1" />
+    <End Role="tbl_store_photos" Type="Self.tbl_store_photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_master">
+        <PropertyRef Name="store_no" />
+      </Principal>
+      <Dependent Role="tbl_store_photos">
+        <PropertyRef Name="store_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_reviews_tbl_store_master_store_no">
+    <End Role="tbl_store_master" Type="Self.tbl_store_master" Multiplicity="1" />
+    <End Role="tbl_store_reviews" Type="Self.tbl_store_reviews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_master">
+        <PropertyRef Name="store_no" />
+      </Principal>
+      <Dependent Role="tbl_store_reviews">
+        <PropertyRef Name="store_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_offer_views_tbl_store_offers_store_offer_no">
+    <End Role="tbl_store_offers" Type="Self.tbl_store_offers" Multiplicity="1" />
+    <End Role="tbl_store_offer_views" Type="Self.tbl_store_offer_views" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store_offers">
+        <PropertyRef Name="store_offer_no" />
+      </Principal>
+      <Dependent Role="tbl_store_offer_views">
+        <PropertyRef Name="store_offer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_offer_views_tbl_user_details">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="1" />
+    <End Role="tbl_store_offer_views" Type="Self.tbl_store_offer_views" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_store_offer_views">
+        <PropertyRef Name="user_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_store_reviews_tbl_user_details">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="1" />
+    <End Role="tbl_store_reviews" Type="Self.tbl_store_reviews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_store_reviews">
+        <PropertyRef Name="user_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_swarna_yojna_payment_history_tbl_swarna_yojna_sy_no">
+    <End Role="tbl_swarna_yojna" Type="Self.tbl_swarna_yojna" Multiplicity="1" />
+    <End Role="tbl_swarna_yojna_payment_history" Type="Self.tbl_swarna_yojna_payment_history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_swarna_yojna">
+        <PropertyRef Name="sy_no" />
+      </Principal>
+      <Dependent Role="tbl_swarna_yojna_payment_history">
+        <PropertyRef Name="sy_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_swarna_yojna_tbl_user_details">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="1" />
+    <End Role="tbl_swarna_yojna" Type="Self.tbl_swarna_yojna" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_swarna_yojna">
+        <PropertyRef Name="user_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_temp_ecommerce_payment_gateway_tbl_user_details">
+    <End Role="tbl_user_details" Type="Self.tbl_user_details" Multiplicity="0..1" />
+    <End Role="tbl_temp_ecommerce_payment_gateway" Type="Self.tbl_temp_ecommerce_payment_gateway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user_details">
+        <PropertyRef Name="user_no" />
+      </Principal>
+      <Dependent Role="tbl_temp_ecommerce_payment_gateway">
+        <PropertyRef Name="temp_ecommerce_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SENCO_DB_AdminEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tbl_admin_login" EntityType="Self.tbl_admin_login" />
+    <EntitySet Name="tbl_astrologer_appointment" EntityType="Self.tbl_astrologer_appointment" />
+    <EntitySet Name="tbl_astrologer_master" EntityType="Self.tbl_astrologer_master" />
+    <EntitySet Name="tbl_astrologer_schedule" EntityType="Self.tbl_astrologer_schedule" />
+    <EntitySet Name="tbl_astrologer_store_link" EntityType="Self.tbl_astrologer_store_link" />
+    <EntitySet Name="tbl_city_master" EntityType="Self.tbl_city_master" />
+    <EntitySet Name="tbl_Collections" EntityType="Self.tbl_Collections" />
+    <EntitySet Name="tbl_country_master" EntityType="Self.tbl_country_master" />
+    <EntitySet Name="tbl_dashboard_analytics" EntityType="Self.tbl_dashboard_analytics" />
+    <EntitySet Name="tbl_designer_appointment" EntityType="Self.tbl_designer_appointment" />
+    <EntitySet Name="tbl_ecommerce_transaction" EntityType="Self.tbl_ecommerce_transaction" />
+    <EntitySet Name="tbl_events" EntityType="Self.tbl_events" />
+    <EntitySet Name="tbl_gold_price" EntityType="Self.tbl_gold_price" />
+    <EntitySet Name="tbl_horoscope_banner" EntityType="Self.tbl_horoscope_banner" />
+    <EntitySet Name="tbl_horoscope_master" EntityType="Self.tbl_horoscope_master" />
+    <EntitySet Name="tbl_horoscope_pricing" EntityType="Self.tbl_horoscope_pricing" />
+    <EntitySet Name="tbl_horoscope_purchases" EntityType="Self.tbl_horoscope_purchases" />
+    <EntitySet Name="tbl_horoscope_purchases_attempts" EntityType="Self.tbl_horoscope_purchases_attempts" />
+    <EntitySet Name="tbl_horoscope_schedule" EntityType="Self.tbl_horoscope_schedule" />
+    <EntitySet Name="tbl_horoscope_testimonials" EntityType="Self.tbl_horoscope_testimonials" />
+    <EntitySet Name="tbl_manage_video_audiance_location" EntityType="Self.tbl_manage_video_audiance_location" />
+    <EntitySet Name="tbl_manage_videos" EntityType="Self.tbl_manage_videos" />
+    <EntitySet Name="tbl_mobile_verification_status" EntityType="Self.tbl_mobile_verification_status" />
+    <EntitySet Name="tbl_offer_notification_schedule" EntityType="Self.tbl_offer_notification_schedule" />
+    <EntitySet Name="tbl_offers" EntityType="Self.tbl_offers" />
+    <EntitySet Name="tbl_offers_audiance_location" EntityType="Self.tbl_offers_audiance_location" />
+    <EntitySet Name="tbl_purchase_appointment" EntityType="Self.tbl_purchase_appointment" />
+    <EntitySet Name="tbl_push_notification" EntityType="Self.tbl_push_notification" />
+    <EntitySet Name="tbl_scan_instruction" EntityType="Self.tbl_scan_instruction" />
+    <EntitySet Name="tbl_scan_queries" EntityType="Self.tbl_scan_queries" />
+    <EntitySet Name="tbl_scan_url" EntityType="Self.tbl_scan_url" />
+    <EntitySet Name="tbl_senco_synchronization" EntityType="Self.tbl_senco_synchronization" />
+    <EntitySet Name="tbl_spotlight" EntityType="Self.tbl_spotlight" />
+    <EntitySet Name="tbl_state_master" EntityType="Self.tbl_state_master" />
+    <EntitySet Name="tbl_store_call_log" EntityType="Self.tbl_store_call_log" />
+    <EntitySet Name="tbl_store_master" EntityType="Self.tbl_store_master" />
+    <EntitySet Name="tbl_store_offer_views" EntityType="Self.tbl_store_offer_views" />
+    <EntitySet Name="tbl_store_offers" EntityType="Self.tbl_store_offers" />
+    <EntitySet Name="tbl_store_photos" EntityType="Self.tbl_store_photos" />
+    <EntitySet Name="tbl_store_reviews" EntityType="Self.tbl_store_reviews" />
+    <EntitySet Name="tbl_swarna_scheme_creation_details" EntityType="Self.tbl_swarna_scheme_creation_details" />
+    <EntitySet Name="tbl_swarna_user_registration" EntityType="Self.tbl_swarna_user_registration" />
+    <EntitySet Name="tbl_swarna_yojna" EntityType="Self.tbl_swarna_yojna" />
+    <EntitySet Name="tbl_swarna_yojna_payment_history" EntityType="Self.tbl_swarna_yojna_payment_history" />
+    <EntitySet Name="tbl_tax_percentage" EntityType="Self.tbl_tax_percentage" />
+    <EntitySet Name="tbl_temp_ecommerce_payment_gateway" EntityType="Self.tbl_temp_ecommerce_payment_gateway" />
+    <EntitySet Name="tbl_temp_paymentgateway" EntityType="Self.tbl_temp_paymentgateway" />
+    <EntitySet Name="tbl_temp_swarna_paymentgateway" EntityType="Self.tbl_temp_swarna_paymentgateway" />
+    <EntitySet Name="tbl_user_details" EntityType="Self.tbl_user_details" />
+    <EntitySet Name="tbl_version_master" EntityType="Self.tbl_version_master" />
+    <EntitySet Name="tbl_zonal_manager" EntityType="Self.tbl_zonal_manager" />
+    <AssociationSet Name="FK_tbl_astrologer_appointment_tbl_astrologer_master" Association="Self.FK_tbl_astrologer_appointment_tbl_astrologer_master">
+      <End Role="tbl_astrologer_master" EntitySet="tbl_astrologer_master" />
+      <End Role="tbl_astrologer_appointment" EntitySet="tbl_astrologer_appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_astrologer_appointment_tbl_store_master" Association="Self.FK_tbl_astrologer_appointment_tbl_store_master">
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+      <End Role="tbl_astrologer_appointment" EntitySet="tbl_astrologer_appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_astrologer_appointment_tbl_user_details" Association="Self.FK_tbl_astrologer_appointment_tbl_user_details">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_astrologer_appointment" EntitySet="tbl_astrologer_appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_astrologer_schedule_tbl_astrologer_master" Association="Self.FK_tbl_astrologer_schedule_tbl_astrologer_master">
+      <End Role="tbl_astrologer_master" EntitySet="tbl_astrologer_master" />
+      <End Role="tbl_astrologer_schedule" EntitySet="tbl_astrologer_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_astrologer_store_link_tbl_astrologer_master" Association="Self.FK_tbl_astrologer_store_link_tbl_astrologer_master">
+      <End Role="tbl_astrologer_master" EntitySet="tbl_astrologer_master" />
+      <End Role="tbl_astrologer_store_link" EntitySet="tbl_astrologer_store_link" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_astrologer_store_link_tbl_store_master" Association="Self.FK_tbl_astrologer_store_link_tbl_store_master">
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+      <End Role="tbl_astrologer_store_link" EntitySet="tbl_astrologer_store_link" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_city_master_tbl_country_master_country_no" Association="Self.FK_tbl_city_master_tbl_country_master_country_no">
+      <End Role="tbl_country_master" EntitySet="tbl_country_master" />
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_city_master_tbl_state_master" Association="Self.FK_tbl_city_master_tbl_state_master">
+      <End Role="tbl_state_master" EntitySet="tbl_state_master" />
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_gold_price_tbl_city_master_city_no" Association="Self.FK_tbl_gold_price_tbl_city_master_city_no">
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+      <End Role="tbl_gold_price" EntitySet="tbl_gold_price" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_horoscope_purchases_tbl_city_master" Association="Self.FK_tbl_horoscope_purchases_tbl_city_master">
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+      <End Role="tbl_horoscope_purchases" EntitySet="tbl_horoscope_purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_manage_video_audiance_location_tbl_city_master" Association="Self.FK_tbl_manage_video_audiance_location_tbl_city_master">
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+      <End Role="tbl_manage_video_audiance_location" EntitySet="tbl_manage_video_audiance_location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_offers_audiance_location_tbl_city_master2" Association="Self.FK_tbl_offers_audiance_location_tbl_city_master2">
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+      <End Role="tbl_offers_audiance_location" EntitySet="tbl_offers_audiance_location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_master_tbl_city_master_city_no" Association="Self.FK_tbl_store_master_tbl_city_master_city_no">
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_user_details_tbl_city_master" Association="Self.FK_tbl_user_details_tbl_city_master">
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_scan_url_city_no_FK" Association="Self.tbl_scan_url_city_no_FK">
+      <End Role="tbl_city_master" EntitySet="tbl_city_master" />
+      <End Role="tbl_scan_url" EntitySet="tbl_scan_url" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_horoscope_purchases_tbl_country_master" Association="Self.FK_tbl_horoscope_purchases_tbl_country_master">
+      <End Role="tbl_country_master" EntitySet="tbl_country_master" />
+      <End Role="tbl_horoscope_purchases" EntitySet="tbl_horoscope_purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_state_master_tbl_country_master" Association="Self.FK_tbl_state_master_tbl_country_master">
+      <End Role="tbl_country_master" EntitySet="tbl_country_master" />
+      <End Role="tbl_state_master" EntitySet="tbl_state_master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_user_details_tbl_country_master" Association="Self.FK_tbl_user_details_tbl_country_master">
+      <End Role="tbl_country_master" EntitySet="tbl_country_master" />
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_designer_appointment_tbl_state_master" Association="Self.FK_tbl_designer_appointment_tbl_state_master">
+      <End Role="tbl_state_master" EntitySet="tbl_state_master" />
+      <End Role="tbl_designer_appointment" EntitySet="tbl_designer_appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_designer_appointment_tbl_store_master" Association="Self.FK_tbl_designer_appointment_tbl_store_master">
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+      <End Role="tbl_designer_appointment" EntitySet="tbl_designer_appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_designer_appointment_tbl_user_details" Association="Self.FK_tbl_designer_appointment_tbl_user_details">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_designer_appointment" EntitySet="tbl_designer_appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_horoscope_schedule_tbl_horoscope_master_horoscope_no" Association="Self.FK_tbl_horoscope_schedule_tbl_horoscope_master_horoscope_no">
+      <End Role="tbl_horoscope_master" EntitySet="tbl_horoscope_master" />
+      <End Role="tbl_horoscope_schedule" EntitySet="tbl_horoscope_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_user_details_tbl_horoscope_master" Association="Self.FK_tbl_user_details_tbl_horoscope_master">
+      <End Role="tbl_horoscope_master" EntitySet="tbl_horoscope_master" />
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_horoscope_purchases_tbl_horoscope_pricing" Association="Self.FK_tbl_horoscope_purchases_tbl_horoscope_pricing">
+      <End Role="tbl_horoscope_pricing" EntitySet="tbl_horoscope_pricing" />
+      <End Role="tbl_horoscope_purchases" EntitySet="tbl_horoscope_purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_manage_video_audiance_location_tbl_manage_videos" Association="Self.FK_tbl_manage_video_audiance_location_tbl_manage_videos">
+      <End Role="tbl_manage_videos" EntitySet="tbl_manage_videos" />
+      <End Role="tbl_manage_video_audiance_location" EntitySet="tbl_manage_video_audiance_location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_offer_notification_schedule_tbl_offers" Association="Self.FK_tbl_offer_notification_schedule_tbl_offers">
+      <End Role="tbl_offers" EntitySet="tbl_offers" />
+      <End Role="tbl_offer_notification_schedule" EntitySet="tbl_offer_notification_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_offers_audiance_location_tbl_city_master1" Association="Self.FK_tbl_offers_audiance_location_tbl_city_master1">
+      <End Role="tbl_offers" EntitySet="tbl_offers" />
+      <End Role="tbl_offers_audiance_location" EntitySet="tbl_offers_audiance_location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_offers_tbl_offers_offer_no" Association="Self.FK_tbl_store_offers_tbl_offers_offer_no">
+      <End Role="tbl_offers" EntitySet="tbl_offers" />
+      <End Role="tbl_store_offers" EntitySet="tbl_store_offers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_purchase_appointment_tbl_store_master" Association="Self.FK_tbl_purchase_appointment_tbl_store_master">
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+      <End Role="tbl_purchase_appointment" EntitySet="tbl_purchase_appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_purchase_appointment_tbl_user_details" Association="Self.FK_tbl_purchase_appointment_tbl_user_details">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_purchase_appointment" EntitySet="tbl_purchase_appointment" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_scan_queries_user_id_FK" Association="Self.tbl_scan_queries_user_id_FK">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_scan_queries" EntitySet="tbl_scan_queries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_call_log_tbl_store_master_store_no" Association="Self.FK_tbl_store_call_log_tbl_store_master_store_no">
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+      <End Role="tbl_store_call_log" EntitySet="tbl_store_call_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_call_log_tbl_user_details" Association="Self.FK_tbl_store_call_log_tbl_user_details">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_store_call_log" EntitySet="tbl_store_call_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_offers_tbl_store_master_store_no" Association="Self.FK_tbl_store_offers_tbl_store_master_store_no">
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+      <End Role="tbl_store_offers" EntitySet="tbl_store_offers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_photos_tbl_store_master_store_no" Association="Self.FK_tbl_store_photos_tbl_store_master_store_no">
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+      <End Role="tbl_store_photos" EntitySet="tbl_store_photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_reviews_tbl_store_master_store_no" Association="Self.FK_tbl_store_reviews_tbl_store_master_store_no">
+      <End Role="tbl_store_master" EntitySet="tbl_store_master" />
+      <End Role="tbl_store_reviews" EntitySet="tbl_store_reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_offer_views_tbl_store_offers_store_offer_no" Association="Self.FK_tbl_store_offer_views_tbl_store_offers_store_offer_no">
+      <End Role="tbl_store_offers" EntitySet="tbl_store_offers" />
+      <End Role="tbl_store_offer_views" EntitySet="tbl_store_offer_views" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_offer_views_tbl_user_details" Association="Self.FK_tbl_store_offer_views_tbl_user_details">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_store_offer_views" EntitySet="tbl_store_offer_views" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_store_reviews_tbl_user_details" Association="Self.FK_tbl_store_reviews_tbl_user_details">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_store_reviews" EntitySet="tbl_store_reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_swarna_yojna_payment_history_tbl_swarna_yojna_sy_no" Association="Self.FK_tbl_swarna_yojna_payment_history_tbl_swarna_yojna_sy_no">
+      <End Role="tbl_swarna_yojna" EntitySet="tbl_swarna_yojna" />
+      <End Role="tbl_swarna_yojna_payment_history" EntitySet="tbl_swarna_yojna_payment_history" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_swarna_yojna_tbl_user_details" Association="Self.FK_tbl_swarna_yojna_tbl_user_details">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_swarna_yojna" EntitySet="tbl_swarna_yojna" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_temp_ecommerce_payment_gateway_tbl_user_details" Association="Self.FK_tbl_temp_ecommerce_payment_gateway_tbl_user_details">
+      <End Role="tbl_user_details" EntitySet="tbl_user_details" />
+      <End Role="tbl_temp_ecommerce_payment_gateway" EntitySet="tbl_temp_ecommerce_payment_gateway" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SENCO_DB_LIVEModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SENCO_DB_LIVEModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

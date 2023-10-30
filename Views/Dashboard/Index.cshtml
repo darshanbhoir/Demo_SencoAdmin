@@ -3,7 +3,9 @@
 
 @model PagedList.IPagedList<Demo_Senco_Admin.Models.ViewModel.SchemeDashboardViewModel>
 @{
-    int counter = 1;
+    int pageSize = Model.PageSize;
+    int counter = (Model.PageNumber - 1) * pageSize + 1;
+    //int counter = 1;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -130,13 +132,16 @@
 <!-- Table footer  -->
 
 <!--Pagination-->
-<div class="container">
-    <div class="row">
-        <div class="pagination">
-            @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"] }))
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="pagination">
+                @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"] }))
+            </div>
         </div>
     </div>
-</div>
+</footer>
+
 
 
 <!--Export to Excel-->
