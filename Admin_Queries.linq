@@ -1,14 +1,14 @@
 <Query Kind="Expression">
   <Connection>
-    <ID>a4e3b486-3300-436b-8755-6fb4a090a602</ID>
+    <ID>feeeb23f-90cc-4f6c-a600-67058198c204</ID>
     <Persist>true</Persist>
     <Server>13.233.140.191,1433</Server>
     <SqlSecurity>true</SqlSecurity>
-    <Database>SENCO_DB_LIVE</Database>
+    <Database>SENCO_DB_PRE_PROD</Database>
     <NoPluralization>true</NoPluralization>
     <NoCapitalization>true</NoCapitalization>
     <UserName>sa</UserName>
-    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAa75ovtwweESHEbt/wDI3mgAAAAACAAAAAAAQZgAAAAEAACAAAACq1+Xtdk6syLG+iBngQvNNa09QK47tnaZIoK9I5uj9QAAAAAAOgAAAAAIAACAAAABPxN5uDT3cm9DSSQphsDZdbUFrHgBRifUs/2pSyGrH4CAAAAAW4QosSJUBMCcpVzToknHeH1GrOqL1ja1pTfBZHDpwaUAAAACq/bLf1NG6MpOUKPuTWyrgkYXwmRJOTNpkyBZRcd62MweKGiUhyB8vuW8hAigdqEn5eI7e0JbJuSkCVpMuej21</Password>
+    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAz/PxepwrGEer0U3gbsY3nQAAAAACAAAAAAAQZgAAAAEAACAAAABBm7ChuNfq3BWbkG+d0IvEdqMG2l5xv6PaaDoeuRptVwAAAAAOgAAAAAIAACAAAAAZMAdjlgb0/NToile5RX5ho+Ff6o3vwCaxE78gLHJ+2SAAAAAFHaa/9W0uCuBKul0VLwGmKXi+COemSbJj82yu9ixB3EAAAAAn3FHiDuAhQ2cnuCeAKRlBi7jYSTy8g3lSvSH8OwP4AX8FsEHyM4l5y+pDZ4kbOQDN0KrJOIusq5qPVJEHsFEe</Password>
   </Connection>
 </Query>
 
@@ -78,3 +78,14 @@
 //	CustomerName= JObject.Parse(SSCD.scheme_payload).SelectToken("_keys[0].CustomerName")?.Value<string>(),
 //
 //}
+
+
+from ET in tbl_ecommerce_transaction
+orderby ET.ecommerce_id descending
+select new
+{
+	Ecommerce_Id= ET.ecommerce_id,
+	Member_Id= ET.member_id,
+	Payoad_Data= ET.payload,
+	Date_Time= ET.date_time
+}

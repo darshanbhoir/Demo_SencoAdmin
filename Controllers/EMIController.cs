@@ -231,7 +231,7 @@ namespace Demo_Senco_Admin.Controllers
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     }
-                    catch(Exception ex)
+                    catch(Exception)
                     {
                         return HttpNotFound();
                     }

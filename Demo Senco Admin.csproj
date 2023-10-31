@@ -33,7 +33,7 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -239,16 +239,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EcommerceController.cs" />
     <Compile Include="Controllers\EMIController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SencoDBconn.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Payload\customerInfo.cs" />
+    <Compile Include="Models\Payload\EcommercePayload.cs" />
     <Compile Include="Models\Payload\EMI.cs" />
     <Compile Include="Models\Payload\EMIPayload.cs" />
+    <Compile Include="Models\Payload\items.cs" />
     <Compile Include="Models\Payload\NewScheme.cs" />
     <Compile Include="Models\Payload\NewSchemePayload.cs" />
+    <Compile Include="Models\Payload\paymentInfo.cs" />
+    <Compile Include="Models\Payload\productInfo.cs" />
     <Compile Include="Models\SencoAdminModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -426,6 +432,7 @@
     <Compile Include="Models\tbl_zonal_manager.cs">
       <DependentUpon>SencoAdminModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\EcommerceViewModel.cs" />
     <Compile Include="Models\ViewModel\EMIPaymentViewModel.cs" />
     <Compile Include="Models\ViewModel\RecieptViewModel.cs" />
     <Compile Include="Models\ViewModel\SchemeDashboardViewModel.cs" />
@@ -1593,6 +1600,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="PdfStorage\" />
+    <Folder Include="Views\Ecommerce\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

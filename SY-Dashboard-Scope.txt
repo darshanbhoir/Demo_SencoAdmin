@@ -229,7 +229,8 @@ Functionality - EMI Payments Dashboard
 7. Ability view payment receipt
 8. Ability to view full payment details including payload data.
 
-			Payload- [{"$id":"1",
+			Payload- 
+			[{"$id":"1",
 			"Status":"200",
 			"Message":"Success.",
 			"EMI":[{"$id":"2",
@@ -333,3 +334,300 @@ Is No Null
 https://s3.ap-south-1.amazonaws.com/sencofiles/swarnayojna/SY_EMI_Payment_Receipt_41220229323647.pdf
 kalpesh singh6:18 PM
 SY_EMI_Payment_Receipt_41220229323647.pdf
+
+
+
+*******************************************************************************************************************************
+Ecommerce Transaction
+
+eCommerce Dashboard Scope
+
+Search
+- From Date
+- To Date
+- Multiple Params 
+  - Name
+  - Mobile
+  - Email
+  - status = success / failed
+
+List
+- Name
+- Contact = email - mobile
+- Date
+- Order Id
+- Amount
+- Status
+- Items (Count)
+- View Details (Popup listing down the products purchased)
+
+
+Payload:
+---------------------------------
+	{
+   "productInfo":{
+      "items":[
+         {
+            "id":1400,
+            "type":"product",
+            "identifier":"27876",
+            "name":"Zigzag Arty Gold Sankha Bangle",
+            "image":"https:\/\/sencowebfiles.s3.ap-south-1.amazonaws.com\/products\/6NIVPKvTBcnNKSvx9bcyU4zZhPK87vqM0jnwsLH8.jpeg",
+            "price":17218,
+            "slug":"zigzag-arty-gold-sankha-bangle",
+            "expiry_time":"2023-10-23 15:49:11",
+            "data":{
+               "id":27876,
+               "size":"2.2 Size - 53.9 mm",
+               "stock":0,
+               "total":19341,
+               "purity":"22K Yellow Gold",
+               "discount":{
+                  "name":"Senco Discount",
+                  "total":17218,
+                  "gst_value":502,
+                  "gold_value":13627,
+                  "making_charge":3089
+               },
+               "gst_value":564,
+               "created_at":"2023-03-14 14:21:26",
+               "gold_value":15142,
+               "product_id":11560,
+               "updated_at":"2023-09-21 06:46:12",
+               "block_stock":0,
+               "gold2_value":0,
+               "gold_purity":"91.66",
+               "gold_weight":2.26,
+               "gst_percent":3,
+               "stone_value":0,
+               "gold2_purity":null,
+               "gold2_weight":null,
+               "gross_weight":22.26,
+               "silver_value":null,
+               "stone_weight":0,
+               "diamond_shape":null,
+               "diamond_value":null,
+               "making_charge":24,
+               "shipping_days":30,
+               "silver_purity":null,
+               "silver_weight":null,
+               "diamond_weight":null,
+               "platinum_value":null,
+               "platinum_purity":null,
+               "platinum_weight":null,
+               "making_charge_type":"percentage",
+               "making_charge_value":3635
+            }
+         }
+      ],
+      "discounts":[
+         
+      ],
+      "sub_total":17218,
+      "total":17218
+   },
+   "customerInfo":{
+      "uuid":"3cd9a390-56a6-41f7-9139-0842525a33bf",
+      "name":"Patel Jaunpur Shekhar Shiv",
+      "mobile":"9619589020",
+      "email":"shivshekhar74@gmail.in",
+      "gender":"male",
+      "billing_address":"Hathera\nUP - \nUP\nIND",
+      "dob":null,
+      "anniversary":null,
+      "account_id":"CUS636085",
+      "duplicate_records":[
+         
+      ]
+   },
+   "paymentInfo":{
+      "oid":"MYS0000000000799",
+      "status":"failed",
+      "amount":17218,
+      "timestamp":"2023-10-23 15:47:48"
+   }
+}
+-------------------------------------------
+{
+  "productInfo": {
+    "items": [
+      {
+        "id": 1404,
+        "type": "product",
+        "identifier": "27876",
+        "name": "Zigzag Arty Gold Sankha Bangle",
+        "image": "https://sencowebfiles.s3.ap-south-1.amazonaws.com/products/6NIVPKvTBcnNKSvx9bcyU4zZhPK87vqM0jnwsLH8.jpeg",
+        "price": 17218,
+        "slug": "zigzag-arty-gold-sankha-bangle",
+        "expiry_time": "2023-10-23 17:20:54",
+        "data": {
+          "id": 27876,
+          "size": "2.2 Size - 53.9 mm",
+          "stock": 0,
+          "total": 19341,
+          "purity": "22K Yellow Gold",
+          "discount": {
+            "name": "Senco Discount",
+            "total": 17218,
+            "gst_value": 502,
+            "gold_value": 13627,
+            "making_charge": 3089
+          },
+          "gst_value": 564,
+          "created_at": "2023-03-14 14:21:26",
+          "gold_value": 15142,
+          "product_id": 11560,
+          "updated_at": "2023-09-21 06:46:12",
+          "block_stock": 0,
+          "gold2_value": 0,
+          "gold_purity": "91.66",
+          "gold_weight": 2.26,
+          "gst_percent": 3,
+          "stone_value": 0,
+          "gold2_purity": null,
+          "gold2_weight": null,
+          "gross_weight": 22.26,
+          "silver_value": null,
+          "stone_weight": 0,
+          "diamond_shape": null,
+          "diamond_value": null,
+          "making_charge": 24,
+          "shipping_days": 30,
+          "silver_purity": null,
+          "silver_weight": null,
+          "diamond_weight": null,
+          "platinum_value": null,
+          "platinum_purity": null,
+          "platinum_weight": null,
+          "making_charge_type": "percentage",
+          "making_charge_value": 3635
+        }
+      },
+      {
+        "id": 1403,
+        "type": "product",
+        "identifier": "23775",
+        "name": "Twin Flower Gold Ring",
+        "image": "https://sencowebfiles.s3.ap-south-1.amazonaws.com/products/7OW0uCpBjvSJnsloAfRpoMwdHn8E8M0MxcO4i8j3.jpeg",
+        "price": 14339,
+        "slug": "twin-flower-gold-ring",
+        "expiry_time": "2023-10-23 17:20:21",
+        "data": {
+          "id": 23775,
+          "size": "9 Size - 15.7 mm",
+          "stock": 0,
+          "total": 16108,
+          "purity": "18K Yellow Gold",
+          "discount": {
+            "name": "Senco Discount",
+            "total": 14339,
+            "gst_value": 418,
+            "gold_value": 11349,
+            "making_charge": 2572
+          },
+          "gst_value": 470,
+          "created_at": "2023-03-14 14:21:26",
+          "gold_value": 12611,
+          "product_id": 10201,
+          "updated_at": "2023-09-27 18:26:41",
+          "block_stock": 0,
+          "gold2_value": 0,
+          "gold_purity": "75.00",
+          "gold_weight": 2.3,
+          "gst_percent": 3,
+          "stone_value": 0,
+          "gold2_purity": null,
+          "gold2_weight": null,
+          "gross_weight": 2.3,
+          "silver_value": null,
+          "stone_weight": 0,
+          "diamond_shape": null,
+          "diamond_value": null,
+          "making_charge": 24,
+          "shipping_days": 30,
+          "silver_purity": null,
+          "silver_weight": null,
+          "diamond_weight": null,
+          "platinum_value": null,
+          "platinum_purity": null,
+          "platinum_weight": null,
+          "making_charge_type": "percentage",
+          "making_charge_value": 3027
+        }
+      },
+      {
+        "id": 1402,
+        "type": "product",
+        "identifier": "12684",
+        "name": "A Beautiful Flower",
+        "image": "https://sencowebfiles.s3.ap-south-1.amazonaws.com/products/wAAeTuVzwVjx4BwSpxqbmKEwcKezPWarajE0eyn9.jpeg",
+        "price": 4871,
+        "slug": "a-beautiful-flower",
+        "expiry_time": "2023-10-23 17:19:35",
+        "data": {
+          "id": 12684,
+          "size": null,
+          "stock": 0,
+          "total": 4871,
+          "purity": "14K Yellow Gold",
+          "gst_value": 142,
+          "created_at": "2023-03-14 14:21:26",
+          "gold_value": 1369,
+          "product_id": 8705,
+          "updated_at": "2023-09-20 06:46:12",
+          "block_stock": 0,
+          "gold2_value": 0,
+          "gold_purity": "58.50",
+          "gold_weight": 0.32,
+          "gst_percent": 3,
+          "stone_value": 0,
+          "gold2_purity": null,
+          "gold2_weight": null,
+          "gross_weight": 0.324,
+          "silver_value": null,
+          "stone_weight": 0,
+          "diamond_shape": "HI-SI",
+          "diamond_value": 2160,
+          "making_charge": 1200,
+          "shipping_days": 30,
+          "silver_purity": null,
+          "silver_weight": null,
+          "diamond_weight": 0.02,
+          "platinum_value": null,
+          "platinum_purity": null,
+          "platinum_weight": null,
+          "making_charge_type": "flat",
+          "making_charge_value": 1200
+        }
+      }
+    ],
+    "discounts": [],
+    "sub_total": 36428,
+    "total": 36428
+  },
+  "customerInfo": {},
+  "paymentInfo": {
+    "oid": "MYS0000000000801",
+    "status": "success",
+    "amount": 36428,
+    "timestamp": "2023-10-23 17:19:53"
+  }
+}
+-------------------------------
+Query:
+	SELECT TOP 1000 [ecommerce_id]
+      ,[member_id]
+      ,[payload]
+      ,[date_time]
+  FROM [SENCO_DB_PRE_PROD].[dbo].[tbl_ecommerce_transaction]
+  order by ecommerce_id desc
+  
+  from ET in tbl_ecommerce_transaction
+orderby ET.ecommerce_id descending
+select new
+{
+	Ecommerce_Id= ET.ecommerce_id,
+	Member_Id= ET.member_id,
+	Payoad_Data= ET.payload,
+	Date_Time= ET.date_time
+}
