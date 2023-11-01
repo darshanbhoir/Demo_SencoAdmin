@@ -1,0 +1,171 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+
+@model PagedList.IPagedList<Demo_Senco_Admin.Models.ViewModel.EcommerceViewModel>
+@{
+    int pageSize = Model.PageSize;
+    int counter = (Model.PageNumber - 1) * pageSize + 1;
+    //int counter = 1;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-section">
+    <div class="container">
+
+        <form>
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="date-box-part">
+                        <input class="form-control datepicker" type="text" placeholder="From Date" name="startdate" value="@ViewBag.StartDateFilter" autocomplete="off">
+                        <div class="svg-part">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0     1 .5-.5h1a.5.5  0 0        1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0    1 .5.5v1a.5.5 0 0   1-.5.5h-1a.5.5 0 0      1-.5-.5v-1zm3        0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0   1-.5.5h-1a.5.5 0 0   1-.5-.5v-1z" />
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1         2-2h1V.5a.5.5  0 0   1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="date-box-part">
+                        <input class="form-control datepicker" type="text" placeholder="To Date" name="enddate" value="@ViewBag.EndDateFilter" autocomplete="off">
+                        <div class="svg-part">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0  1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0   1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5  0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <select class="form-control select-input" id="searchFilter" name="searchFilter">
+                        <option value="" @(ViewBag.CurrentFilterSearchFilter == "" ? "Selected" : "")>Search Param</option>
+                        <option value="customerName" @(ViewBag.CurrentFilterSearchFilter == "customerName" ? "Selected" : "")>Member Name</option>
+                        <option value="email" @(ViewBag.CurrentFilterSearchFilter == "email" ? "Selected" : "")>Email id</option>
+                        <option value="mobile" @(ViewBag.CurrentFilterSearchFilter == "mobile" ? "Selected" : "")>Mobile No.</option>
+                    </select>
+                </div>
+                <div class="col-lg-2" id="searchInputContainer">
+                    <input class="form-control" placeholder="Search Value" id="searchInput" name="searchInput" value="@ViewBag.CurrentFilterInputFilter">
+                </div>
+                <div class="col-lg-2">
+                    <select class="form-control select-input" id="status" name="status">
+                        <option value="" @(ViewBag.CurrentFilterPaymentStatus == "" ? "Selected" : "")>Status</option>
+                        <option value="success" @(ViewBag.CurrentFilterPaymentStatus == "success" ? "Selected" : "")>Success</option>
+                        <option value="failed" @(ViewBag.CurrentFilterPaymentStatus == "failed" ? "Selected" : "")>Failed</option>
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <div class="button-part">
+                        <button class="button btn-submit " type="submit">Search</button>
+                        <button class="button btn-submit " type="reset" onclick="ResetForm()">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+<div class="table-section">
+    <div class="container-fluid">
+        <div class="table-container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <div class="table-schemes">
+                        <div class="schemes">
+                            <h4>Ecommerce Transaction</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">SR.NO</th>
+                                        <th scope="col">Member Name</th>
+                                        <th scope="col">Mobile & Email id</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Order Id</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Items(Count)</th>
+                                        <th scope="col">View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Mobile | @item.Email</td>
+                                            <td>@item.PaymentDate</td>
+                                            <td>@item.OrderId</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.Status</td>
+                                            <td>@item.ItemCount</td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <a href="@Url.Action("View", "Ecommerce", new { id=item.Ecommerce_Id })" class="view-btn view-bgc viewlink">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                         fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                                    </svg>
+                                                </a>
+                                                <!-- Modal --><!-- Modal -->
+
+                                            </td>
+                                        </tr>
+                                        counter++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="divider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Pagination-->
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="pagination">
+                @Html.PagedListPager(Model, Page_No => Url.Action("Index", new { Page_No, startdate = Request.QueryString["startdate"], enddate = Request.QueryString["enddate"], searchFilter = Request.QueryString["searchFilter"], searchInput = Request.QueryString["searchInput"], status = Request.QueryString["status"] }))
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!--Scripts-->
+@*Script for reset form*@
+<script>
+        function ResetForm()
+        {
+            window.location.href = '@Url.Action("Index", "Ecommerce")';
+        }
+</script>
+
+
+@*script for dropdown*@
+<script>
+    $(document).ready(function () {
+        //console.log("Document is ready");
+        $('#searchFilter').change(function () {
+            var selectedValue = $(this).val();
+            //console.log('Selected value:', selectedValue);
+            $('#searchInputContainer').show();
+            $('#searchInput').attr('placeholder', 'Enter' + selectedValue);
+
+        });
+
+    });
+
+</script>

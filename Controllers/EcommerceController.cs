@@ -1,9 +1,13 @@
 ﻿using Demo_Senco_Admin.Models;
+using Demo_Senco_Admin.Models.Payload;
 using Demo_Senco_Admin.Models.ViewModel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,7 +17,7 @@ namespace Demo_Senco_Admin.Controllers
     {
         private SENCO_DB_AdminEntities db = new SENCO_DB_AdminEntities();
         // GET: Ecommerce Data
-        public ActionResult Index()
+        public ActionResult Index(int? Page_No, DateTime? startdate, DateTime? enddate, string searchFilter, string searchInput, string status)
         {
             var query = (from ET in db.tbl_ecommerce_transaction
                          orderby ET.ecommerce_id descending
@@ -27,20 +31,110 @@ namespace Demo_Senco_Admin.Controllers
             var Result = query.ToList();
 
             var PResult = Result
-                            .Select(item => new EcommerceViewModel
+                            .Select(item => new
                             {
-                                Ecommerce_Id= item.Ecommerce_Id,
-                                Member_Id= (int)item.Member_Id,
-                                Name = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.name")?.Value<string>() : null,
-                                Email = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.email")?.Value<string>() : null ,
-                                Mobile = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.mobile")?.Value<string>() : null ,
-                                PaymentDate = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.timestamp")?.Value<string>() : null ,
-                                OrderId = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.oid")?.Value<string>() : null ,
-                                Amount = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.amount")?.Value<string>() : null ,
-                                Status = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.status")?.Value<string>() : null ,
-                                //ItemCount= item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("productInfo.items[0].id.Count")?.Value<string>() : null,
-                            });
-            return Json(PResult, JsonRequestBehavior.AllowGet);
+                                Ecommerce_Id = item.Ecommerce_Id,
+                                Member_Id = (int)item.Member_Id,
+                                Date_Time = item.Date_Time,
+                                Name = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.name")?.Value<string>() : null ?? "N/A",
+                                Email = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.email")?.Value<string>() : null ?? "N/A",
+                                Mobile = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.mobile")?.Value<string>() : null ?? "N/A",
+                                PaymentDate = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.timestamp")?.Value<string>() : null,
+                                OrderId = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.oid")?.Value<string>() : null,
+                                Amount = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.amount")?.Value<string>() : null,
+                                Status = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.status")?.Value<string>() : null,
+                                //ItemCount= item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("productInfo.items[*]").Count().ToString() : "0",
+                                ItemCount = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload)["productInfo"]?["items"]?.Count().ToString() : "0",
+                            }).ToList();
+
+            //var PResult = (from ET in db.tbl_ecommerce_transaction
+            //              orderby ET.ecommerce_id descending
+            //               select new
+            //                {
+            //                    Ecommerce_Id = ET.ecommerce_id,
+            //                    Member_Id = (int)ET.member_id,
+            //                    Date_Time = ET.date_time,
+            //                    Name = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("customerInfo.name")?.Value<string>() : "N/A",
+            //                    Email = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("customerInfo.email")?.Value<string>() : "N/A",
+            //                    Mobile = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("customerInfo.mobile")?.Value<string>() : "N/A",
+            //                    PaymentDate = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("paymentInfo.timestamp")?.Value<string>() : null,
+            //                    OrderId = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("paymentInfo.oid")?.Value<string>() : null,
+            //                    Amount = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("paymentInfo.amount")?.Value<string>() : null,
+            //                    Status = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("paymentInfo.status")?.Value<string>() : null,
+            //                    //ItemCount= item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("productInfo.items[*]").Count().ToString() : "0",
+            //                    ItemCount = ET.payload != null ? JObject.Parse(ET.payload)["productInfo"]?["items"]?.Count().ToString() : "0",
+            //                }).ToList();
+
+            var NewResult = PResult
+                                .Where(s => string.IsNullOrEmpty(searchFilter) ||
+                                    (s.Name != null && s.Name.Contains(searchInput) && searchFilter == "customerName") ||
+                                    (s.Email != null && s.Email.Contains(searchInput) && searchFilter == "email") ||
+                                    (s.Mobile != null && s.Mobile.Contains(searchInput) && searchFilter == "mobile"))
+                                .Where(s => string.IsNullOrEmpty(status) ||
+                                    (s.Status != null && s.Status.Contains(status) && status == "success") ||
+                                    (s.Status != null && s.Status.Contains(status) && status == "failed"))
+                                .Where(s => !startdate.HasValue || s.Date_Time >= startdate)
+                                .Where(s => !enddate.HasValue || s.Date_Time <= enddate.Value.Date.Add(new TimeSpan(23, 59, 59)))
+                                .Select(item => new EcommerceViewModel
+                                {
+                                    Ecommerce_Id = item.Ecommerce_Id,
+                                    Member_Id = item.Member_Id,
+                                    Name = item.Name ?? "N/A",
+                                    Email = item.Email ?? "N/A",
+                                    Mobile = item.Mobile ?? "N/A",
+                                    PaymentDate = item.PaymentDate ?? "N/A",
+                                    OrderId = item.OrderId ?? "N/A",
+                                    Amount = item.Amount ?? "N/A",
+                                    Status = item.Status ?? "N/A",
+                                    ItemCount = item.ItemCount ?? "N/A",
+                                });
+
+            ViewBag.StartDateFilter = startdate?.ToString("MM/dd/yyyy");
+            ViewBag.EndDateFilter = enddate?.ToString("MM/dd/yyyy");
+            ViewBag.CurrentFilterSearchFilter = searchFilter;
+            ViewBag.CurrentFilterInputFilter = searchInput;
+            ViewBag.CurrentFilterPaymentStatus = status;
+
+            return View("Index", NewResult.ToPagedList(Page_No ?? 1, 30));
+        }
+
+
+
+        //View Details
+        public ActionResult View(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var ecomDetail = db.tbl_ecommerce_transaction.Find(id);
+
+            if (ecomDetail == null)
+            {
+                HttpNotFound();
+            }
+            var setting = new JsonSerializerSettings
+            {
+                DefaultValueHandling = DefaultValueHandling.Populate,
+            };
+            if (ecomDetail.payload != null)
+            {
+                var payloadData = JsonConvert.DeserializeObject<EcommercePayload>(ecomDetail.payload, setting);
+
+                var viewModel = new EcommerceViewModel
+                {
+                    Ecommerce_Id = ecomDetail.ecommerce_id,
+                    Member_Id = (int)ecomDetail.member_id,
+                    Payload = payloadData,
+                    datetime = ecomDetail.date_time,
+                };
+                return Json(viewModel,JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Data is Missing";
+                return View("Error");
+            }
         }
     }
 }

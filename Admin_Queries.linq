@@ -1,14 +1,13 @@
 <Query Kind="Expression">
   <Connection>
     <ID>feeeb23f-90cc-4f6c-a600-67058198c204</ID>
-    <Persist>true</Persist>
     <Server>13.233.140.191,1433</Server>
     <SqlSecurity>true</SqlSecurity>
     <Database>SENCO_DB_PRE_PROD</Database>
     <NoPluralization>true</NoPluralization>
     <NoCapitalization>true</NoCapitalization>
     <UserName>sa</UserName>
-    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAz/PxepwrGEer0U3gbsY3nQAAAAACAAAAAAAQZgAAAAEAACAAAABBm7ChuNfq3BWbkG+d0IvEdqMG2l5xv6PaaDoeuRptVwAAAAAOgAAAAAIAACAAAAAZMAdjlgb0/NToile5RX5ho+Ff6o3vwCaxE78gLHJ+2SAAAAAFHaa/9W0uCuBKul0VLwGmKXi+COemSbJj82yu9ixB3EAAAAAn3FHiDuAhQ2cnuCeAKRlBi7jYSTy8g3lSvSH8OwP4AX8FsEHyM4l5y+pDZ4kbOQDN0KrJOIusq5qPVJEHsFEe</Password>
+    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAa75ovtwweESHEbt/wDI3mgAAAAACAAAAAAAQZgAAAAEAACAAAAAtdKnHqEY76CwJ4q18rjK4eNm/6cG0DHi0GAFlQD4S5QAAAAAOgAAAAAIAACAAAAA/ZDOjABdW7bZDq5A70MbmQrADNgTMftptFOrk2nsBBCAAAABXMJloYX2bDKnrTuK0Mt7SE/m/SrD1xKt1DqhxeuJa/kAAAAATND46fyonYXHAcwwAv5L2jhgQDg9aR7VqkJB1oDR0DPZtW6zduC+JnXQcFPWCdS6x/czgQeJEFSpKSI+siXnU</Password>
   </Connection>
 </Query>
 

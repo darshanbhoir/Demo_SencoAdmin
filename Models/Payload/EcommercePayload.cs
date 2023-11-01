@@ -9,10 +9,17 @@ namespace Demo_Senco_Admin.Models.Payload
     public class EcommercePayload
     {
         [JsonProperty("productInfo")]
-        public List<productInfo> productInfo { get; set; }
+        public productInfo productInfo { get; set; }
+
         [JsonProperty("customerInfo")]
-        public List<customerInfo> customerInfo { get; set; }
+        public customerInfo customerInfo { get; set; }
+
         [JsonProperty("paymentInfo")]
-        public List<paymentInfo> paymentInfo { get; set; }
+        public paymentInfo paymentInfo { get; set; }
+
+        //public static implicit operator EcommercePayload(List<EcommercePayload> v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
