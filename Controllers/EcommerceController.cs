@@ -47,23 +47,7 @@ namespace Demo_Senco_Admin.Controllers
                                 ItemCount = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload)["productInfo"]?["items"]?.Count().ToString() : "0",
                             }).ToList();
 
-            //var PResult = (from ET in db.tbl_ecommerce_transaction
-            //              orderby ET.ecommerce_id descending
-            //               select new
-            //                {
-            //                    Ecommerce_Id = ET.ecommerce_id,
-            //                    Member_Id = (int)ET.member_id,
-            //                    Date_Time = ET.date_time,
-            //                    Name = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("customerInfo.name")?.Value<string>() : "N/A",
-            //                    Email = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("customerInfo.email")?.Value<string>() : "N/A",
-            //                    Mobile = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("customerInfo.mobile")?.Value<string>() : "N/A",
-            //                    PaymentDate = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("paymentInfo.timestamp")?.Value<string>() : null,
-            //                    OrderId = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("paymentInfo.oid")?.Value<string>() : null,
-            //                    Amount = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("paymentInfo.amount")?.Value<string>() : null,
-            //                    Status = ET.payload != null ? JObject.Parse(ET.payload).SelectToken("paymentInfo.status")?.Value<string>() : null,
-            //                    //ItemCount= item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("productInfo.items[*]").Count().ToString() : "0",
-            //                    ItemCount = ET.payload != null ? JObject.Parse(ET.payload)["productInfo"]?["items"]?.Count().ToString() : "0",
-            //                }).ToList();
+
 
             var NewResult = PResult
                                 .Where(s => string.IsNullOrEmpty(searchFilter) ||
@@ -82,15 +66,15 @@ namespace Demo_Senco_Admin.Controllers
                                     Name = item.Name ?? "N/A",
                                     Email = item.Email ?? "N/A",
                                     Mobile = item.Mobile ?? "N/A",
-                                    PaymentDate = item.PaymentDate ?? "N/A",
+                                    PaymentDate = item.Date_Time,
                                     OrderId = item.OrderId ?? "N/A",
                                     Amount = item.Amount ?? "N/A",
                                     Status = item.Status ?? "N/A",
                                     ItemCount = item.ItemCount ?? "N/A",
                                 });
 
-            ViewBag.StartDateFilter = startdate?.ToString("MM/dd/yyyy");
-            ViewBag.EndDateFilter = enddate?.ToString("MM/dd/yyyy");
+            ViewBag.StartDateFilter = startdate?.ToString("dd/MM/yyyy");
+            ViewBag.EndDateFilter = enddate?.ToString("dd/MM/yyyy");
             ViewBag.CurrentFilterSearchFilter = searchFilter;
             ViewBag.CurrentFilterInputFilter = searchInput;
             ViewBag.CurrentFilterPaymentStatus = status;
@@ -128,7 +112,7 @@ namespace Demo_Senco_Admin.Controllers
                     Payload = payloadData,
                     datetime = ecomDetail.date_time,
                 };
-                return Json(viewModel,JsonRequestBehavior.AllowGet);
+                return View(viewModel);
             }
             else
             {

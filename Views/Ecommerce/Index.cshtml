@@ -167,5 +167,46 @@
         });
 
     });
+</script>
 
+
+@*Script for opening View in Popup*@
+<script>
+    $(document).ready(function () {
+        $('.viewlink').on('click', function (e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            // Load the view content into a modal
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data) {
+                    // Create a modal and set its content
+                    var modal = $('<div id="myModal" class="modal"></div>');
+                    modal.html(data);
+                    // Append modal to the body
+                    $('body').append(modal);
+
+                    // Open the modal
+                    modal.modal('show');
+
+                    //Close the modal when the overlay or close button is clicked
+                    modal.on('click', function (event) {
+                        if ($(event.target).hasClass('modal') || $(event.target).hasClass('btn-close')) {
+                            modal.modal('hide');
+                        }
+                    });
+
+                    modal.on('hidden.bs.modal', function () {
+                        modal.remove();
+                    });
+                },
+                error: function () {
+                    alert('An error occurred while loading the view.');
+                }
+            });
+        });
+    });
 </script>

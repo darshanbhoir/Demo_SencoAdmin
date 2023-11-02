@@ -1596,6 +1596,7 @@
     <Content Include="Views\Dashboard\View.cshtml" />
     <Content Include="Views\EMI\View.cshtml" />
     <Content Include="Views\Ecommerce\Index.cshtml" />
+    <Content Include="Views\Ecommerce\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
