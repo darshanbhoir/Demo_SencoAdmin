@@ -225,4 +225,4 @@ D:\Senco\Senco Admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.csproj.CoreCompi
 D:\Senco\Senco Admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.csproj.CopyComplete
 D:\Senco\Senco Admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.dll
 D:\Senco\Senco Admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.pdb
-D:\Senco\Senco Admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.csprojAssemblyReference.cache
+D:\Senco\Senco Admin\Demo_SencoAdmin\obj\Debug\Demo Senco Admin.csproj.AssemblyReference.cache

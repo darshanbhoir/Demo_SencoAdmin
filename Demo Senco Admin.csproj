@@ -247,6 +247,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Payload\customerInfo.cs" />
+    <Compile Include="Models\Payload\data.cs" />
     <Compile Include="Models\Payload\EcommercePayload.cs" />
     <Compile Include="Models\Payload\EMI.cs" />
     <Compile Include="Models\Payload\EMIPayload.cs" />

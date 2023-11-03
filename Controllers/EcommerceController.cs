@@ -36,9 +36,9 @@ namespace Demo_Senco_Admin.Controllers
                                 Ecommerce_Id = item.Ecommerce_Id,
                                 Member_Id = (int)item.Member_Id,
                                 Date_Time = item.Date_Time,
-                                Name = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.name")?.Value<string>() : null ?? "N/A",
-                                Email = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.email")?.Value<string>() : null ?? "N/A",
-                                Mobile = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.mobile")?.Value<string>() : null ?? "N/A",
+                                Name = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.name")?.Value<string>() : null,
+                                Email = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.email")?.Value<string>() : null,
+                                Mobile = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("customerInfo.mobile")?.Value<string>() : null ,
                                 PaymentDate = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.timestamp")?.Value<string>() : null,
                                 OrderId = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.oid")?.Value<string>() : null,
                                 Amount = item.EcommercePayload != null ? JObject.Parse(item.EcommercePayload).SelectToken("paymentInfo.amount")?.Value<string>() : null,
@@ -104,6 +104,7 @@ namespace Demo_Senco_Admin.Controllers
             if (ecomDetail.payload != null)
             {
                 var payloadData = JsonConvert.DeserializeObject<EcommercePayload>(ecomDetail.payload, setting);
+                //var payloadData = JsonConvert.DeserializeObject<List<EcommercePayload>>(ecomDetail.payload, setting);
 
                 var viewModel = new EcommerceViewModel
                 {

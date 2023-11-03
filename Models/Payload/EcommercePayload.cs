@@ -21,5 +21,10 @@ namespace Demo_Senco_Admin.Models.Payload
         //{
         //    throw new NotImplementedException();
         //}
+
+        //public static implicit operator EcommercePayload(List<EcommercePayload> v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "View";
     Layout = null;
+    int counter = 1;
     <script src="~/Content/js/script.js"></script>
 }
 
@@ -26,21 +27,58 @@
 
                     @if (Model.Payload != null && Model.Payload.customerInfo != null)
                     {
-                        <p>Name: @Model.Payload.customerInfo.name</p>
-
+                        <div>
+                            <p>Name: @Model.Payload.customerInfo.name</p>
+                            @*<br />*@
+                            @*<p>Product Details:-</p>*@
+                        </div>
                         <hr />
-                        <h4>Product Details:-</h4>
-                        <hr />
-                        foreach (var item in Model.Payload.productInfo.items)
-                        {
-                            <p>Product Id: @item.id</p>
-                            <p>Product Name: @item.name</p>
-                            <p>Product Price: @item.price</p>
-                            <br />
-                        }
-                        <p>Total Amount: @Model.Payload.paymentInfo.amount</p>
-                        <p>Payment Status: @Model.Payload.paymentInfo.status</p>
-                    }
+                        <div>
+                            @foreach (var item in Model.Payload.productInfo.items)
+                            {
+                            <div>
+                                <p>Product Id: @item.id</p>
+                                <p>@counter. Product Details:-</p>
+                                <p>&ensp; Name: @item.name</p>
+                                <p>&ensp; Price: @item.price</p>
+                                <p>&ensp; Gold Weight: @item.data.gold_weight g & Gold Purity: @item.data.gold_purity %</p>
+                                <p>Purity: @item.data.purity</p>
+                                <p>Gold Purity: @item.data.gold_purity & Purity: @item.data.purity</p>
+                                <br />
+                            </div>
+                                counter++;
+                            }
+                            <hr />
+                        </div>
+                        @*<table>
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Gold Weight</th>
+                                    <th>Gold Purity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var data in Model.Payload.productInfo.items)
+                                    {
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>@data.name</td>
+                                            <td>@data.price</td>
+                                            <td>@data.data.gold_weight</td>
+                                            <td>@data.data.gold_purity</td>
+                                        </tr>
+                                    }
+                                
+                            </tbody>
+                        </table>*@
+                        <div>
+                            <p>Total Amount: @Model.Payload.paymentInfo.amount</p>
+                            <p>Payment Status: @Model.Payload.paymentInfo.status</p>
+                        </div>
+                            }
                     else
                     {
                         <p>No Data Available</p>
@@ -49,9 +87,9 @@
                 </div>
             </div>
 
-            <div class="modal-footer sticky-footer">
+            @*<div class="modal-footer sticky-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+            </div>*@
 
         </div>
     </div>
